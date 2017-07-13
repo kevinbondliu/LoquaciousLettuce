@@ -8,7 +8,7 @@ class Example extends Component {
   render() {
     return (
     //pass in as a div
-    <div>{this.props.test}</div>
+      <div>{this.props.test}</div>
     );
   }
 }
