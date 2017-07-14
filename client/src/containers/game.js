@@ -8,10 +8,9 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirectToUser: false
+      //redirectTo: false
     };
-    // this.UserPass = {};
-    // this.loginRequest = this.loginRequest.bind(this);
+
   }
 
 
