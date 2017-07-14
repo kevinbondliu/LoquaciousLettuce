@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 //Example containers with React component as well how state is being passed down
 class Example extends Component {
-  
+
   render() {
     return (
     //pass in as a div
