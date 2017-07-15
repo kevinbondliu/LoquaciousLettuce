@@ -18,10 +18,12 @@ class App extends React.Component {
     return (
       <div>
         <Router history={hashHistory}>
-          <Route path='/' component={Home} />
-          <Route path='/game' component={Game} />
-          <Route path='/settings' component={Settings} />
-          <Route path='/score' component={Score} />
+          <div>
+            <Route exact path='/' component={Home} />
+            <Route path='/game' component={Game} />
+            <Route path='/settings' component={Settings} />
+            <Route path='/score' component={Score} />
+          </div>  
         </Router>
         <Example/>
       </div>
