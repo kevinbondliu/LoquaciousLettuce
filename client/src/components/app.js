@@ -23,7 +23,7 @@ class App extends React.Component {
             <Route path='/game' component={Game} />
             <Route path='/settings' component={Settings} />
             <Route path='/score' component={Score} />
-          </div>  
+          </div>
         </Router>
         <Example/>
       </div>
