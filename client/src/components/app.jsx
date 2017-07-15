@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Example from '../containers/test.js';
-import Home from '../containers/home.js';
-import Settings from '../containers/settings.js';
+import Example from '../containers/test.jsx';
+import Home from '../containers/home.jsx';
+import Settings from '../containers/settings.jsx';
 import Game from '../containers/game.jsx';
-import Score from '../containers/score.js';
+import Score from '../containers/score.jsx';
 import {Link, IndexRoute, browserHistory, DefaultRoute} from 'react-router';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
