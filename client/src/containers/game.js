@@ -1,7 +1,8 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router';
 import $ from 'jquery';
-
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import { Router, Switch, Route, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
 class Game extends React.Component {
@@ -12,7 +13,6 @@ class Game extends React.Component {
     };
 
   }
-
 
   render() {
 
@@ -25,4 +25,10 @@ class Game extends React.Component {
   }
 }
 
-export default Game;
+var mapStateToProps = (state) => {
+  return {
+
+  };
+};
+
+export default connect(mapStateToProps)(Game);

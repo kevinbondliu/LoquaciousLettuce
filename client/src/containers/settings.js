@@ -1,7 +1,8 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router';
 import $ from 'jquery';
-
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import { Router, Switch, Route, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
 class Settings extends React.Component {
@@ -16,4 +17,10 @@ class Settings extends React.Component {
   }
 }
 
-export default Settings;
+var mapStateToProps = (state) => {
+  return {
+
+  };
+};
+
+export default connect(mapStateToProps)(Settings);
