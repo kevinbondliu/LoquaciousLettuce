@@ -2,6 +2,7 @@ import React from 'react';
 import keyboardJS from 'keyboardjs';
 import patterns from './patterns.jsx';
 import { Redirect, Link } from 'react-router-dom';
+import ReactAudioPlayer from 'react-audio-player';
 
 class Game extends React.Component {
   constructor(props) {
@@ -257,6 +258,12 @@ class Game extends React.Component {
         <div>
           <canvas ref="canvas" width={600} height={1000}/>
         </div>
+              <ReactAudioPlayer
+                src="assets/music/Def.mp3"
+                autoPlay
+                controls
+                ref="audio_com"
+              />
       </div>
     );
   }
