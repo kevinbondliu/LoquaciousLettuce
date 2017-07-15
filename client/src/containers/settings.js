@@ -1,9 +1,8 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router';
+import { Redirect, Link } from 'react-router-dom';
 import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import { Router, Switch, Route, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
 class Settings extends React.Component {
   render() {
