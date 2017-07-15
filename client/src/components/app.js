@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Example from '../containers/test.js';
 import Home from '../containers/home.js';
 import Settings from '../containers/settings.js';
-import Game from '../containers/game.js';
+import Game from '../containers/game.jsx';
 import Score from '../containers/score.js';
 import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRoute } from 'react-router';
 
@@ -20,7 +20,6 @@ class App extends React.Component {
           <Route path='/' component={Home} />
           <Route path='/game' component={Game} />
           <Route path='/settings' component={Settings} />
-          <Route path='/game' component={Game} />
           <Route path='/score' component={Score} />
         </Router>
         <Example/>
