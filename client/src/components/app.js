@@ -17,7 +17,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
           <div>
             <Route exact path='/' component={Home} />
             <Route path='/game' component={Game} />
