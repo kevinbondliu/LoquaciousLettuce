@@ -4,14 +4,14 @@ The project description
 
 ## Team
 
-- teamMember
-- teamMember
-- teamMember
-- teamMember
+- Julia Wong
+- Kevin Liu
+- Kurt Larson
+- Jesse Reyes
 
 ## Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project roadmap (https://docs.google.com/document/d/1prrXn4fHeLL_dUSxXDWNbhA-Cax1CoZ1z3pSbSNXtkY/edit?usp=sharing)
 
 ## Contributing
 
