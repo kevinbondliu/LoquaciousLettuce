@@ -17,7 +17,7 @@ class Game extends React.Component {
     return (
       <div className = 'gamePage'>
       gamePage GAME GAME<br></br>
-        <Link to='/score'>Score</Link>
+        <Link to='/score'>Scores</Link>
       </div>
     );
   }
