@@ -3,13 +3,15 @@ import { Redirect, Link } from 'react-router-dom';
 import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import ScoreList from './scoreList.jsx';
 
 class Score extends React.Component {
   render() {
     return (
       <div className = 'scorePage'>
-      scorePage !!!!!!!<br></br>
+      HIGH SCORE <br></br>
         <Link to='/settings'>PLAY AGAIN!</Link>
+        <ScoreList />
       </div>
     );
   }

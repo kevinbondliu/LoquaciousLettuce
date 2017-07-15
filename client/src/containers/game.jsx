@@ -1,6 +1,7 @@
 import React from 'react';
 import keyboardJS from 'keyboardjs';
-import patterns from './patterns.js';
+import patterns from './patterns.jsx';
+import { Redirect, Link } from 'react-router-dom';
 
 class Game extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class Game extends React.Component {
         x: xCor,
         y: yCor,
         vx: 0,
-        vy: 3,
+        vy: 2,
         radius: 10,
         color: color,
         keyBind: keyBind,
@@ -251,7 +252,12 @@ class Game extends React.Component {
 
   render() {
     return (
-            <canvas ref="canvas" width={600} height={1000}/>
+      <div>
+        <Link to='/score'>Scores and Stats</Link>
+        <div>
+          <canvas ref="canvas" width={600} height={1000}/>
+        </div>
+      </div>
     );
   }
 }

@@ -14,4 +14,4 @@ var patterns = {
 };
 
 
-export default patterns; 
+export default patterns;
