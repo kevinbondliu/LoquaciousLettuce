@@ -5,7 +5,7 @@ import patterns from './patterns.js';
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       score: 0,
       hit: false
     };
@@ -32,7 +32,7 @@ class Game extends React.Component {
         x: xCor,
         y: yCor,
         vx: 0,
-        vy: 5,
+        vy: 3,
         radius: 10,
         color: color,
         keyBind: keyBind,
@@ -58,7 +58,7 @@ class Game extends React.Component {
           };
         }
       }
-          
+
       let row = {
         balls: [],
         drawRow: function () {
@@ -80,12 +80,12 @@ class Game extends React.Component {
       }
       return row;
     };
-        
+
     var allRows = {
       rows: [],
-          
+
       flashDots: function() {
-        if (this.rows[0]) { 
+        if (this.rows[0]) {
           if (this.rows[0].balls) {
             if (this.rows[0].balls) {
               if (this.rows[0].balls[0].y > 540 && this.rows[0].balls[0].y < 560) {
@@ -103,7 +103,7 @@ class Game extends React.Component {
       },
       checkDelete: function() {
         for (let i = 0; i < this.rows.length; i++) {
-          if (this.rows[0]) { 
+          if (this.rows[0]) {
             if (this.rows[0].balls) {
               if (this.rows[0].balls) {
                 if (this.rows[0].balls.length === 0 || this.rows[0].balls[0].y > 580) {
@@ -144,7 +144,7 @@ class Game extends React.Component {
       });
       allRows.checkDelete();
       allRows.flashDots();
-   
+
     }
 
     setInterval(()=> {
@@ -154,7 +154,7 @@ class Game extends React.Component {
     setInterval(()=>{
       allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
     }, 500);
-        
+
 
     var checkMove = () => {
       var output = allRows.rows[0].balls.map(function(ball) {
@@ -164,7 +164,7 @@ class Game extends React.Component {
       output.push(Math.abs(575 - allRows.rows[0].balls[0].y));
       return output;
     };
-    
+
     function ListenEvents() {
       var validMove = (keyCodes) =>{
         var moveCheck = checkMove();
@@ -211,7 +211,7 @@ class Game extends React.Component {
         });
       }
       listenToAS();
-      
+
 
       function listenToAD() {
         keyboardJS.bind('a + d', function(e) {
@@ -249,7 +249,7 @@ class Game extends React.Component {
     }
   }
 
-  render() {    
+  render() {
     return (
             <canvas ref="canvas" width={600} height={1000}/>
     );
