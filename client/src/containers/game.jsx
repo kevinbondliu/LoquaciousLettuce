@@ -33,7 +33,7 @@ class Game extends React.Component {
         x: xCor,
         y: yCor,
         vx: 0,
-        vy: 3,
+        vy: 2,
         radius: 10,
         color: color,
         keyBind: keyBind,
