@@ -14,6 +14,7 @@ class ScoreList extends React.Component {
       return (
         <div>
           <li key={user.id} onClick={() => this.props.selectUser(user)}>
+            <img src={user.image} height="45" width="45"/>
             {user.username} {user.score}
           </li>
         </div>

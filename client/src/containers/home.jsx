@@ -9,7 +9,7 @@ class Home extends React.Component {
     return (
       <div className = 'homePage'>
       homePage!!!!!!<br></br>
-        <Link to='/settings'>Go To Settings!</Link>
+        <Link to='/selectPlayerSettings'>Select Player Mode</Link>
       </div>
     );
   }
