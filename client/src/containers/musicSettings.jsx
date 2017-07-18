@@ -11,14 +11,14 @@ class MusicSettings extends React.Component {
     return (
       <div className = 'musicSettingsPage'>
       MUSICCCCCCC SPOTIFYYYYYYYYYYY<br></br>
-        <div className="col-sm-12" style={{ background:'black', height: 500}}>
+        <div className="col-sm-12" style={{ background: 'black', height: 500}}>
           <Navbar>
             <Navbar.Collapse>
               <Navbar.Form pullLeft>
                 <FormGroup>
                   <FormControl type="text" placeholder="Song" />
                 </FormGroup>
-                  {' '}
+                {' '}
                 <Button type="submit">Search</Button>
               </Navbar.Form>
             </Navbar.Collapse>

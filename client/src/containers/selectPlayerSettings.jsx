@@ -13,7 +13,7 @@ class SelectPlayerSettings extends React.Component {
 
 
           <div className="row">
-            <div className="col-sm-12" style={{background:"#0066ff", height: 500}}>Game<br></br>
+            <div className="col-sm-12" style={{background: '#0066ff', height: 500}}>Game<br></br>
               <ButtonGroup vertical className="col-sm-12">
                 <Button>Single Player</Button>
                 <Button>MultiPlayer</Button>
