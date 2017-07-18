@@ -5,6 +5,7 @@ const PORT = process.env.port || 3000;
 
 app.get('/audio', (req, res) => {
   console.log('it reached at audo get');
+  console.log(req.audio);
 });
 
 

@@ -17,12 +17,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
           <div>
             <Route exact path='/' component={Home} />
             <Route path='/game' component={Game} />
             <Route path='/settings' component={Settings} />
             <Route path='/score' component={Score} />
+            <Route path='/audio' component ={Audio}/>
           </div>  
         </Router>
         <Example/>

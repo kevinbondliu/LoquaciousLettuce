@@ -276,6 +276,7 @@ class Game extends React.Component {
     var boundEnd = this.trackEnd.bind(this);
     var startSong = this.startSong.bind(this);
     return (
+<<<<<<< HEAD
       <div>
         <Link to='/score'>Scores and Stats</Link>
         <div>
@@ -290,6 +291,10 @@ class Game extends React.Component {
               />
               <button onClick={function() { startSong(); } }> Start Song </button>
       </div>
+=======
+            <canvas ref="canvas" width={600} height={1000}/>
+            
+>>>>>>> testing spotify
     );
   }
 }

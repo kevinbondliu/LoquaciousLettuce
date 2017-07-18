@@ -60,6 +60,16 @@ router.get('/auth/facebook/callback', middleware.passport.authenticate('facebook
   failureFlash: true
 }));
 
+router.get('/auth/spotify', middleware.passport.authenticate('spotify', {
+  scope: ['user-read-private', 'user-read-email']
+}));
+
+router.get('/auth/spotify/callback', middleware.passport.authenticate('spotify', {
+  successRedirect: '/profile',
+  failureRedirect: '/login'
+}));
+
+
 router.get('/auth/twitter', middleware.passport.authenticate('twitter'));
 
 router.get('/auth/twitter/callback', middleware.passport.authenticate('twitter', {

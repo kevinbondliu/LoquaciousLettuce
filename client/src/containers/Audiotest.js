@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import Sound from 'react-sound';
 import path from 'path';
 //Example containers with React component as well how state is being passed down
 class Audio extends Component {
@@ -10,22 +9,24 @@ class Audio extends Component {
     super(props);
   }
 
-  play() {
-    var audio = document.createElement('audio');
-    audio.src = 'file:///Users/kevinliu/HackReactor/LoquaciousLettuce/MusicFiles/U2.mp3';
-    audio.play();
-  }
-  
   getAudio() {
     console.log('this was clicked');
     axios({
-      method: 'get',
-      url: '/audio',
-      params: {
-        audio: 'hello'
+      method: 'post',
+      url: 'https://accounts.spotify.com/api/token',
+      headers: {
+        client_id: '11720c2bf44e4eb2891f29bc59d94a29',
+        client_secret: '26c54b955e564174b7ab1cad61516925'
+      },
+      data: {
+        grant_type: 'authorization_code',
+        code: 'kK27foGh8',
+        redirect_uri: 'http://localhost:3000/auth/spotify/callback'
+
       }
     })
     .then(result => {
+      console.log(result);
       console.log('HELLO IT REACHED HERE');
     });
   }
@@ -36,12 +37,6 @@ class Audio extends Component {
     //pass in as a div
       <div>
         <button onClick = {this.getAudio.bind(this)}>Audio</button>
-        <a href='//www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=7IPNBW9fSvc'>
-          <img src='//www.youtubeinmp3.com/icon/folder.png'/>
-          <strong>Download MP3</strong>
-        </a>
-        <button onClick={this.play.bind(this)}>PlayMusic</button>
-      
       </div>
     );
   }
@@ -57,3 +52,9 @@ var mapStateToProps = (state) => {
 
 //Have to always use connect to connect storage to the Example component
 export default connect(mapStateToProps)(Audio);
+
+
+        // <a href='//www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=7IPNBW9fSvc'>
+        //   <img src='//www.youtubeinmp3.com/icon/folder.png'/>
+        //   <strong>Download MP3</strong>
+        // </a>

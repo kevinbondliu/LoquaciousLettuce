@@ -9,7 +9,14 @@ class Home extends React.Component {
     return (
       <div className = 'homePage'>
       homePage!!!!!!<br></br>
+<<<<<<< HEAD:client/src/containers/home.jsx
         <Link to='/selectPlayerSettings'>Select Player Mode</Link>
+=======
+              <audio autoPlay>
+          <source src = 'U2.mp3' type ='audio/wav'/>
+        </audio>
+        <Link to='/settings'>Go To Settings!</Link>
+>>>>>>> testing spotify:client/src/containers/home.js
       </div>
     );
   }
