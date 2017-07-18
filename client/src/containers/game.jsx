@@ -1,14 +1,17 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import keyboardJS from 'keyboardjs';
 import patterns from './patterns.jsx';
 import { Redirect, Link } from 'react-router-dom';
+import ReactAudioPlayer from 'react-audio-player';
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       score: 0,
-      hit: false
+      hit: false,
+      game: false
     };
     this.increaseScore = this.increaseScore.bind(this);
     this.updateCanvas = this.updateCanvas.bind(this);
@@ -22,7 +25,20 @@ class Game extends React.Component {
     this.setState({score: this.state.score + 10, hit: true});
   }
 
+  startSong() {
+    var audio = ReactDOM.findDOMNode(this.refs.audio);
+    
+    console.log(audio);
+    this.setState({game: true});
+    console.log(this.state.game);
+    if (this.state.game === true) {
+      this.updateCanvas();
+      audio.play();
+    }
+  }
+
   updateCanvas() {
+    if (this.state.game === true) {
     var canvas = this.refs.canvas;
     var ctx = this.refs.canvas.getContext('2d');
     var context = this;
@@ -148,16 +164,18 @@ class Game extends React.Component {
 
     }
 
-    setInterval(()=> {
-      draw();
-    }, 1000 / 30);
 
-    setInterval(()=>{
-      allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
-    }, 500);
+      setInterval(()=> {
+        draw();
+      }, 1000 / 30);
+
+      setInterval(()=>{
+        allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
+      }, 500);
 
 
     var checkMove = () => {
+      console.log(allRows);
       var output = allRows.rows[0].balls.map(function(ball) {
         return (ball.keyBind);
       });
@@ -248,15 +266,29 @@ class Game extends React.Component {
       }
       listenToDF();
     }
+    }
+  }
+  trackEnd() {
+    console.log('The song has ended');
   }
 
   render() {
+    var boundEnd = this.trackEnd.bind(this);
+    var startSong = this.startSong.bind(this);
     return (
       <div>
         <Link to='/score'>Scores and Stats</Link>
         <div>
           <canvas ref="canvas" width={600} height={1000}/>
         </div>
+              <ReactAudioPlayer
+                src="assets/music/Face.mp3"
+                autoPlay={false}
+                controls
+                ref="audio"
+                onEnded={function() { boundEnd(); } }
+              />
+              <button onClick={function() { startSong(); } }> Start Song </button>
       </div>
     );
   }
