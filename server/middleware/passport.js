@@ -4,6 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
+const SpotifyStrategy = require('passport-spotify').Strategy;
 const config = require('config')['passport'];
 const models = require('../../db/models');
 
@@ -115,6 +116,14 @@ passport.use('google', new GoogleStrategy({
   (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('google', profile, done))
 );
 
+passport.use('spotify', new SpotifyStrategy({
+  clientID: config.Spotify.clientID,
+  clientSecret: config.Spotify.clientSecret,
+  callbackURL: config.Spotify.callbackURL
+},
+  (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('spotify', profile, done))
+);
+
 passport.use('facebook', new FacebookStrategy({
   clientID: config.Facebook.clientID,
   clientSecret: config.Facebook.clientSecret,
@@ -151,18 +160,19 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
-
+      console.log('hello', oauthProfile);
       let profileInfo = {
-        first: oauthProfile.name.givenName,
-        last: oauthProfile.name.familyName,
+        first: oauthProfile.displayName.split(' ')[0],
+        last: oauthProfile.displayName.split(' ')[1],
         display: oauthProfile.displayName || `${oauthProfile.name.givenName} ${oauthProfile.name.familyName}`,
         email: oauthProfile.emails[0].value
       };
-
+      console.log('*******************************************************************');
       if (profile) {
         //update profile with info from oauth
         return profile.save(profileInfo, { method: 'update' });
       }
+      console.log('after profileInfoSave');
       // otherwise create new profile
       return models.Profile.forge(profileInfo).save();
     })

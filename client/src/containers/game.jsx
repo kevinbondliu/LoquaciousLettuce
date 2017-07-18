@@ -4,28 +4,24 @@ import keyboardJS from 'keyboardjs';
 import patterns from './patterns.jsx';
 import { Redirect, Link } from 'react-router-dom';
 import ReactAudioPlayer from 'react-audio-player';
-
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       score: 0,
-      hit: false,
-      game: false
+      hit: false
     };
     this.increaseScore = this.increaseScore.bind(this);
     this.updateCanvas = this.updateCanvas.bind(this);
   }
-
   componentDidMount() {
     this.updateCanvas();
   }
-
   increaseScore() {
     this.setState({score: this.state.score + 10, hit: true});
   }
 
-  startSong() {
+    startSong() {
     var audio = ReactDOM.findDOMNode(this.refs.audio);
     
     console.log(audio);
@@ -36,14 +32,11 @@ class Game extends React.Component {
       audio.play();
     }
   }
-
   updateCanvas() {
-    if (this.state.game === true) {
     var canvas = this.refs.canvas;
     var ctx = this.refs.canvas.getContext('2d');
     var context = this;
     ListenEvents();
-
     var makeBall = function (xCor, yCor, color, keyBind) {
       var ball = {
         x: xCor,
@@ -63,7 +56,6 @@ class Game extends React.Component {
       };
       return ball;
     };
-
     var makeRow = function(hexCode) {
       var rowArr = [0, 0, 0, 0, ];
       var corArr = ['a', 's', 'd', 'f'];
@@ -75,7 +67,6 @@ class Game extends React.Component {
           };
         }
       }
-
       let row = {
         balls: [],
         drawRow: function () {
@@ -97,10 +88,8 @@ class Game extends React.Component {
       }
       return row;
     };
-
     var allRows = {
       rows: [],
-
       flashDots: function() {
         if (this.rows[0]) {
           if (this.rows[0].balls) {
@@ -132,13 +121,11 @@ class Game extends React.Component {
         }
       }
     };
-
     var counter = 0;
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = 'black';
       ctx.fillRect(5, 5, 400, 600);
-
       if (context.state.hit === true) {
         if (counter === 5) {
           context.setState({hit: false});
@@ -161,21 +148,14 @@ class Game extends React.Component {
       });
       allRows.checkDelete();
       allRows.flashDots();
-
     }
-
-
-      setInterval(()=> {
-        draw();
-      }, 1000 / 30);
-
-      setInterval(()=>{
-        allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
-      }, 500);
-
-
+    setInterval(()=> {
+      draw();
+    }, 1000 / 30);
+    setInterval(()=>{
+      allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
+    }, 500);
     var checkMove = () => {
-      console.log(allRows);
       var output = allRows.rows[0].balls.map(function(ball) {
         return (ball.keyBind);
       });
@@ -183,7 +163,6 @@ class Game extends React.Component {
       output.push(Math.abs(575 - allRows.rows[0].balls[0].y));
       return output;
     };
-
     function ListenEvents() {
       var validMove = (keyCodes) =>{
         var moveCheck = checkMove();
@@ -195,70 +174,59 @@ class Game extends React.Component {
           }
         }
       };
-
       function listenToA() {
         keyboardJS.bind('a', function(e) {
           validMove('a');
         });
       }
       listenToA();
-
       function listenToS() {
         keyboardJS.bind('s', function(e) {
           validMove('s');
         });
       }
       listenToS();
-
       function listenToD() {
         keyboardJS.bind('d', function(e) {
           validMove('d');
         });
       }
       listenToD();
-
       function listenToF() {
         keyboardJS.bind('f', function(e) {
           validMove('f');
         });
       }
       listenToF();
-
       function listenToAS() {
         keyboardJS.bind('a + s', function(e) {
           validMove('as');
         });
       }
       listenToAS();
-
-
       function listenToAD() {
         keyboardJS.bind('a + d', function(e) {
           validMove('ad');
         });
       }
-
       function listenToAF() {
         keyboardJS.bind('a + f', function(e) {
           validMove('af');
         });
       }
       listenToAD();
-
       function listenToSD() {
         keyboardJS.bind('s + d', function(e) {
           validMove('sd');
         });
       }
       listenToSD();
-
       function listenToSF() {
         keyboardJS.bind('s + f', function(e) {
           validMove('sf');
         });
       }
       listenToSF();
-
       function listenToDF() {
         keyboardJS.bind('d + f', function(e) {
           validMove('df');
@@ -266,14 +234,13 @@ class Game extends React.Component {
       }
       listenToDF();
     }
-    }
   }
+
   trackEnd() {
     console.log('The song has ended');
   }
-
   render() {
-    var boundEnd = this.trackEnd.bind(this);
+        var boundEnd = this.trackEnd.bind(this);
     var startSong = this.startSong.bind(this);
     return (
       <div>
@@ -281,7 +248,7 @@ class Game extends React.Component {
         <div>
           <canvas ref="canvas" width={600} height={1000}/>
         </div>
-              <ReactAudioPlayer
+                      <ReactAudioPlayer
                 src="assets/music/Face.mp3"
                 autoPlay={false}
                 controls

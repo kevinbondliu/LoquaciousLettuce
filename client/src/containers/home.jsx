@@ -10,6 +10,10 @@ class Home extends React.Component {
       <div className = 'homePage'>
       homePage!!!!!!<br></br>
         <Link to='/selectPlayerSettings'>Select Player Mode</Link>
+        <audio autoPlay>
+          <source src = 'U2.mp3' type ='audio/wav'/>
+        </audio>
+        <Link to='/settings'>Go To Settings!</Link>
       </div>
     );
   }

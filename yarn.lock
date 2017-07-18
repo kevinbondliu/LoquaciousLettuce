@@ -199,6 +199,13 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
+axios@^0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.16.2.tgz#ba4f92f17167dfbab40983785454b9ac149c3c6d"
+  dependencies:
+    follow-redirects "^1.2.3"
+    is-buffer "^1.1.5"
+
 babel-code-frame@^6.16.0, babel-code-frame@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.22.0.tgz#027620bee567a88c32561574e7fd0801d33118e4"
@@ -1267,7 +1274,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2:
     create-hash "^1.1.0"
     inherits "^2.0.1"
 
-create-react-class@^15.5.3:
+create-react-class@^15.5.3, create-react-class@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.0.tgz#ab448497c26566e1e29413e883207d57cfe7bed4"
   dependencies:
@@ -1333,6 +1340,12 @@ debug@2.6.3, debug@^2.1.1, debug@^2.1.3:
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:
     ms "0.7.2"
+
+debug@^2.4.5:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
+  dependencies:
+    ms "2.0.0"
 
 decamelize@^1.0.0, decamelize@^1.1.1:
   version "1.2.0"
@@ -1914,6 +1927,12 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
+follow-redirects@^1.2.3:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.2.4.tgz#355e8f4d16876b43f577b0d5ce2668b9723214ea"
+  dependencies:
+    debug "^2.4.5"
+
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -2476,7 +2495,7 @@ is-binary-path@^1.0.0:
   dependencies:
     binary-extensions "^1.0.0"
 
-is-buffer@^1.0.2:
+is-buffer@^1.0.2, is-buffer@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
 
@@ -3084,6 +3103,10 @@ ms@0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
+ms@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+
 mute-stream@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
@@ -3432,6 +3455,22 @@ passport-oauth2@1.x.x:
     uid2 "0.0.x"
     utils-merge "1.x.x"
 
+passport-oauth@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/passport-oauth/-/passport-oauth-1.0.0.tgz#90aff63387540f02089af28cdad39ea7f80d77df"
+  dependencies:
+    passport-oauth1 "1.x.x"
+    passport-oauth2 "1.x.x"
+
+passport-spotify@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/passport-spotify/-/passport-spotify-0.3.1.tgz#eddb38f8a4d30c41e9b1077f3c4c66a97174be7b"
+  dependencies:
+    passport-oauth "1.0.0"
+    pkginfo "~0.4.0"
+    querystring "~0.2.0"
+    util "~0.10.3"
+
 passport-strategy@1.x.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-strategy/-/passport-strategy-1.0.0.tgz#b5539aa8fc225a3d1ad179476ddf236b440f52e4"
@@ -3575,6 +3614,10 @@ pkg-dir@^1.0.0:
   dependencies:
     find-up "^1.0.0"
 
+pkginfo@~0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/pkginfo/-/pkginfo-0.4.0.tgz#349dbb7ffd38081fcadc0853df687f0c7744cd65"
+
 pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
@@ -3645,7 +3688,7 @@ prop-types-extra@^1.0.1:
   dependencies:
     warning "^3.0.0"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -3695,7 +3738,7 @@ querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
 
-querystring@0.2.0:
+querystring@0.2.0, querystring@^0.2.0, querystring@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
@@ -3748,6 +3791,10 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-audio-player@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-audio-player/-/react-audio-player-0.6.0.tgz#fbfe657918710b9fbd368fb91deb2eefec6c8d5d"
+
 react-bootstrap@^0.31.1:
   version "0.31.1"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.31.1.tgz#679c9f73ae77ff207867d536496207291f3a3ed7"
@@ -3764,6 +3811,15 @@ react-bootstrap@^0.31.1:
     uncontrollable "^4.1.0"
     warning "^3.0.0"
 
+react-dom@^15.0.1:
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.1.tgz#2cb0ed4191038e53c209eb3a79a23e2a4cf99470"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
+    prop-types "^15.5.10"
+
 react-dom@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.2.tgz#015363f05b0a1fd52ae9efdd3a0060d90695208f"
@@ -3771,6 +3827,15 @@ react-dom@^15.4.2:
     fbjs "^0.8.1"
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
+
+react-music-player@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-music-player/-/react-music-player-1.0.3.tgz#fa144c2f206734bb826c29d5f6595876065cc10e"
+  dependencies:
+    classnames "^2.2.5"
+    react "^15.0.1"
+    react-dom "^15.0.1"
+    shuffle-array "^1.0.0"
 
 react-overlays@^0.7.0:
   version "0.7.0"
@@ -3820,6 +3885,24 @@ react-router@^4.1.1:
     path-to-regexp "^1.5.3"
     prop-types "^15.5.4"
     warning "^3.0.0"
+
+react-sound@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/react-sound/-/react-sound-0.6.2.tgz#a0684b80d712659d35297efc5b20ffb3edac7964"
+  dependencies:
+    prop-types "^15.5.7"
+    react ">=15.3.0 <16.0.0"
+    soundmanager2 "^2.97.20150601-a"
+
+"react@>=15.3.0 <16.0.0", react@^15.0.1:
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
+  dependencies:
+    create-react-class "^15.6.0"
+    fbjs "^0.8.9"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
+    prop-types "^15.5.10"
 
 react@^15.4.2:
   version "15.4.2"
@@ -4206,6 +4289,10 @@ shelljs@^0.7.5:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
+shuffle-array@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/shuffle-array/-/shuffle-array-1.0.1.tgz#c4ff3cfe74d16f93730592301b25e6577b12898b"
+
 sigmund@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
@@ -4249,6 +4336,10 @@ sockjs@0.3.18:
   dependencies:
     faye-websocket "^0.10.0"
     uuid "^2.0.2"
+
+soundmanager2@^2.97.20150601-a:
+  version "2.97.20170602"
+  resolved "https://registry.yarnpkg.com/soundmanager2/-/soundmanager2-2.97.20170602.tgz#fe3bc731bfc4d54c1364e71980263e6816981879"
 
 source-list-map@^1.1.1:
   version "1.1.1"
@@ -4686,7 +4777,7 @@ util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
-util@0.10.3, util@^0.10.3:
+util@0.10.3, util@^0.10.3, util@~0.10.3:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/util/-/util-0.10.3.tgz#7afb1afe50805246489e3db7fe0ed379336ac0f9"
   dependencies:

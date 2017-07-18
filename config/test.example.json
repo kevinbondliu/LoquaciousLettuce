@@ -4,20 +4,22 @@
       "database": "thesis_test"
     }
   },
-
   "passport": {
     "Google": {
       "clientID": "FILL_ME_IN",
       "clientSecret": "FILL_ME_IN",
       "callbackURL": "http://FILL_ME_IN/auth/google/callback"
     },
-
     "Facebook": {
       "clientID": "FILL_ME_IN",
       "clientSecret": "FILL_ME_IN",
       "callbackURL": "http://FILL_ME_IN/auth/facebook/callback"
     },
-
+    "Spotify": {
+      "clientID": "11720c2bf44e4eb2891f29bc59d94a29",
+      "clientSecret": "26c54b955e564174b7ab1cad61516925",
+      "callbackURL": "http://localhost:3000/profile/auth/spotify/callback"
+    },
     "Twitter": {
       "consumerKey": "FILL_ME_IN",
       "consumerSecret": "FILL_ME_IN",
