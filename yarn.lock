@@ -2748,13 +2748,10 @@ keyboardjs@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/keyboardjs/-/keyboardjs-2.3.3.tgz#57527a4905dce72dea838ef5d8b166bf9c99bd82"
 
-<<<<<<< HEAD
 keycode@^2.1.2:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.9.tgz#964a23c54e4889405b4861a5c9f0480d45141dfa"
 
-=======
->>>>>>> testing spotify
 kind-of@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.1.0.tgz#475d698a5e49ff5e53d14e3e732429dc8bf4cf47"
@@ -3685,17 +3682,13 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-<<<<<<< HEAD
 prop-types-extra@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/prop-types-extra/-/prop-types-extra-1.0.1.tgz#a57bd4810e82d27a3ff4317ecc1b4ad005f79a82"
   dependencies:
     warning "^3.0.0"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8:
-=======
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7:
->>>>>>> testing spotify
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -3798,7 +3791,10 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-<<<<<<< HEAD
+react-audio-player@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-audio-player/-/react-audio-player-0.6.0.tgz#fbfe657918710b9fbd368fb91deb2eefec6c8d5d"
+
 react-bootstrap@^0.31.1:
   version "0.31.1"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.31.1.tgz#679c9f73ae77ff207867d536496207291f3a3ed7"
@@ -3814,7 +3810,7 @@ react-bootstrap@^0.31.1:
     react-prop-types "^0.4.0"
     uncontrollable "^4.1.0"
     warning "^3.0.0"
-=======
+
 react-dom@^15.0.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.1.tgz#2cb0ed4191038e53c209eb3a79a23e2a4cf99470"
@@ -3823,7 +3819,6 @@ react-dom@^15.0.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "^15.5.10"
->>>>>>> testing spotify
 
 react-dom@^15.4.2:
   version "15.4.2"
@@ -3833,7 +3828,15 @@ react-dom@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-<<<<<<< HEAD
+react-music-player@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-music-player/-/react-music-player-1.0.3.tgz#fa144c2f206734bb826c29d5f6595876065cc10e"
+  dependencies:
+    classnames "^2.2.5"
+    react "^15.0.1"
+    react-dom "^15.0.1"
+    shuffle-array "^1.0.0"
+
 react-overlays@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.7.0.tgz#531898ff566c7e5c7226ead2863b8cf9fbb5a981"
@@ -3849,16 +3852,6 @@ react-prop-types@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
   dependencies:
     warning "^3.0.0"
-=======
-react-music-player@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-music-player/-/react-music-player-1.0.3.tgz#fa144c2f206734bb826c29d5f6595876065cc10e"
-  dependencies:
-    classnames "^2.2.5"
-    react "^15.0.1"
-    react-dom "^15.0.1"
-    shuffle-array "^1.0.0"
->>>>>>> testing spotify
 
 react-redux@^5.0.5:
   version "5.0.5"
