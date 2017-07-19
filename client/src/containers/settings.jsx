@@ -28,9 +28,9 @@ class Settings extends React.Component {
         <div>
         Level Settings
           <SelectLevelSettings/>
-        </div> 
+          </div> 
         : <div>
-          No View Selected
+          No View is Selected
         </div>
       }
       </div>

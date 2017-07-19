@@ -287,13 +287,14 @@ class Game extends React.Component {
             validMove('ad');
           });
         }
+        listenToAD();
 
         function listenToAF() {
           keyboardJS.bind('a + f', function(e) {
             validMove('af');
           });
         }
-        listenToAD();
+        listenToAF();
 
         function listenToSD() {
           keyboardJS.bind('s + d', function(e) {

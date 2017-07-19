@@ -26,7 +26,7 @@ class SelectLevelSettings extends React.Component {
               </ButtonGroup>
               <Button><Link to='/settings'>Back</Link></Button>
               <Button><Link to='/game'>Play!</Link></Button>
-              <Button><Link to='/multiPlayer'>MultiPlayer</Link></Button>
+              <Button><Link to='/multiplayerGame'>MultiPlayer</Link></Button>
             </div>
           </div>
         </div>
