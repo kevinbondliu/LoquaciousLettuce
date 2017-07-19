@@ -7,6 +7,7 @@ import path from 'path';
 class Audio extends Component {
   constructor(props) {
     super(props);
+    this.getAudio = this.getAudio.bind(this);
   }
 
   getToken() {
@@ -16,16 +17,18 @@ class Audio extends Component {
       contentType: 'json'
     })
     .then((response) => {
-      console.log(response.data);
+      var res = response;
+      var accessToken = res.data.accessToken + '&refresh_token=' + res.data.refreshToken;
+      this.getAudio(accessToken);
     });
   }
 
-  getAudio() {
+  getAudio(token) {
     console.log('this was clicked');
 
     const BASE_URL = 'https://api.spotify.com/v1/audio-features/24FgOhhZMtFcfg5nKcsMZD';
     const FETCH_URL = BASE_URL + 'q=' + 'michael jackson' + '&type=artist&limit=1';
-    var accessToken = 'BQAR2mm-LqkCzTLJLyxWkhdFrQZW-mAhs-m5K9IVIx2Mvcg38fL8Am6RR-PFXHHNQT8ahPlOzmSkbb5QSWngICnPGN0Qc1POvm-NzjgpfetFDcy14LnJVWaqJGoR98Mo8tmm0sdZQnlLeP31LsgI6ZxGGulCsA&refresh_token=AQC0nDwwEoQbwLV48gbwTgnoYVQbHU4BW-i34DhzFmtzGmk3mwA69HfzivTybw21K9Gro-JJKYRptuOQZoIaMU7SodSoZfylDeeteg9kAv5zXj7NykcsnAOgomGICFt6OC8';
+    var accessToken = token;
 
     var myOptions = {
       method: 'GET',

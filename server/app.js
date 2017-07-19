@@ -3,7 +3,8 @@ const express = require('express');
 const path = require('path');
 const middleware = require('./middleware');
 const routes = require('./routes');
-
+const db = require('../db');
+const models = require('../db/models');
 const app = express();
 
 app.use(middleware.morgan('dev'));
@@ -21,7 +22,11 @@ app.use(middleware.flash());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/tokenhere', (req, res) => {
-  res.send('hello');
+  models.Profile.where({'first': 'Kevin'})
+  .fetch()
+  .then(function(model) {
+    res.send(model);
+  });
 });
 
 app.use('/', routes.auth);
