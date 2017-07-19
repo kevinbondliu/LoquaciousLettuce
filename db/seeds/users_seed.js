@@ -11,7 +11,10 @@ exports.seed = function (knex, Promise) {
         first: 'System',
         last: 'Admin',
         display: 'Administrator',
-        email: 'admin@domain.com'
+        email: 'admin@domain.com',
+        phone: '',
+        accessToken: '',
+        refreshToken: ''
       }).save();
     })
     .error(err => {
@@ -22,7 +25,9 @@ exports.seed = function (knex, Promise) {
       return models.Auth.forge({
         type: 'local',
         password: 'admin123',
-        profile_id: profile.get('id')
+        profile_id: profile.get('id'),
+        accessToken: '',
+        refreshToken: ''
       }).save();
     })
     .error(err => {
