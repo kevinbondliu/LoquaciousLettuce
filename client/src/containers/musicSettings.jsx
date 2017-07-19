@@ -26,7 +26,7 @@ class MusicSettings extends React.Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-        <Button onClick={changeView('difficulty')}></Button>
+        <Button onClick={()=>{changeView('difficulty'); }}>Waiting for Kevin to kick Spotify's butt. Go Kevin!!!</Button>
         
       </div>
     );
