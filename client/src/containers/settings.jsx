@@ -30,7 +30,7 @@ class Settings extends React.Component {
           <SelectLevelSettings/>
           </div> 
         : <div>
-          No View Selected
+          No View is Selected
         </div>
       }
       </div>
