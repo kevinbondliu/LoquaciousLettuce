@@ -4,21 +4,22 @@ import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Button, ButtonGroup} from 'react-bootstrap';
-import {changePlayers} from '../actions/index';
+import {changePlayers, changeView} from '../actions/index';
 import {selectMode} from '../actions/index';
 
 
 class SelectPlayerSettings extends React.Component {
   render() {
     var changePlayers = this.props.changePlayers.bind(this);
+    var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'selectPlayerPage'>
         <div className="container">
           <div className="row">
             <div className="col-sm-12" style={{background: '#0066ff', height: 500}}>Game<br></br>
               <ButtonGroup vertical className="col-sm-12">
-                <Button onClick={()=> {changePlayers(1); }} >Single Player</Button>
-                <Button onClick={()=> {changePlayers(2); }}>MultiPlayer</Button>
+                <Button onClick={()=> {changePlayers(1); changeView('song');} } >Single Player</Button>
+                <Button onClick={()=> {changePlayers(2); changeView('song');} }>MultiPlayer</Button>
               </ButtonGroup>
             </div>
           </div>
@@ -39,7 +40,7 @@ var mapStateToProps = (state) => {
 };
 
 var mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({changePlayers: changePlayers}, dispatch);
+  return bindActionCreators({changePlayers: changePlayers, changeView: changeView}, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectPlayerSettings);
