@@ -5,25 +5,32 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import SelectPlayerSettings from './selectPlayerSettings.jsx';
 import SelectLevelSettings from './selectLevelSettings.jsx';
+import MusicSettings from './musicSettings.jsx';
 import {Button, ButtonGroup} from 'react-bootstrap';
 
 class Settings extends React.Component {
   render() {
+    console.log('THIS IS VIEW', this.props.view);
     return (
       <div>
-      <div className="settingsPage">Settingssssss Page</div>
-
-      {this.props.view === 'playerSettings' ?
+      <div className="settingsPage">Settings Page</div>
+      {this.props.view === 'players' ?
         <div>
-          Hellooo world
-          <SelectLevelSettings/>
-          <Button><Link to='/musicSettings'>Next!</Link></Button>
-        </div>
-      :
-        <div>
-          Hellooo world 222222
+          Player Count
           <SelectPlayerSettings/>
-          <Button><Link to='/musicSettings'>Next!</Link></Button>
+        </div>
+      : this.props.view === 'song' ?
+        <div>
+          Music Settings
+          <MusicSettings/>
+        </div>
+      : this.props.view === 'difficulty' ?
+        <div>
+        Level Settings
+          <SelectLevelSettings/>
+        </div> 
+        : <div>
+          No View Selected
         </div>
       }
       </div>

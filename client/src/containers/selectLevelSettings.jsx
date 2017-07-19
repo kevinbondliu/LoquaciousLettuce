@@ -4,12 +4,13 @@ import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Button, ButtonGroup} from 'react-bootstrap';
-import {changeDifficulty} from '../actions/index';
+import {changeDifficulty, changeView} from '../actions/index';
 
 class SelectLevelSettings extends React.Component {
 
   render() {
     var changeDiff = this.props.changeDifficulty.bind(this);
+    var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'selectLevelPage'>
         <div className="container">
@@ -23,7 +24,9 @@ class SelectLevelSettings extends React.Component {
                 <Button onClick={()=> {changeDiff('advanced'); } }>Advanced</Button>
                 <Button onClick={()=> {changeDiff('rockstar'); } }>RockStar</Button>
               </ButtonGroup>
-
+              <Button><Link to='/settings'>Back</Link></Button>
+              <Button><Link to='/game'>Play!</Link></Button>
+              <Button><Link to='/multiPlayer'>MultiPlayer</Link></Button>
             </div>
           </div>
         </div>
@@ -39,7 +42,7 @@ var mapStateToProps = (state) => {
 };
 
 var matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({changeDifficulty: changeDifficulty}, dispatch);
+  return bindActionCreators({changeDifficulty: changeDifficulty, changeView: changeView}, dispatch);
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(SelectLevelSettings);

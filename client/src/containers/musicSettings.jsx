@@ -3,11 +3,13 @@ import { Redirect, Link } from 'react-router-dom';
 import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {changeView} from '../actions/index.js';
 import {Button, ButtonGroup, Navbar, FormGroup, FormControl} from 'react-bootstrap';
 
 
 class MusicSettings extends React.Component {
   render() {
+    var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'musicSettingsPage'>
       MUSICCCCCCC SPOTIFYYYYYYYYYYY<br></br>
@@ -24,9 +26,8 @@ class MusicSettings extends React.Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-        <Button><Link to='/settings'>Back</Link></Button>
-        <Button><Link to='/game'>Play!</Link></Button>
-        <Button><Link to='/multiPlayer'>MultiPlayer</Link></Button>
+        <Button onClick={changeView('difficulty')}></Button>
+        
       </div>
     );
   }
@@ -38,4 +39,7 @@ var mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(MusicSettings);
+var mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({changeView: changeView}, dispatch);
+};
+export default connect(mapStateToProps, mapDispatchToProps)(MusicSettings);

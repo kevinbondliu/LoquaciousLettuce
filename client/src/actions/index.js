@@ -46,4 +46,14 @@ export const selectMode = (playerMode) => {
 };
 
 
+/***********VIEW CHANGE************/
+
+export const changeView = (view) => {
+  console.log("View", view);
+  return {
+    type: 'CHANGE_VIEW',
+    payload: view
+  };
+};
+
 
