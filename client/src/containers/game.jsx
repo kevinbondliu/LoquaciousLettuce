@@ -13,9 +13,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      scorePlayer1: 0,
-      scorePlayer2: 0,
+      score: 0,
       hit: false,
       game: false,
       ongoing: false,
@@ -24,11 +22,6 @@ class Game extends React.Component {
       difficulty: this.props.game.difficulty,
       player: this.props.game.difficulty, 
       attemptPresses: 0
-=======
-      score: 0,
-      hit: false,
-      game: false
->>>>>>> 2f24c3c72a1cc6175a1cbc443435af96cd6d04b2
     };
     this.increaseScore = this.increaseScore.bind(this);
     this.updateCanvas = this.updateCanvas.bind(this);
@@ -49,7 +42,6 @@ class Game extends React.Component {
   increaseScore() {
     this.setState({score: this.state.score + 10, hit: true});
   }
-<<<<<<< HEAD
   
   increaseAttempt() {
     this.setState({attemptPresses: this.state.attemptPresses + 1});
@@ -61,9 +53,6 @@ class Game extends React.Component {
   }
 
   startSong() {
-=======
-    startSong() {
->>>>>>> 2f24c3c72a1cc6175a1cbc443435af96cd6d04b2
     var audio = ReactDOM.findDOMNode(this.refs.audio);
     
     console.log(audio);
@@ -79,7 +68,6 @@ class Game extends React.Component {
   }
 
   updateCanvas() {
-<<<<<<< HEAD
     if (this.state.game === true) {
       var canvas = this.refs.canvas;
       var ctx = this.refs.canvas.getContext('2d');
@@ -104,28 +92,6 @@ class Game extends React.Component {
           }
         };
         return ball;
-=======
-    var canvas = this.refs.canvas;
-    var ctx = this.refs.canvas.getContext('2d');
-    var context = this;
-    ListenEvents();
-    var makeBall = function (xCor, yCor, color, keyBind) {
-      var ball = {
-        x: xCor,
-        y: yCor,
-        vx: 0,
-        vy: 10,
-        radius: 10,
-        color: color,
-        keyBind: keyBind,
-        draw: function() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-          ctx.closePath();
-          ctx.fillStyle = this.color;
-          ctx.fill();
-        }
->>>>>>> 2f24c3c72a1cc6175a1cbc443435af96cd6d04b2
       };
 
       var makeRow = function(hexCode) {
@@ -220,96 +186,11 @@ class Game extends React.Component {
           ctx.fillStyle = 'white';
           ctx.fillRect(0, 572.5, 400, 10);
         }
-<<<<<<< HEAD
         ctx.font = '40px Arial';
         ctx.fillText('Score: ' + context.state.score, 10, 50);
         allRows.rows.forEach(function(row) {
           row.drawRow();
           row.advanceRow();
-=======
-      } else {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 575, 400, 5);
-      }
-      ctx.font = '40px Arial';
-      ctx.fillText('Score: ' + context.state.score, 10, 50);
-      allRows.rows.forEach(function(row) {
-        row.drawRow();
-        row.advanceRow();
-      });
-      allRows.checkDelete();
-      allRows.flashDots();
-    }
-    setInterval(()=> {
-      draw();
-    }, 1000 / 30);
-    setInterval(()=>{
-      allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
-    }, 300);
-    var checkMove = () => {
-      var output = allRows.rows[0].balls.map(function(ball) {
-        return (ball.keyBind);
-      });
-      output = [output.join('')];
-      output.push(Math.abs(575 - allRows.rows[0].balls[0].y));
-      return output;
-    };
-    function ListenEvents() {
-      var validMove = (keyCodes) =>{
-        var moveCheck = checkMove();
-        if (moveCheck[moveCheck.length - 1] < 20) {
-          if (moveCheck[0] === keyCodes) {
-            context.increaseScore();
-            ctx.fillStyle = 'black';
-            ctx.fillRect(0, 575, 400, 5);
-          }
-        }
-      };
-      function listenToA() {
-        keyboardJS.bind('a', function(e) {
-          validMove('a');
-        });
-      }
-      listenToA();
-      function listenToS() {
-        keyboardJS.bind('s', function(e) {
-          validMove('s');
-        });
-      }
-      listenToS();
-      function listenToD() {
-        keyboardJS.bind('d', function(e) {
-          validMove('d');
-        });
-      }
-      listenToD();
-      function listenToF() {
-        keyboardJS.bind('f', function(e) {
-          validMove('f');
-        });
-      }
-      listenToF();
-      function listenToAS() {
-        keyboardJS.bind('a + s', function(e) {
-          validMove('as');
-        });
-      }
-      listenToAS();
-      function listenToAD() {
-        keyboardJS.bind('a + d', function(e) {
-          validMove('ad');
-        });
-      }
-      function listenToAF() {
-        keyboardJS.bind('a + f', function(e) {
-          validMove('af');
-        });
-      }
-      listenToAD();
-      function listenToSD() {
-        keyboardJS.bind('s + d', function(e) {
-          validMove('sd');
->>>>>>> 2f24c3c72a1cc6175a1cbc443435af96cd6d04b2
         });
         allRows.checkDelete();
         allRows.flashDots();
