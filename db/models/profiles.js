@@ -6,5 +6,4 @@ const Profile = db.Model.extend({
     return this.hasMany('Auth');
   }
 });
-
 module.exports = db.model('Profile', Profile);

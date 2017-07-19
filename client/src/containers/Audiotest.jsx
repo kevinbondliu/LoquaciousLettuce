@@ -7,28 +7,44 @@ import path from 'path';
 class Audio extends Component {
   constructor(props) {
     super(props);
+    this.getAudio = this.getAudio.bind(this);
   }
 
-  getAudio() {
-    console.log('this was clicked');
+  getToken() {
     axios({
-      method: 'post',
-      url: 'https://accounts.spotify.com/api/token',
-      headers: {
-        client_id: '11720c2bf44e4eb2891f29bc59d94a29',
-        client_secret: '26c54b955e564174b7ab1cad61516925'
-      },
-      data: {
-        grant_type: 'authorization_code',
-        code: 'kK27foGh8',
-        redirect_uri: 'http://localhost:3000/auth/spotify/callback'
-
-      }
+      method: 'get',
+      url: '/tokenhere',
+      contentType: 'json'
     })
-    .then(result => {
-      console.log(result);
-      console.log('HELLO IT REACHED HERE');
+    .then((response) => {
+      var res = response;
+      var accessToken = res.data.accessToken + '&refresh_token=' + res.data.refreshToken;
+      this.getAudio(accessToken);
     });
+  }
+
+  getAudio(token) {
+    console.log('this was clicked');
+
+    const BASE_URL = 'https://api.spotify.com/v1/audio-features/24FgOhhZMtFcfg5nKcsMZD';
+    const FETCH_URL = BASE_URL + 'q=' + 'michael jackson' + '&type=artist&limit=1';
+    var accessToken = token;
+
+    var myOptions = {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
+      },
+      mode: 'cors',
+      cache: 'default'
+    };
+    fetch(BASE_URL, myOptions)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        const artist = json.artists.items[0];        
+        this.setState({ artist });
+      });
   }
   
   
@@ -37,6 +53,7 @@ class Audio extends Component {
     //pass in as a div
       <div>
         <button onClick = {this.getAudio.bind(this)}>Audio</button>
+        <button onClick = {this.getToken.bind(this)}>Button</button>
       </div>
     );
   }
