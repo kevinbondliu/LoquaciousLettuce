@@ -8,6 +8,8 @@ exports.up = function (knex, Promise) {
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
+      table.string('accessToken', 200).nullable();
+      table.string('refreshToken', 200).nullable();
       table.timestamps(true, true);
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
@@ -16,6 +18,8 @@ exports.up = function (knex, Promise) {
       table.string('oauth_id', 30).nullable();
       table.string('password', 100).nullable();
       table.string('salt', 100).nullable();
+      table.string('accessToken', 200).nullable();
+      table.string('refreshToken', 200).nullable();
       table.integer('profile_id').references('profiles.id').onDelete('CASCADE');
     })
   ]);

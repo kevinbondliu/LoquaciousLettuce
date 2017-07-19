@@ -9,26 +9,39 @@ class Audio extends Component {
     super(props);
   }
 
+  getToken() {
+    axios({
+      method: 'get',
+      url: '/tokenhere',
+      contentType: 'json'
+    })
+    .then((response) => {
+      console.log(response.data);
+    });
+  }
+
   getAudio() {
     console.log('this was clicked');
-    axios({
-      method: 'post',
-      url: 'https://accounts.spotify.com/api/token',
-      headers: {
-        client_id: '11720c2bf44e4eb2891f29bc59d94a29',
-        client_secret: '26c54b955e564174b7ab1cad61516925'
-      },
-      data: {
-        grant_type: 'authorization_code',
-        code: 'kK27foGh8',
-        redirect_uri: 'http://localhost:3000/auth/spotify/callback'
 
-      }
-    })
-    .then(result => {
-      console.log(result);
-      console.log('HELLO IT REACHED HERE');
-    });
+    const BASE_URL = 'https://api.spotify.com/v1/audio-features/24FgOhhZMtFcfg5nKcsMZD';
+    const FETCH_URL = BASE_URL + 'q=' + 'michael jackson' + '&type=artist&limit=1';
+    var accessToken = 'BQAR2mm-LqkCzTLJLyxWkhdFrQZW-mAhs-m5K9IVIx2Mvcg38fL8Am6RR-PFXHHNQT8ahPlOzmSkbb5QSWngICnPGN0Qc1POvm-NzjgpfetFDcy14LnJVWaqJGoR98Mo8tmm0sdZQnlLeP31LsgI6ZxGGulCsA&refresh_token=AQC0nDwwEoQbwLV48gbwTgnoYVQbHU4BW-i34DhzFmtzGmk3mwA69HfzivTybw21K9Gro-JJKYRptuOQZoIaMU7SodSoZfylDeeteg9kAv5zXj7NykcsnAOgomGICFt6OC8';
+
+    var myOptions = {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
+      },
+      mode: 'cors',
+      cache: 'default'
+    };
+    fetch(BASE_URL, myOptions)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        const artist = json.artists.items[0];        
+        this.setState({ artist });
+      });
   }
   
   
@@ -37,6 +50,7 @@ class Audio extends Component {
     //pass in as a div
       <div>
         <button onClick = {this.getAudio.bind(this)}>Audio</button>
+        <button onClick = {this.getToken.bind(this)}>Button</button>
       </div>
     );
   }

@@ -121,7 +121,7 @@ passport.use('spotify', new SpotifyStrategy({
   clientSecret: config.Spotify.clientSecret,
   callbackURL: config.Spotify.callbackURL
 },
-  (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('spotify', profile, done))
+  (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('spotify', profile, done, accessToken, refreshToken))
 );
 
 passport.use('facebook', new FacebookStrategy({
@@ -143,7 +143,7 @@ passport.use('twitter', new TwitterStrategy({
   (accessToken, refreshToken, profile, done) => getOrCreateOAuthProfile('twitter', profile, done))
 );
 
-const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
+const getOrCreateOAuthProfile = (type, oauthProfile, done, accessToken, refreshToken) => {
   return models.Auth.where({ type, oauth_id: oauthProfile.id }).fetch({
     withRelated: ['profile']
   })
@@ -160,14 +160,30 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done) => {
       return models.Profile.where({ email: oauthProfile.emails[0].value }).fetch();
     })
     .then(profile => {
-      console.log('hello', oauthProfile);
-      let profileInfo = {
-        first: oauthProfile.displayName.split(' ')[0],
-        last: oauthProfile.displayName.split(' ')[1],
-        display: oauthProfile.displayName || `${oauthProfile.name.givenName} ${oauthProfile.name.familyName}`,
-        email: oauthProfile.emails[0].value
-      };
+      let profileInfo;
+      console.log('this is the type', typeof(accessToken), typeof(refreshToken));
+      if (type === 'spotify') {
+        profileInfo = {
+          first: oauthProfile.displayName.split(' ')[0] || 'no',
+          last: oauthProfile.displayName.split(' ')[1] || 'name',
+          display: oauthProfile.displayName || 'no name',
+          email: oauthProfile.emails[0].value,
+          accessToken: accessToken,
+          refreshToken: refreshToken
+        };
+        // console.log('helo', profileInfo);
+      } else {
+        profileInfo = {
+          first: oauthProfile.name.givenName,
+          last: oauthProfile.name.familyName,
+          display: oauthProfile.displayName || `${oauthProfile.name.givenName} ${oauthProfile.name.familyName}`,
+          email: oauthProfile.emails[0].value
+        };
+        // console.log('helo22', profileInfo);
+      }
+      console.log('this is the', profileInfo);
       console.log('*******************************************************************');
+      console.log('this is the', profileInfo);
       if (profile) {
         //update profile with info from oauth
         return profile.save(profileInfo, { method: 'update' });

@@ -9,7 +9,8 @@ class Game extends React.Component {
     super(props);
     this.state = {
       score: 0,
-      hit: false
+      hit: false,
+      game: false
     };
     this.increaseScore = this.increaseScore.bind(this);
     this.updateCanvas = this.updateCanvas.bind(this);
@@ -20,7 +21,6 @@ class Game extends React.Component {
   increaseScore() {
     this.setState({score: this.state.score + 10, hit: true});
   }
-
     startSong() {
     var audio = ReactDOM.findDOMNode(this.refs.audio);
     
@@ -42,7 +42,7 @@ class Game extends React.Component {
         x: xCor,
         y: yCor,
         vx: 0,
-        vy: 2,
+        vy: 10,
         radius: 10,
         color: color,
         keyBind: keyBind,
@@ -154,7 +154,7 @@ class Game extends React.Component {
     }, 1000 / 30);
     setInterval(()=>{
       allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
-    }, 500);
+    }, 300);
     var checkMove = () => {
       var output = allRows.rows[0].balls.map(function(ball) {
         return (ball.keyBind);
