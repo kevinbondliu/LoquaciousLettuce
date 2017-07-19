@@ -5,6 +5,8 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import {changePlayers} from '../actions/index';
+import {selectMode} from '../actions/index';
+
 
 class SelectPlayerSettings extends React.Component {
   render() {
@@ -12,8 +14,6 @@ class SelectPlayerSettings extends React.Component {
     return (
       <div className = 'selectPlayerPage'>
         <div className="container">
-
-
           <div className="row">
             <div className="col-sm-12" style={{background: '#0066ff', height: 500}}>Game<br></br>
               <ButtonGroup vertical className="col-sm-12">
@@ -21,14 +21,10 @@ class SelectPlayerSettings extends React.Component {
                 <Button onClick={()=> {changePlayers(2); }}>MultiPlayer</Button>
               </ButtonGroup>
             </div>
-
-            <Button><Link to='/selectLevelSettings'>Next!</Link></Button>
           </div>
 
 
         </div>
-
-
 
       </div>
     );
@@ -37,12 +33,21 @@ class SelectPlayerSettings extends React.Component {
 
 var mapStateToProps = (state) => {
   return {
-    game: state.game
+    game: state.game,
+    view: state.view
   };
 };
 
-var matchDispatchToProps = (dispatch) => {
+var mapDispatchToProps = (dispatch) => {
   return bindActionCreators({changePlayers: changePlayers}, dispatch);
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(SelectPlayerSettings);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectPlayerSettings);
+
+// var mapDispatchToProps = (dispatch) => {
+//   // return bindActionCreators({selectMode: selectMode}, dispatch);
+//   // return {
+//   //   selectMode: (playerMode) => {dispatch(selectMode(playerMode))}
+//   // }
+// };
+

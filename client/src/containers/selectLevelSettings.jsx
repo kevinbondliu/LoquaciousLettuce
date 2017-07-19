@@ -15,7 +15,7 @@ class SelectLevelSettings extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12" style={{background:'#0066ff', height: 500}}>Level<br></br>
-              
+
               <ButtonGroup vertical className="col-sm-12">
                 <Button onClick={()=> {changeDiff('super_beginner'); } } >Super Beginner</Button>
                 <Button onClick={()=> {changeDiff('beginner'); } }>Beginner</Button>
@@ -25,8 +25,6 @@ class SelectLevelSettings extends React.Component {
               </ButtonGroup>
 
             </div>
-            <Button><Link to='/selectPlayerSettings'>Back!</Link></Button>
-            <Button><Link to='/musicSettings'>Next!</Link></Button>
           </div>
         </div>
       </div>
