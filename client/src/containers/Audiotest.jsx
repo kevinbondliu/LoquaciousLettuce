@@ -26,7 +26,7 @@ class Audio extends Component {
   getAudio(token) {
     console.log('this was clicked');
 
-    const BASE_URL = 'https://api.spotify.com/v1/audio-features/24FgOhhZMtFcfg5nKcsMZD';
+    const BASE_URL = 'https://api.spotify.com/v1/audio-features/5ChkMS8OtdzJeqyybCc9R5';
     const FETCH_URL = BASE_URL + 'q=' + 'michael jackson' + '&type=artist&limit=1';
     var accessToken = token;
 
