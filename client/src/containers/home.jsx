@@ -7,9 +7,9 @@ import {connect} from 'react-redux';
 class Home extends React.Component {
   render() {
     return (
-      <div className = 'homePage'>
+      <div className='homePage'>
       homePage!!!!!!<br></br>
-        <Link to='/selectPlayerSettings'>Select Player Mode</Link>
+        <Link to='/settings'>Select Player Mode</Link>
       </div>
     );
   }

@@ -5,3 +5,13 @@ export const selectUser = (user) => { // function that is the action creator
     payload: user
   }
 };
+
+export const selectMode = (playerMode) => {
+  console.log("You chose", playerMode);
+  return {
+    type: 'MODE_SELECTED',
+    payload: playerMode
+  }
+};
+
+

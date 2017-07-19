@@ -22,15 +22,8 @@ class SelectLevelSettings extends React.Component {
                 <Button>RockStar</Button>
               </ButtonGroup>
             </div>
-            <Button><Link to='/selectPlayerSettings'>Back!</Link></Button>
-            <Button><Link to='/musicSettings'>Next!</Link></Button>
           </div>
-
-
         </div>
-
-
-
       </div>
     );
   }

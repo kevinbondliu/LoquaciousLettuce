@@ -10,7 +10,7 @@ class Score extends React.Component {
     return (
       <div className = 'scorePage'>
       HIGH SCORE_______
-        <Link to='/selectPlayerSettings'>PLAY AGAIN!</Link>
+        <Link to='/settings'>PLAY AGAIN!</Link>
         <ScoreList />
       </div>
     );
