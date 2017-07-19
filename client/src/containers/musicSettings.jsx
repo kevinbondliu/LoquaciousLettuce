@@ -24,8 +24,9 @@ class MusicSettings extends React.Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-        <Button><Link to='/selectLevelSettings'>Back</Link></Button>
+        <Button><Link to='/settings'>Back</Link></Button>
         <Button><Link to='/game'>Play!</Link></Button>
+        <Button><Link to='/multiPlayer'>MultiPlayer</Link></Button>
       </div>
     );
   }

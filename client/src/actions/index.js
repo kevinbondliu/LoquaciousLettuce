@@ -36,3 +36,14 @@ export const getGame = () => {
     payload: ''
   };
 };
+
+export const selectMode = (playerMode) => {
+  console.log("You chose", playerMode);
+  return {
+    type: 'MODE_SELECTED',
+    payload: playerMode
+  }
+};
+
+
+
