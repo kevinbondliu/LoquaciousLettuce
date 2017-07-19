@@ -14,6 +14,22 @@ export const changeSong = (song) => {
   };
 };
 
+export const changeDifficulty = (difficulty) => {
+  console.log('difficulty', difficulty);
+  return {
+    type: 'CHANGE_DIFFICULTY',
+    payload: difficulty
+  };
+};
+
+export const changePlayers = (playerCount) => {
+  console.log('playerCount', playerCount);
+  return {
+    type: 'CHANGE_PLAYERS',
+    payload: playerCount
+  };
+};
+
 export const getGame = () => {
   return {
     type: 'GET_GAME',
