@@ -95,10 +95,10 @@ class MusicSettings extends React.Component {
         <button onClick = {this.getAudioBPM.bind(this)}>Audio</button>
         <button onClick = {this.getToken.bind(this)}>Button</button>
       </div>
-        <div className="col-sm-12" style={{ background: 'white', height: 500}}>
+        <div className="col-sm-12" style={{ background: 'black', height: 500}}>
           <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
             <Tab eventKey={1} title="Library">
-              <MusicTrackList/>
+              <MusicTrackList className = 'container'></MusicTrackList>
             </Tab>
             <Tab eventKey={2} title="Find Track">
               <Navbar>

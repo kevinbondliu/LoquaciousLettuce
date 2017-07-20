@@ -21,7 +21,6 @@ export const getTracks = (url, options) => (dispatch, getState) => {
     .then((data) => {
       return dispatch(setTracks(data.data));
     })
-
     .catch((error) => {
       console.log(error);
     });
