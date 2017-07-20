@@ -24,7 +24,7 @@ export default (state = {
   case 'CHANGE_DIFFICULTY' : {
     state.difficulty = action.payload;
     break;
-  } 
+  }
   case 'CHANGE_PLAYERS' : {
     state.players = action.payload;
     break;

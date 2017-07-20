@@ -1,6 +1,6 @@
-export default (state = 'players' , action) => {
+export default (state = null, action) => {
   switch (action.type) {
-    case 'CHANGE_VIEW' : {
+    case 'USER_SELECTED' : {
       state = action.payload;
       break;
     }
