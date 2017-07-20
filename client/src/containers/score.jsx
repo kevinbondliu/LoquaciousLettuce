@@ -12,7 +12,7 @@ class Score extends React.Component {
       HIGH SCORE_______
         <Link to='/settings'>PLAY AGAIN!</Link>
         <br></br>
-        <ScoreList key={this.props.users.id}/>
+          <ScoreList key={this.props.users.id}/>
       </div>
     );
   }

@@ -57,3 +57,30 @@ export const changeView = (view) => {
 };
 
 
+export const showModal = (obj) => {
+  console.log("OPENED ---obj", obj);
+  return {
+    type: 'SHOW_MODAL',
+    payload: obj
+  };
+};
+
+export const closeModal = (obj) => {
+  console.log("CLOSED --");
+  return {
+    type: 'CLOSE_MODAL',
+    payload: obj
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+

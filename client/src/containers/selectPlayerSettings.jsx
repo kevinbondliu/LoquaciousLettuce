@@ -18,7 +18,7 @@ class SelectPlayerSettings extends React.Component {
           <div className="row">
             <div className="col-sm-12" style={{background: 'black', height: 500}}>Game<br></br>
               <ButtonGroup vertical className="col-sm-12">
-                <Button onClick={()=> {changePlayers(1); changeView('difficulty');} } >Single Player</Button>
+                <Button onClick={()=> {changePlayers(1); changeView('difficulty');} }>Single Player</Button>
                 <Button onClick={()=> {changePlayers(2); changeView('difficulty');} }>MultiPlayer</Button>
               </ButtonGroup>
             </div>
