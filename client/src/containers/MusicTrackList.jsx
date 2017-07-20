@@ -19,7 +19,10 @@ class MusicTrackList extends React.Component {
       <div className = 'MusicTrack' style={{height: 450, overflow: 'overlay'}}>
         <button onClick={this.getProps.bind(this)}></button>
         {this.props.music.tracks.items.map((item, index)=> (
-          <MusicTrackEntry/>
+          <MusicTrackEntry
+            key = {index}
+            track={item}
+          />
         ))}
       </div>
     );

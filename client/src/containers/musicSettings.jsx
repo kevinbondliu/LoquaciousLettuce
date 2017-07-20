@@ -14,9 +14,11 @@ class MusicSettings extends React.Component {
     super(props);
     this.state = {
     },
+    this.search = '';
     this.getAudioBPM = this.getAudioBPM.bind(this);
     this.getAudioTrackID = this.getAudioTrackID.bind(this);
-    // var getTracks = this.props.getTracks.bind(this);
+    this.getToken = this.getToken.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getToken() {
@@ -36,7 +38,7 @@ class MusicSettings extends React.Component {
   getAudioTrackID(token) {
 
     const BASE_URL = 'https://api.spotify.com/v1/search?';
-    const FETCH_URL = BASE_URL + 'q=' + 'shelter' + '&type=track&limit=5';
+    const FETCH_URL = BASE_URL + 'q=' + this.search + '&type=track&limit=5';
     var accessToken = token;
 
     var myOptions = {
@@ -86,6 +88,12 @@ class MusicSettings extends React.Component {
     this.setState({key});
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    this.search = this.input.value;
+    this.getToken();
+  }
+
   render() {
     var changeView = this.props.changeView.bind(this);
     return (
@@ -95,23 +103,23 @@ class MusicSettings extends React.Component {
         <button onClick = {this.getAudioBPM.bind(this)}>Audio</button>
         <button onClick = {this.getToken.bind(this)}>Button</button>
       </div>
-        <div className="col-sm-12" style={{ background: 'black', height: 500}}>
+        <div className="col-sm-12" style={{ background: 'black', height: 500, overflow: 'scroll'}}>
           <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
             <Tab eventKey={1} title="Library">
-              <MusicTrackList className = 'container'></MusicTrackList>
             </Tab>
             <Tab eventKey={2} title="Find Track">
               <Navbar>
                 <Navbar.Collapse>
-                  <Navbar.Form pullLeft>
-                    <FormGroup>
-                      <FormControl type="text" placeholder="Song" />
-                    </FormGroup>
-                    {' '}
-                  <Button type="submit">Search</Button>
-                  </Navbar.Form>
+                  <form onSubmit={this.handleSubmit.bind(this)}>
+                    <div className="search-container">
+                      Song Name:
+                      <input type="text" placeholder={'Song Name'} ref={(input) => this.input = input} />
+                      <input type="submit" value="Search!"/>
+                    </div>
+                  </form>
                 </Navbar.Collapse>
               </Navbar>
+              <MusicTrackList className = 'container'></MusicTrackList>
             </Tab>
           </Tabs>
         </div>
