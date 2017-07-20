@@ -16,6 +16,7 @@ class Game extends React.Component {
       score: 0,
       hit: false,
       game: false,
+      combo: 0,
       ongoing: false,
       song: this.props.game.song,
       bpm: this.props.game.bpm,
@@ -23,9 +24,10 @@ class Game extends React.Component {
       player: this.props.game.difficulty,
       attemptPresses: 0
     };
-    this.increaseScore = this.increaseScore.bind(this);
     this.updateCanvas = this.updateCanvas.bind(this);
-    this.handleOptionChange = this.handleOptionChange.bind(this);
+
+    this.increaseScore = this.increaseScore.bind(this);
+
     this.increaseAttempt = this.increaseAttempt.bind(this);
     this.decreaseAttempt = this.decreaseAttempt.bind(this);
   }
@@ -40,7 +42,7 @@ class Game extends React.Component {
     });
   }
   increaseScore() {
-    this.setState({score: this.state.score + 10, hit: true});
+    this.setState({score: this.state.score + 10 + this.state.combo, hit: true});
   }
 
   increaseAttempt() {
@@ -137,13 +139,13 @@ class Game extends React.Component {
               if (this.rows[0].balls) {
                 if (this.rows[0].balls[0].y > 540 && this.rows[0].balls[0].y < 560) {
                   this.rows[0].balls.forEach(function(ball) {
-                  ball.color = 'white';
-                });
+                    ball.color = 'white';
+                  });
                 } else if (this.rows[0].balls[0].y > 575) {
-                this.rows[0].balls.forEach(function(ball) {
-                  ball.color = 'red';
-                });
-              }
+                  this.rows[0].balls.forEach(function(ball) {
+                    ball.color = 'red';
+                  });
+                }
               }
             }
           }
@@ -155,8 +157,9 @@ class Game extends React.Component {
               if (this.rows[0].balls) {
                 if (this.rows[0].balls) {
                   if (this.rows[0].balls.length === 0 || this.rows[0].balls[0].y > 580) {
-                  this.rows.shift();
-                }
+                    context.setState({ combo: 0});
+                    this.rows.shift();
+                  }
                 }
               }
             }
@@ -241,8 +244,8 @@ class Game extends React.Component {
           if (moveCheck[moveCheck.length - 1] < 35) {
             if (moveCheck[0] === keyCodes) {
               context.increaseScore();
-              ctx.fillStyle = 'black';
-              ctx.fillRect(0, 575, 400, 5);
+              allRows.rows.shift();
+              context.setState({combo: context.state.combo + 1});
             }
           }
         };
@@ -317,6 +320,13 @@ class Game extends React.Component {
         }
         listenToDF();
       }
+      function listenToJEY() {
+        keyboardJS.bind('j + e + y', function(e) {
+          context.setState({score: context.state.score + 999});
+        });
+      }
+      listenToJEY();
+
     }
   }
 

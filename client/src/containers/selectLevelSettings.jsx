@@ -24,7 +24,13 @@ class SelectLevelSettings extends React.Component {
                 <Button onClick={()=> {changeDiff('advanced'); changeView('song');} }>Advanced</Button>
                 <Button onClick={()=> {changeDiff('rockstar'); changeView('song');} }>RockStar</Button>
               </ButtonGroup>
+<<<<<<< HEAD
               <Button onClick={()=> {changeView('players');}}>Back</Button>
+=======
+              <Button><Link to='/settings'>Back</Link></Button>
+              <Button><Link to='/game'>Play!</Link></Button>
+              <Button><Link to='/multiPlayer'>MultiPlayer</Link></Button>
+>>>>>>> combo
             </div>
           </div>
         </div>
