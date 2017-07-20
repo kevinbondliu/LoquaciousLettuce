@@ -18,6 +18,7 @@ class Game extends React.Component {
       game: false,
       combo: 0,
       ongoing: false,
+      end: false,
       song: this.props.game.song,
       bpm: this.props.game.bpm,
       difficulty: this.props.game.difficulty,
@@ -171,32 +172,50 @@ class Game extends React.Component {
 
       var counter = 0;
       function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'black';
-        ctx.fillRect(5, 5, 400, 600);
 
-        if (context.state.hit === true) {
-          if (counter === 5) {
-            context.setState({hit: false});
-            counter = 0;
+
+
+        if (context.state.end === false) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(5, 5, 400, 600);
+
+          if (context.state.hit === true) {
+            if (counter === 5) {
+              context.setState({hit: false});
+              counter = 0;
+            } else {
+              ctx.fillStyle = 'blue';
+              ctx.fillRect(0, 575, 400, 10);
+              counter++;
+              ctx.fillStyle = 'white';
+            }
+
           } else {
-            ctx.fillStyle = 'blue';
-            ctx.fillRect(0, 575, 400, 10);
-            counter++;
             ctx.fillStyle = 'white';
+            ctx.fillRect(0, 572.5, 400, 10);
           }
+
+          ctx.font = '40px Arial';
+          ctx.fillText('Score: ' + context.state.score, 10, 50);
+
+          allRows.rows.forEach(function(row) {
+            row.drawRow();
+            row.advanceRow();
+          });
+          allRows.checkDelete();
+          allRows.flashDots();
         } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(5, 5, 400, 600);
           ctx.fillStyle = 'white';
-          ctx.fillRect(0, 572.5, 400, 10);
+          ctx.fillText(' FINAL SCORE: ' + context.state.score, 20, 50);
+          ctx.font = '20px Arial';
+          ctx.fillText(' THANKS FOR PLAYING ', 30, 150);
+          ctx.fillText(' The Lucky Lemons Dev Group ', 40, 350);
         }
-        ctx.font = '40px Arial';
-        ctx.fillText('Score: ' + context.state.score, 10, 50);
-        allRows.rows.forEach(function(row) {
-          row.drawRow();
-          row.advanceRow();
-        });
-        allRows.checkDelete();
-        allRows.flashDots();
+
 
       }
 
@@ -217,7 +236,6 @@ class Game extends React.Component {
       } else if (context.state.difficulty === 'rockstar') {
         modifier = 4;
       }
-      console.log(modifier);
 
       setInterval(()=>{
         allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
@@ -225,7 +243,6 @@ class Game extends React.Component {
 
 
       var checkMove = () => {
-        console.log(allRows);
         var output = allRows.rows[0].balls.map(function(ball) {
           return (ball.keyBind);
         });
@@ -332,6 +349,7 @@ class Game extends React.Component {
 
   trackEnd() {
     console.log('The song has ended');
+    this.setState({end: true});
   }
 
   render() {

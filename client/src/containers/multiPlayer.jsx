@@ -21,6 +21,7 @@ class Multiplayer extends React.Component {
       hitP2: false,
       game: false,
       ongoing: false,
+      end: false,
       song: this.props.game.song,
       bpm: this.props.game.bpm,
       difficulty: this.props.game.difficulty,
@@ -196,61 +197,93 @@ class Multiplayer extends React.Component {
       var counterP2 = 0;
 
       function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'black';
-        ctx.fillRect(5, 5, 1000, 600);
 
-/*                Player 1 Hit condition            */
-        if (context.state.hitP1 === true) {
-          if (counterP1 === 5) {
-            context.setState({hitP1: false});
-            counterP1 = 0;
+
+
+        if (context.state.end === false) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(5, 5, 1000, 600);
+
+  /*                Player 1 Hit condition            */
+          if (context.state.hitP1 === true) {
+            if (counterP1 === 5) {
+              context.setState({hitP1: false});
+              counterP1 = 0;
+            } else {
+              ctx.fillStyle = 'blue';
+              ctx.fillRect(50, 572.5, 400, 10);
+              counterP1++;
+              ctx.fillStyle = 'white';
+            }
           } else {
-            ctx.fillStyle = 'blue';
+            ctx.fillStyle = 'white';
             ctx.fillRect(50, 572.5, 400, 10);
-            counterP1++;
-            ctx.fillStyle = 'white';
           }
-        } else {
-          ctx.fillStyle = 'white';
-          ctx.fillRect(50, 572.5, 400, 10);
-        }
 
-/*                Player 2 Hit condition            */
-        if (context.state.hitP2 === true) {
-          if (counterP2 === 5) {
-            context.setState({hitP2: false});
-            counterP2 = 0;
+  /*                Player 2 Hit condition            */
+          if (context.state.hitP2 === true) {
+            if (counterP2 === 5) {
+              context.setState({hitP2: false});
+              counterP2 = 0;
+            } else {
+              ctx.fillStyle = 'blue';
+              ctx.fillRect(550, 575, 400, 10);
+              counterP2++;
+              ctx.fillStyle = 'white';
+            }
           } else {
-            ctx.fillStyle = 'blue';
-            ctx.fillRect(550, 575, 400, 10);
-            counterP2++;
             ctx.fillStyle = 'white';
+            ctx.fillRect(550, 572.5, 400, 10);
           }
-        } else {
-          ctx.fillStyle = 'white';
-          ctx.fillRect(550, 572.5, 400, 10);
-        }
-        
- /*                Player 1 Dot Advance           */       
-        allRowsP1.rows.forEach(function(row) {
-          row.drawRow();
-          row.advanceRow();
-        });
-        allRowsP1.checkDelete();
-        allRowsP1.flashDots();
+          
+  /*                Player 1 Dot Advance           */       
+          allRowsP1.rows.forEach(function(row) {
+            row.drawRow();
+            row.advanceRow();
+          });
+          allRowsP1.checkDelete();
+          allRowsP1.flashDots();
 
-/*                Player 2 Dot Advance            */
-        allRowsP2.rows.forEach(function(row) {
-          row.drawRow();
-          row.advanceRow();
-        });
-        allRowsP2.checkDelete();
-        allRowsP2.flashDots();
-        ctx.fillStyle = 'white';
-        ctx.font = '40px Arial';
-        ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
-        ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
+  /*                Player 2 Dot Advance            */
+          allRowsP2.rows.forEach(function(row) {
+            row.drawRow();
+            row.advanceRow();
+          });
+          allRowsP2.checkDelete();
+          allRowsP2.flashDots();
+          ctx.fillStyle = 'white';
+          ctx.font = '40px Arial';
+          ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
+          ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
+        } else {
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(5, 5, 1000, 600);
+          ctx.fillStyle = 'white';
+          ctx.fillText(' FINAL SCORE PLAYER 1: ' + context.state.scoreP1, 20, 50);
+          ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 600, 50);
+          ctx.font = '20px Arial';
+          ctx.fillText(' THANKS FOR PLAYING ', 400, 150);
+          ctx.fillText(' The Lucky Lemons Dev Group ', 380, 350);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       }
 
@@ -468,6 +501,7 @@ class Multiplayer extends React.Component {
 
   trackEnd() {
     console.log('The song has ended');
+    this.setState({end: true});
   }
 
   render() {
