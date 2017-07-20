@@ -15,10 +15,13 @@ class Multiplayer extends React.Component {
     this.state = {
       scoreP1: 0,
       scoreP2: 0,
+      comboP1: 0,
+      comboP2: 0,
       hitP1: false,
       hitP2: false,
       game: false,
       ongoing: false,
+      end: false,
       song: this.props.game.song,
       bpm: this.props.game.bpm,
       difficulty: this.props.game.difficulty,
@@ -43,10 +46,10 @@ class Multiplayer extends React.Component {
   }
   
   increasescoreP1() {
-    this.setState({scoreP1: this.state.scoreP1 + 10, hitP1: true});
+    this.setState({scoreP1: this.state.scoreP1 + 10 + this.state.comboP1, hitP1: true});
   }
   increasescoreP2() {
-    this.setState({scoreP2: this.state.scoreP2 + 10, hitP2: true});
+    this.setState({scoreP2: this.state.scoreP2 + 10 + this.state.comboP2, hitP2: true});
   }
 
 
@@ -173,6 +176,13 @@ class Multiplayer extends React.Component {
               if (this.rows[0].balls) {
                 if (this.rows[0].balls) {
                   if (this.rows[0].balls.length === 0 || this.rows[0].balls[0].y > 580) {
+                    var ball = this.rows[0].balls[0];
+                    if (ball.keyBind === 'a' || ball.keyBind === 's' || ball.keyBind === 'd' || ball.keyBind === 'f') {
+                      context.setState({ comboP1: 0});
+                    } else if (ball.keyBind === 'j' || ball.keyBind === 'k' || ball.keyBind === 'l' || ball.keyBind === ';') {
+                      context.setState({ comboP2: 0});
+                    }
+
                     this.rows.shift();
                   }
                 }
@@ -183,69 +193,97 @@ class Multiplayer extends React.Component {
       };
 
       var allRowsP2 = Object.assign({}, allRowsP1, {rows: []});
-      //console.log('ALL ROWS', allRowsP1, allRowsP2);
-
       var counterP1 = 0;
       var counterP2 = 0;
 
-      
       function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'black';
-        ctx.fillRect(5, 5, 1000, 600);
 
 
-/*                Player 1 Hit condition            */
-        if (context.state.hitP1 === true) {
-          if (counterP1 === 5) {
-            context.setState({hitP1: false});
-            counterP1 = 0;
+
+        if (context.state.end === false) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(5, 5, 1000, 600);
+
+  /*                Player 1 Hit condition            */
+          if (context.state.hitP1 === true) {
+            if (counterP1 === 5) {
+              context.setState({hitP1: false});
+              counterP1 = 0;
+            } else {
+              ctx.fillStyle = 'blue';
+              ctx.fillRect(50, 572.5, 400, 10);
+              counterP1++;
+              ctx.fillStyle = 'white';
+            }
           } else {
-            ctx.fillStyle = 'blue';
+            ctx.fillStyle = 'white';
             ctx.fillRect(50, 572.5, 400, 10);
-            counterP1++;
-            ctx.fillStyle = 'white';
           }
-        } else {
-          ctx.fillStyle = 'white';
-          ctx.fillRect(50, 572.5, 400, 10);
-        }
 
-/*                Player 2 Hit condition            */
-        if (context.state.hitP2 === true) {
-          if (counterP2 === 5) {
-            context.setState({hitP2: false});
-            counterP2 = 0;
+  /*                Player 2 Hit condition            */
+          if (context.state.hitP2 === true) {
+            if (counterP2 === 5) {
+              context.setState({hitP2: false});
+              counterP2 = 0;
+            } else {
+              ctx.fillStyle = 'blue';
+              ctx.fillRect(550, 575, 400, 10);
+              counterP2++;
+              ctx.fillStyle = 'white';
+            }
           } else {
-            ctx.fillStyle = 'blue';
-            ctx.fillRect(550, 575, 400, 10);
-            counterP2++;
             ctx.fillStyle = 'white';
+            ctx.fillRect(550, 572.5, 400, 10);
           }
-        } else {
+          
+  /*                Player 1 Dot Advance           */       
+          allRowsP1.rows.forEach(function(row) {
+            row.drawRow();
+            row.advanceRow();
+          });
+          allRowsP1.checkDelete();
+          allRowsP1.flashDots();
+
+  /*                Player 2 Dot Advance            */
+          allRowsP2.rows.forEach(function(row) {
+            row.drawRow();
+            row.advanceRow();
+          });
+          allRowsP2.checkDelete();
+          allRowsP2.flashDots();
           ctx.fillStyle = 'white';
-          ctx.fillRect(550, 572.5, 400, 10);
+          ctx.font = '40px Arial';
+          ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
+          ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
+        } else {
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(5, 5, 1000, 600);
+          ctx.fillStyle = 'white';
+          ctx.fillText(' FINAL SCORE PLAYER 1: ' + context.state.scoreP1, 20, 50);
+          ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 600, 50);
+          ctx.font = '20px Arial';
+          ctx.fillText(' THANKS FOR PLAYING ', 400, 150);
+          ctx.fillText(' The Lucky Lemons Dev Group ', 380, 350);
         }
-        
- /*                Player 1 Dot Advance           */       
-        allRowsP1.rows.forEach(function(row) {
-          row.drawRow();
-          row.advanceRow();
-        });
-        allRowsP1.checkDelete();
-        allRowsP1.flashDots();
 
-/*                Player 2 Dot Advance            */
-        allRowsP2.rows.forEach(function(row) {
-          row.drawRow();
-          row.advanceRow();
-        });
-        allRowsP2.checkDelete();
-        allRowsP2.flashDots();
 
-        ctx.font = '40px Arial';
-        ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
-        ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       }
 
@@ -268,7 +306,7 @@ class Multiplayer extends React.Component {
       }
 
       setInterval(()=>{
-        var patternType = Math.floor(Math.random() * 10)
+        var patternType = Math.floor(Math.random() * 10);
         var formationP1 = makeRow(patternType, 1);
         var formationP2 = makeRow(patternType, 2);
         allRowsP1.rows.push(formationP1);
@@ -294,7 +332,7 @@ class Multiplayer extends React.Component {
             context.increaseAttemptP2();
           }
           if (keyCodes.length === 2) {
-            if (player === 'playerOne'){
+            if (player === 'playerOne') {
               context.decreaseAttemptP1();
             } else {
               context.decreaseAttemptP2();
@@ -302,10 +340,14 @@ class Multiplayer extends React.Component {
           }
           if (moveCheck[moveCheck.length - 1] < 35) {
             if (moveCheck[0] === keyCodes) {
-              if (player === 'playerOne'){
+              if (player === 'playerOne') {
                 context.increaseScoreP1();
+                context.setState({comboP1: context.state.comboP1 + 1});
+                allRowsP1.rows.shift();
               } else {
                 context.increaseScoreP2();
+                context.setState({comboP2: context.state.comboP2 + 2});
+                allRowsP2.rows.shift();
               }
               ctx.fillStyle = 'black';
               ctx.fillRect(0, 575, 400, 5);
@@ -382,6 +424,7 @@ class Multiplayer extends React.Component {
           });
         }
         listenToDF();
+
   /*              Player 2 Key Binds                */
         function listenToJ() {
           keyboardJS.bind('j', function(e) {
@@ -406,7 +449,7 @@ class Multiplayer extends React.Component {
 
         function listenToSemiColon() {
           keyboardJS.bind(';', function(e) {
-            validMove(';', allRowsP1, 'playerOne');
+            validMove(';', allRowsP2, 'playerTwo');
           });
         }
         listenToSemiColon();
@@ -452,13 +495,13 @@ class Multiplayer extends React.Component {
           });
         }
         listenToLSemiColon();
-
       }
     }
   }
 
   trackEnd() {
     console.log('The song has ended');
+    this.setState({end: true});
   }
 
   render() {
@@ -467,10 +510,7 @@ class Multiplayer extends React.Component {
     var song = this.state.song;
     return (
       <div>
-        HELLO!
         <div>
-
-          
           <canvas ref="canvas" width={1000} height={625}/>
         </div>
               <ReactAudioPlayer

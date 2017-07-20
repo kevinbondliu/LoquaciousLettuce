@@ -1,12 +1,12 @@
 
 
 export default (state = {
-  song: 'Def.mp3',
+  song: 'Close.mp3',
   score: 0,
   hit: false,
   ongoing: false,
-  bpm: 125,
-  difficulty: 'super_beginner',
+  bpm: 95,
+  difficulty: 'intermediate',
   players: 1
 }, action) => {
   switch (action.type) {

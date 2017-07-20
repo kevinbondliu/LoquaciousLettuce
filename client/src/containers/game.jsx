@@ -16,16 +16,19 @@ class Game extends React.Component {
       score: 0,
       hit: false,
       game: false,
+      combo: 0,
       ongoing: false,
+      end: false,
       song: this.props.game.song,
       bpm: this.props.game.bpm,
       difficulty: this.props.game.difficulty,
       player: this.props.game.difficulty,
       attemptPresses: 0
     };
-    this.increaseScore = this.increaseScore.bind(this);
     this.updateCanvas = this.updateCanvas.bind(this);
-    this.handleOptionChange = this.handleOptionChange.bind(this);
+
+    this.increaseScore = this.increaseScore.bind(this);
+
     this.increaseAttempt = this.increaseAttempt.bind(this);
     this.decreaseAttempt = this.decreaseAttempt.bind(this);
   }
@@ -40,7 +43,7 @@ class Game extends React.Component {
     });
   }
   increaseScore() {
-    this.setState({score: this.state.score + 10, hit: true});
+    this.setState({score: this.state.score + 10 + this.state.combo, hit: true});
   }
 
   increaseAttempt() {
@@ -137,13 +140,13 @@ class Game extends React.Component {
               if (this.rows[0].balls) {
                 if (this.rows[0].balls[0].y > 540 && this.rows[0].balls[0].y < 560) {
                   this.rows[0].balls.forEach(function(ball) {
-                  ball.color = 'white';
-                });
+                    ball.color = 'white';
+                  });
                 } else if (this.rows[0].balls[0].y > 575) {
-                this.rows[0].balls.forEach(function(ball) {
-                  ball.color = 'red';
-                });
-              }
+                  this.rows[0].balls.forEach(function(ball) {
+                    ball.color = 'red';
+                  });
+                }
               }
             }
           }
@@ -155,8 +158,9 @@ class Game extends React.Component {
               if (this.rows[0].balls) {
                 if (this.rows[0].balls) {
                   if (this.rows[0].balls.length === 0 || this.rows[0].balls[0].y > 580) {
-                  this.rows.shift();
-                }
+                    context.setState({ combo: 0});
+                    this.rows.shift();
+                  }
                 }
               }
             }
@@ -168,32 +172,50 @@ class Game extends React.Component {
 
       var counter = 0;
       function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = 'black';
-        ctx.fillRect(5, 5, 400, 600);
 
-        if (context.state.hit === true) {
-          if (counter === 5) {
-            context.setState({hit: false});
-            counter = 0;
+
+
+        if (context.state.end === false) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(5, 5, 400, 600);
+
+          if (context.state.hit === true) {
+            if (counter === 5) {
+              context.setState({hit: false});
+              counter = 0;
+            } else {
+              ctx.fillStyle = 'blue';
+              ctx.fillRect(0, 575, 400, 10);
+              counter++;
+              ctx.fillStyle = 'white';
+            }
+
           } else {
-            ctx.fillStyle = 'blue';
-            ctx.fillRect(0, 575, 400, 10);
-            counter++;
             ctx.fillStyle = 'white';
+            ctx.fillRect(0, 572.5, 400, 10);
           }
+
+          ctx.font = '40px Arial';
+          ctx.fillText('Score: ' + context.state.score, 10, 50);
+
+          allRows.rows.forEach(function(row) {
+            row.drawRow();
+            row.advanceRow();
+          });
+          allRows.checkDelete();
+          allRows.flashDots();
         } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'black';
+          ctx.fillRect(5, 5, 400, 600);
           ctx.fillStyle = 'white';
-          ctx.fillRect(0, 572.5, 400, 10);
+          ctx.fillText(' FINAL SCORE: ' + context.state.score, 20, 50);
+          ctx.font = '20px Arial';
+          ctx.fillText(' THANKS FOR PLAYING ', 30, 150);
+          ctx.fillText(' The Lucky Lemons Dev Group ', 40, 350);
         }
-        ctx.font = '40px Arial';
-        ctx.fillText('Score: ' + context.state.score, 10, 50);
-        allRows.rows.forEach(function(row) {
-          row.drawRow();
-          row.advanceRow();
-        });
-        allRows.checkDelete();
-        allRows.flashDots();
+
 
       }
 
@@ -214,7 +236,6 @@ class Game extends React.Component {
       } else if (context.state.difficulty === 'rockstar') {
         modifier = 4;
       }
-      console.log(modifier);
 
       setInterval(()=>{
         allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
@@ -222,7 +243,6 @@ class Game extends React.Component {
 
 
       var checkMove = () => {
-        console.log(allRows);
         var output = allRows.rows[0].balls.map(function(ball) {
           return (ball.keyBind);
         });
@@ -241,8 +261,8 @@ class Game extends React.Component {
           if (moveCheck[moveCheck.length - 1] < 35) {
             if (moveCheck[0] === keyCodes) {
               context.increaseScore();
-              ctx.fillStyle = 'black';
-              ctx.fillRect(0, 575, 400, 5);
+              allRows.rows.shift();
+              context.setState({combo: context.state.combo + 1});
             }
           }
         };
@@ -317,11 +337,19 @@ class Game extends React.Component {
         }
         listenToDF();
       }
+      function listenToJEY() {
+        keyboardJS.bind('j + e + y', function(e) {
+          context.setState({score: context.state.score + 999});
+        });
+      }
+      listenToJEY();
+
     }
   }
 
   trackEnd() {
     console.log('The song has ended');
+    this.setState({end: true});
   }
 
   render() {
