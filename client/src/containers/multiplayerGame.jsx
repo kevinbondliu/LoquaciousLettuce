@@ -339,17 +339,16 @@ class multiplayerGame extends React.Component {
   trackEnd() {
     console.log('The song has ended');
   }
-
   render() {
-    // var boundEnd = this.trackEnd.bind(this);
-    // var startSong = this.startSong.bind(this);
-    // var song = this.state.song;
-
-    
+    var boundEnd = this.trackEnd.bind(this);
+    var startSong = this.startSong.bind(this);
+    var song = this.state.song;
     return (
       <div>
         HELLO!
         <div>
+
+          
           <canvas ref="canvas" width={600} height={625}/>
         </div>
               <ReactAudioPlayer
