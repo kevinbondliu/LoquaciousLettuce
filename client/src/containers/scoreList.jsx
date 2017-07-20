@@ -3,6 +3,7 @@ import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {selectUser} from '../actions/index';
+import {Modal} from 'react-bootstrap';
 
 class ScoreList extends React.Component {
 
@@ -13,9 +14,13 @@ class ScoreList extends React.Component {
     return sorted.map((user) => {
       return (
         <div>
+
+
+
+
           <li key={user.id} onClick={() => this.props.selectUser(user)}>
-            <div className="col-sm-8" style={{background:'white', height: 50}}><img src={user.image} height="45" width="45"/>{user.username}</div>
-            <div className="col-sm-6-offset-4" style={{background:'white', height: 50}}>{user.score}<br></br></div>
+            <div className="col-sm-8" style={{background:'lightgrey', height: 50}}><img src={user.image} height="45" width="45"/>{user.username}</div>
+            <div className="col-sm-6-offset-4" style={{background:'lightgrey', height: 50}}>{user.score}<br></br></div>
           </li>
         </div>
       );
@@ -46,16 +51,10 @@ var matchDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, matchDispatchToProps)(ScoreList);
 
-// receive in list of fake data
-// and map out a scoreListEntry componnet for each one
 
-
-// return this.props.users.map((user) => {
-//   return (
-//   <li key={user.id}
-//   onClick={() => this.props.selectUser(user)}
-//   >
-//   {user.first} {user.last}
-//   </li>
-//   );
-// });
+   // <Button data-toggle="modal">
+        // <Modal show="true">
+        // <Modal.Header closeButton>
+        //     <Modal.Title>Modal heading</Modal.Title>
+        //   </Modal.Header>
+        // </Modal>

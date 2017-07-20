@@ -4,7 +4,7 @@ import keyboardJS from 'keyboardjs';
 import patterns from './patterns.jsx';
 import { Redirect, Link } from 'react-router-dom';
 import ReactAudioPlayer from 'react-audio-player';
-import {connect} from 'react-redux'; 
+import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeSong, getGame} from '../actions/index';
 
@@ -20,7 +20,7 @@ class Game extends React.Component {
       song: this.props.game.song,
       bpm: this.props.game.bpm,
       difficulty: this.props.game.difficulty,
-      player: this.props.game.difficulty, 
+      player: this.props.game.difficulty,
       attemptPresses: 0
     };
     this.increaseScore = this.increaseScore.bind(this);
@@ -33,16 +33,16 @@ class Game extends React.Component {
   componentDidMount() {
     console.log('THIS IS THE GAME', this.props.game);
   }
-  
+
   handleOptionChange (changeEvent) {
-    this.setState({ 
+    this.setState({
       difficulty: changeEvent.target.value
     });
   }
   increaseScore() {
     this.setState({score: this.state.score + 10, hit: true});
   }
-  
+
   increaseAttempt() {
     this.setState({attemptPresses: this.state.attemptPresses + 1});
     console.log(this.state.attemptPresses);
@@ -54,7 +54,7 @@ class Game extends React.Component {
 
   startSong() {
     var audio = ReactDOM.findDOMNode(this.refs.audio);
-    
+
     console.log(audio);
     this.setState({game: true});
     console.log(this.state.game);
@@ -164,7 +164,7 @@ class Game extends React.Component {
         }
       };
 
-    
+
 
       var counter = 0;
       function draw() {

@@ -16,10 +16,10 @@ class SelectPlayerSettings extends React.Component {
       <div className = 'selectPlayerPage'>
         <div className="container">
           <div className="row">
-            <div className="col-sm-12" style={{background: '#0066ff', height: 500}}>Game<br></br>
+            <div className="col-sm-12" style={{background: 'black', height: 500}}>Game<br></br>
               <ButtonGroup vertical className="col-sm-12">
-                <Button onClick={()=> {changePlayers(1); changeView('song');} } >Single Player</Button>
-                <Button onClick={()=> {changePlayers(2); changeView('song');} }>MultiPlayer</Button>
+                <Button onClick={()=> {changePlayers(1); changeView('difficulty');} } >Single Player</Button>
+                <Button onClick={()=> {changePlayers(2); changeView('difficulty');} }>MultiPlayer</Button>
               </ButtonGroup>
             </div>
           </div>
