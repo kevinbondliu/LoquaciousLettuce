@@ -11,7 +11,8 @@ class Score extends React.Component {
       <div className = 'scorePage'>
       HIGH SCORE_______
         <Link to='/settings'>PLAY AGAIN!</Link>
-        <ScoreList />
+        <br></br>
+        <ScoreList key={this.props.users.id}/>
       </div>
     );
   }
@@ -19,7 +20,7 @@ class Score extends React.Component {
 
 var mapStateToProps = (state) => {
   return {
-
+    users: state.users
   };
 };
 

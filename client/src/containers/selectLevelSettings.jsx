@@ -15,18 +15,16 @@ class SelectLevelSettings extends React.Component {
       <div className = 'selectLevelPage'>
         <div className="container">
           <div className="row">
-            <div className="col-sm-12" style={{background:'#0066ff', height: 500}}>Level<br></br>
+            <div className="col-sm-12" style={{background:'black', height: 500}}>Level<br></br>
 
               <ButtonGroup vertical className="col-sm-12">
-                <Button onClick={()=> {changeDiff('super_beginner'); } } >Super Beginner</Button>
-                <Button onClick={()=> {changeDiff('beginner'); } }>Beginner</Button>
-                <Button onClick={()=> {changeDiff('intermediate'); } }>Intermediate</Button>
-                <Button onClick={()=> {changeDiff('advanced'); } }>Advanced</Button>
-                <Button onClick={()=> {changeDiff('rockstar'); } }>RockStar</Button>
+                <Button onClick={()=> {changeDiff('super_beginner'); changeView('song');} } >Super Beginner</Button>
+                <Button onClick={()=> {changeDiff('beginner'); changeView('song');} }>Beginner</Button>
+                <Button onClick={()=> {changeDiff('intermediate'); changeView('song');} }>Intermediate</Button>
+                <Button onClick={()=> {changeDiff('advanced'); changeView('song');} }>Advanced</Button>
+                <Button onClick={()=> {changeDiff('rockstar'); changeView('song');} }>RockStar</Button>
               </ButtonGroup>
-              <Button><Link to='/settings'>Back</Link></Button>
-              <Button><Link to='/game'>Play!</Link></Button>
-              <Button><Link to='/multiplayerGame'>MultiPlayer</Link></Button>
+              <Button onClick={()=> {changeView('players');}}>Back</Button>
             </div>
           </div>
         </div>

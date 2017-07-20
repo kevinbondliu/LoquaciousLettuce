@@ -26,8 +26,11 @@ class MusicSettings extends React.Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
+        <Button onClick={()=> {changeView('difficulty');}}>Back</Button>
         <Button onClick={()=>{changeView('difficulty'); }}>Waiting for Kevin to kick Spotify's butt. Go Kevin!!!</Button>
-        
+        <Button><Link to='/game'>Play!</Link></Button>
+              <Button><Link to='/multiplayerGame'>MultiPlayer</Link></Button>
+
       </div>
     );
   }
