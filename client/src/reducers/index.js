@@ -3,7 +3,7 @@ import test from './example.js';
 import UserReducer from './reducer-users';
 import GameReducer from './reducer-game';
 import ViewReducer from './reducer-view';
-import ShowModalReducer from './reducer-score-modal';
+import ShowScoreModalReducer from './reducer-score-modal';
 import SelectedUserReducer from './reducer-selected-user';
 import HomeViewReducer from './reducer-home-view';
 import MusicReducer from './reducer-music';
@@ -16,7 +16,7 @@ const allReducers = combineReducers({
   game: GameReducer,
   view: ViewReducer,
   homeView: HomeViewReducer,
-  showScoreModal: showModalReducer,
+  showScoreModal: ShowScoreModalReducer,
   music: MusicReducer
 });
 
