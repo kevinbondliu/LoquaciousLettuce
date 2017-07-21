@@ -74,7 +74,9 @@ class Multiplayer extends React.Component {
     if (this.state.game === true) {
       if (this.state.ongoing === false) {
         this.updateCanvas();
-        audio.play();
+        setTimeout(function() {
+          audio.play();
+          }, (475 / (4 * (1000 / 30))) * 1000);
         this.setState({ongoing: true});
       }
     }
@@ -141,7 +143,7 @@ class Multiplayer extends React.Component {
         }
         for (let i = 0; i < rowArr.length; i ++) {
           if (rowArr[i].position === 1) {
-            row.balls.push(makeBall(i * 80 + 125 + displacement, 100, color, rowArr[i].keyCode));
+            row.balls.push(makeBall(i * 80 + 125 + displacement, 200, color, rowArr[i].keyCode));
           }
         }
         return row;
@@ -204,6 +206,10 @@ class Multiplayer extends React.Component {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = 'black';
           ctx.fillRect(5, 5, 1000, 600);
+          ctx.fillStyle = 'white';
+          ctx.font = '40px Arial';
+          ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
+          ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
 
   /*                Player 1 Hit condition            */
           if (context.state.hitP1 === true) {
@@ -252,10 +258,7 @@ class Multiplayer extends React.Component {
           });
           allRowsP2.checkDelete();
           allRowsP2.flashDots();
-          ctx.fillStyle = 'white';
-          ctx.font = '40px Arial';
-          ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
-          ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
+          
         } else {
 
           ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -268,25 +271,7 @@ class Multiplayer extends React.Component {
           ctx.fillText(' THANKS FOR PLAYING ', 400, 150);
           ctx.fillText(' The Lucky Lemons Dev Group ', 380, 350);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       }
-
 
       setInterval(()=> {
         draw();
@@ -307,11 +292,11 @@ class Multiplayer extends React.Component {
 
       setInterval(()=>{
         var patternType = Math.floor(Math.random() * 10);
-        var formationP1 = makeRow(patternType, 1);
-        var formationP2 = makeRow(patternType, 2);
+        var formationP1 = makeRow(4, 1);
+        var formationP2 = makeRow(4, 2);
         allRowsP1.rows.push(formationP1);
         allRowsP2.rows.push(formationP2);
-      }, Math.floor(60000 / (context.state.bpm * modifier)) );
+      }, (60000 / (context.state.bpm * modifier)) );
 
 
       var checkMove = (arrayRow) => {
