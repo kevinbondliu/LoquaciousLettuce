@@ -4,7 +4,9 @@ import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import PreSignUp from './preSignUp.jsx';
+import PreLogin from './preLogin.jsx';
 import SignUp from './SignUp.jsx';
+import Login from './login.jsx';
 import {Modal, Button, ButtonGroup, FieldGroup, Form, FormControl, FormGroup, ControlLabel, Col, Checkbox} from 'react-bootstrap';
 
 class Home extends React.Component {
@@ -22,7 +24,7 @@ class Home extends React.Component {
           <div className="static-modal">
             <Modal.Dialog>
               <Modal.Header>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>TESSELL8</Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
@@ -34,17 +36,30 @@ class Home extends React.Component {
                     <div>
                       <SignUp />
                     </div>
+                  : this.props.homeView === 'preLogin' ?
+                    <div>
+                      <PreLogin />
+                    </div>
+
+                  : this.props.homeView === 'login' ?
+                    <div>
+                      <Login />
+                    </div>
                   : <div>
-                    No Home View Selected
+                      No Home View Selected
                     </div>}
 
               </Modal.Body>
 
-              <Modal.Footer>
-                <Button>Close</Button>
-                <Button bsStyle="primary">Save changes</Button>
+
+               <Modal.Footer>
+               Sign in with Spotify<br></br>
+                 Spotify Icon Component
+                 <br></br>
                 <Link to='/settings'>Select Player Mode</Link>
               </Modal.Footer>
+
+
 
             </Modal.Dialog>
           </div>
@@ -66,89 +81,5 @@ var mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(Home);
 
-
-
- // <div className="static-modal">
- //        <Modal.Dialog>
- //          <Modal.Header>
- //            <Modal.Title>Modal title</Modal.Title>
- //          </Modal.Header>
-
- //          <Modal.Body>
- //            One fine body...
-
-
-
- //        <form>
- //          <FormGroup>
- //            <ControlLabel>vusdkhfc</ControlLabel>
- //          </FormGroup>
- //        </form>
-
-
-
- //          </Modal.Body>
-
- //          <Modal.Footer>
- //            <Button>Close</Button>
- //            <Button bsStyle="primary">Save changes</Button>
- //          </Modal.Footer>
-
- //        </Modal.Dialog>
- //      </div>
-
-
-
- //    <div class="input-group">
-            //   <span class="input-group-btn">
-            //     <span class="btn btn-default btn-file">
-            //       Browse <input type="file" id="imgInp">
-            //     </span>
-            //   </span>
-            //     <input type="text" class="form-control" readonly>
-            // </div>
-            // <img id='img-upload'/>
-
-
-
-
-
-
-
-
-        //     <br></br>
-        // <div className="col-sm-2" style={{background:'white', height: 500}}></div>
-        // <div className="col-sm-8" style={{background:'black', height: 500}}>
-
-        //   <Form horizontal>
-        //     <FormGroup controlId="formHorizontalEmail">
-        //       <Col componentClass={ControlLabel} sm={2}>
-        //           USERNAME
-        //       </Col>
-        //       <Col sm={10}>
-        //         <FormControl type="username" placeholder="username" />
-        //       </Col>
-        //     </FormGroup>
-
-
-        //      <div className="fileupload fileupload-new" data-provides="fileupload">
-        //         <div>
-        //           <Button className="btn btn-file">
-        //           <input type="file" /></Button>
-        //           <br></br>
-        //           <a href="#" className="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-        //         </div>
-        //     </div>
-
-        //     <br></br>
-
-        //     <FormGroup>
-        //       <Col smOffset={0} >
-        //         <Button type="submit">
-        //           <Link to='/settings'>Select Player Mode</Link>
-        //         </Button>
-        //       </Col>
-        //     </FormGroup>
-        //   </Form>
-
-        // </div>
+    // <Button>Close</Button>
+    // <Button bsStyle="primary">Save changes</Button>

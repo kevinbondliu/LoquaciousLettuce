@@ -11,8 +11,59 @@ class SignUp extends React.Component {
     return (
       <div>
         SIGN UPPPPPP <br></br>
-        Need to make an account.
-       <Button bsStyle="link" onClick={ () => {this.props.changeHomeView('preSignUp')} }>Sign Up</Button>
+
+        <form>
+          <FormGroup>
+            <FormControl type="text" placeholder="Email">
+            </FormControl>
+          </FormGroup>
+
+          <FormGroup>
+            <FormControl type="text" placeholder="Confirm Email">
+            </FormControl>
+          </FormGroup>
+
+          <FormGroup>
+            <FormControl type="text" placeholder="Password">
+            </FormControl>
+          </FormGroup>
+
+          <FormGroup>
+            <FormControl type="text" placeholder="Username">
+            </FormControl>
+          </FormGroup>
+
+          <FormGroup>
+            <label className="control-label">Select Profile Image</label>
+              <FormControl type="file" placeholder="Image" className="file">
+
+              </FormControl>
+          </FormGroup>
+
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Checkbox>Remember me</Checkbox>
+            </Col>
+          </FormGroup>
+
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Button type="submit">
+                Sign Up
+              </Button>
+            </Col>
+          </FormGroup>
+
+
+
+        </form>
+
+
+
+
+
+        <Button onClick={ () => {this.props.changeHomeView('preSignUp')} }>BACK</Button>
+
       </div>
     )
   }
@@ -28,4 +79,4 @@ var mapDispatchToProps = (dispatch) => {
   return bindActionCreators({changeHomeView: changeHomeView}, dispatch);
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

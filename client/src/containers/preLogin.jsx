@@ -6,21 +6,20 @@ import {connect} from 'react-redux';
 import {changeHomeView} from '../actions/index';
 import {Button, ButtonGroup, FieldGroup, Form, FormControl, FormGroup, ControlLabel, Col, Checkbox} from 'react-bootstrap';
 
-class PreSignUp extends React.Component {
+class PreLogin extends React.Component {
   render() {
-    // var changeHomeView = this.props.changeHomeView.bind(this);
     return (
       <div>
-        PREEEEE SignUp <br></br>
-
-        <Button onClick={ () => {this.props.changeHomeView('signUp')} }>SIGN UP WITH EMAIL</Button>
+        PREEEEE LOGIN <br></br>
+        <Button onClick={ () => {this.props.changeHomeView('login')} }>Loginnnnn WITH EMAIL</Button>
         <br></br>
-        Already have an account.
-        <Button bsStyle="link" onClick={ () => {this.props.changeHomeView('preLogin')} }>Login</Button>
+        Need to make an account.
+        <Button bsStyle="link" onClick={ () => {this.props.changeHomeView('preSignUp')} }>Sign Up</Button>
       </div>
     )
   }
 }
+
 
 var mapStateToProps = (state) => {
   return {
@@ -32,4 +31,4 @@ var mapDispatchToProps = (dispatch) => {
   return bindActionCreators({changeHomeView: changeHomeView}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PreSignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(PreLogin);
