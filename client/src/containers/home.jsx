@@ -26,7 +26,6 @@ class Home extends React.Component {
               </Modal.Header>
 
               <Modal.Body>
-                One fine body...
                   {this.props.homeView === 'preSignUp' ?
                     <div>
                       <PreSignUp />
