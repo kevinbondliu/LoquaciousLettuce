@@ -8,6 +8,9 @@ const Song = db.Model.extend({
   games: function() {
     return this.hasMany('Game');
   },
+  songs: function() {
+    return this.hasOne('Profile');
+  },
 });
 
 module.exports = db.model('Song', Song);
