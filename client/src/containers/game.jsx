@@ -8,7 +8,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeSong, getGame} from '../actions/index';
 
-
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -48,23 +47,20 @@ class Game extends React.Component {
 
   increaseAttempt() {
     this.setState({attemptPresses: this.state.attemptPresses + 1});
-    console.log(this.state.attemptPresses);
+    //console.log(this.state.attemptPresses);
   }
   decreaseAttempt() {
     this.setState({attemptPresses: this.state.attemptPresses - 1});
-    console.log(this.state.attemptPresses);
+    //console.log(this.state.attemptPresses);
   }
 
   startSong() {
-    var audio = ReactDOM.findDOMNode(this.refs.audio);
-
-    console.log(audio);
     this.setState({game: true});
-    console.log(this.state.game);
+    //console.log(this.state.game);
+    var audio = ReactDOM.findDOMNode(this.refs.audio);
     if (this.state.game === true) {
       if (this.state.ongoing === false) {
         this.updateCanvas();
-        audio.play();
         this.setState({ongoing: true});
       }
     }
@@ -168,17 +164,42 @@ class Game extends React.Component {
         }
       };
 
+      var audioCtx = new AudioContext();
+      var audio = ReactDOM.findDOMNode(this.refs.audio);
+      var audioSrc = audioCtx.createMediaElementSource(audio);
+      var analyser = audioCtx.createAnalyser();
 
-
+      audioSrc.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      analyser.fftSize = 256;
+      var bufferLength = analyser.frequencyBinCount;
+      var frequencyData = new Uint8Array(bufferLength);
+      
       var counter = 0;
       function draw() {
-
+        
+        analyser.getByteFrequencyData(frequencyData);
+        console.log(frequencyData);
 
 
         if (context.state.end === false) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = 'black';
           ctx.fillRect(5, 5, 400, 600);
+// BACKGROUND FOR AUDIO ANALYTICS
+          var barWidth = (400 / bufferLength);
+          var barHeight;
+          var x = 5;
+          for (var i = 0; i < bufferLength; i++) {
+            barHeight = frequencyData[i];
+            ctx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,255)';
+            ctx.fillRect(x, 600 - 2 * barHeight, barWidth, 2 * barHeight)
+            x += barWidth;
+          }
+// ACTUAL GAME GAME STUFF
+          ctx.fillStyle = 'white';
+          ctx.font = '40px Arial';
+          ctx.fillText('Score: ' + context.state.score, 10, 50);
 
           if (context.state.hit === true) {
             if (counter === 5) {
@@ -196,8 +217,7 @@ class Game extends React.Component {
             ctx.fillRect(0, 572.5, 400, 10);
           }
 
-          ctx.font = '40px Arial';
-          ctx.fillText('Score: ' + context.state.score, 10, 50);
+          
 
           allRows.rows.forEach(function(row) {
             row.drawRow();
@@ -218,8 +238,11 @@ class Game extends React.Component {
 
 
       }
+      setTimeout(function() {
+        audio.play();
+      }, (475 / (4 * (1000 / 30))) * 1000);
 
-
+      
       setInterval(()=> {
         draw();
       }, 1000 / 30);
@@ -345,12 +368,30 @@ class Game extends React.Component {
       listenToJEY();
 
     }
+/*                    Audio Visual                             */
+
+
+
+
+
   }
 
   trackEnd() {
     console.log('The song has ended');
     this.setState({end: true});
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
   render() {
     var boundEnd = this.trackEnd.bind(this);
