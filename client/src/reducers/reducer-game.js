@@ -1,5 +1,3 @@
-
-
 export default (state = {
   song: 'Close.mp3',
   score: 0,

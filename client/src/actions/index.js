@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const selectUser = (user) => { // function that is the action creator
   console.log('You clicked on user: ', user.username);
   return {
@@ -5,6 +7,29 @@ export const selectUser = (user) => { // function that is the action creator
     payload: user
   };
 };
+
+const setTracks = (object) => {
+  console.log('object', object);
+  return {
+    type: 'GET_TRACKS',
+    payload: object
+  };
+};
+
+export const getTracks = (url, options) => (dispatch, getState) => {
+  axios.get(url, options)
+    .then((data) => {
+      return dispatch(setTracks(data.data));
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+
+
+
 
 export const changeSong = (song) => {
   console.log('song', song);
@@ -42,7 +67,7 @@ export const selectMode = (playerMode) => {
   return {
     type: 'MODE_SELECTED',
     payload: playerMode
-  }
+  };
 };
 
 
