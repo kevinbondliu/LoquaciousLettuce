@@ -2,17 +2,17 @@ const models = require('../models');
 
 exports.seed = function (knex, Promise) {
 
-  return models.Profile.where({ email: 'Yugata_B@Khidding.org' }).fetch()
+  return models.Profile.where({ email: 'admin@domain.com' }).fetch()
     .then((profile) => {
       if (profile) {
         throw profile;
       }
       return models.Profile.forge({
-        firstname: 'Kurt',
-        lastname: 'Larson',
-        display: 'DJ HarshMellow',
-        email: 'Yugata_B@Khidding.org',
-        phone: '415.555.1234',
+        first: 'System',
+        last: 'Admin',
+        display: 'Administrator',
+        email: 'admin@domain.com',
+        phone: '',
         accessToken: '',
         refreshToken: ''
       }).save();
