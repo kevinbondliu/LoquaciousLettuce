@@ -6,7 +6,7 @@ import ViewReducer from './reducer-view';
 import ScoreModalReducer from './reducer-score-modal';
 import SelectedUserReducer from './reducer-selected-user';
 import ShowModalsReducer from './reducer-score-modal';
-
+import MusicReducer from './reducer-music';
 //combined reducers comines all the files inside the reduce file and allReducer becomes the storage
 const allReducers = combineReducers({
   //individual sub-storage
@@ -14,8 +14,8 @@ const allReducers = combineReducers({
   selectedUser: SelectedUserReducer,
   game: GameReducer,
   view: ViewReducer,
-  showScoreModal: ScoreModalReducer
-
+  showScoreModal: ScoreModalReducer,
+  music: MusicReducer
 });
 
 export default allReducers;

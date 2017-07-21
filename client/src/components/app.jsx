@@ -4,9 +4,7 @@ import Example from '../containers/test.jsx';
 import Home from '../containers/home.jsx';
 import Settings from '../containers/settings.jsx';
 import MusicSettings from '../containers/musicSettings.jsx';
-
 import Game from '../containers/game.jsx';
-import Audio from '../containers/Audiotest.jsx';
 import MultiPlayer from '../containers/multiPlayer.jsx';
 import Score from '../containers/score.jsx';
 import {Link, IndexRoute, browserHistory, DefaultRoute} from 'react-router';
@@ -29,7 +27,6 @@ class App extends React.Component {
             <Route path='/musicSettings' component={MusicSettings} />
             <Route path='/game' component={Game} />
             <Route path='/score' component={Score} />
-            <Route path='/audio' component={Audio}/>
           </div>
         </Router>
         <Example/>

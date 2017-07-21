@@ -148,11 +148,11 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done, accessToken, refreshT
     withRelated: ['profile']
   })
     .then(oauthAccount => {
-
-      if (oauthAccount) {
-        throw oauthAccount;
+      if (type !== 'spotify') {
+        if (oauthAccount) {
+          throw oauthAccount;
+        }
       }
-
       if (!oauthProfile.emails || !oauthProfile.emails.length) {
         // FB users can register with a phone number, which is not exposed by Passport
         throw null;
@@ -181,9 +181,6 @@ const getOrCreateOAuthProfile = (type, oauthProfile, done, accessToken, refreshT
         };
         // console.log('helo22', profileInfo);
       }
-      console.log('this is the', profileInfo);
-      console.log('*******************************************************************');
-      console.log('this is the', profileInfo);
       if (profile) {
         //update profile with info from oauth
         return profile.save(profileInfo, { method: 'update' });
