@@ -4,6 +4,7 @@ const models = require('../models');
 let createSongs = (knex, id) => {
   return knex('songs').insert({
 //    id: 1,
+    owner: 1,
     url: 'MusicFiles/U2.mp3',
     songname: 'Bloody Sunday',
     bpm: 120,

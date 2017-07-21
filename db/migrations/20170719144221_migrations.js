@@ -14,6 +14,7 @@ exports.up = function(knex, Promise) {
 // SONGS TABLE:
     knex.schema.createTableIfNotExists('songs', function(table) {
       table.increments('id').unsigned().primary();
+      table.integer('owner');
       table.string('url');
       table.string('songname');
       table.float('bpm', 3);
