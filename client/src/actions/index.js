@@ -86,7 +86,15 @@ export const selectMode = (playerMode) => {
 };
 
 
-/***********VIEW CHANGE************/
+/***********VIEW CHANGES************/
+
+export const changeHomeView = (view) => {
+  console.log("Home View", view);
+  return {
+    type: 'CHANGE_HOME_VIEW',
+    payload: view
+  };
+};
 
 export const changeView = (view) => {
   console.log("View", view);
@@ -96,6 +104,7 @@ export const changeView = (view) => {
   };
 };
 
+/**************MODALS***************/
 
 export const showModal = (obj) => {
   console.log("OPENED ---obj", obj);

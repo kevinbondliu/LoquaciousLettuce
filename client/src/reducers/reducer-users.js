@@ -2,8 +2,8 @@ export default function() {
   return [
     { id: 1,
       username: 'juli4',
-      score: 240023342349,
-      image: 'http://images.naldzgraphics.net/2014/07/2-black-cat-icon.jpg'
+      score: 2400233428888888888887798798798798798349,
+      image: 'http://cutecatsinhats.com/wp-content/uploads/2016/01/lil-bub-party-hat.jpg'
     },
     { id: 2,
       username: 'Jey',
@@ -22,7 +22,7 @@ export default function() {
     { id: 5,
       username: 'K3v',
       score: 34524234,
-      image: 'http://images.naldzgraphics.net/2014/07/2-black-cat-icon.jpg'
+      image: 'http://cutecatsinhats.com/wp-content/uploads/2016/01/birthday_siamese_cat.jpg'
     },
     { id: 6,
       username: 't4co',
@@ -40,14 +40,14 @@ export default function() {
       image: 'https://s-media-cache-ak0.pinimg.com/originals/58/88/04/5888042d60b337419a73da08dc073c24.jpg'
     },
     { id: 9,
-      username: 'xxx',
+      username: 'wes',
       score: 104290348923,
-      image: 'http://images.naldzgraphics.net/2014/07/2-black-cat-icon.jpg'
+      image: 'https://s-media-cache-ak0.pinimg.com/originals/9d/eb/45/9deb4526146425fb59e32ec990699091.jpg'
     },
     { id: 10,
-      username: 'randoZ',
+      username: 'pablo',
       score: 55555555,
-      image: 'https://s-media-cache-ak0.pinimg.com/originals/58/88/04/5888042d60b337419a73da08dc073c24.jpg'
+      image: 'http://ak-hdl.buzzfed.com/static/2015-10/19/11/enhanced/webdr04/original-20795-1445268798-17.jpg'
     }
   ];
 }
