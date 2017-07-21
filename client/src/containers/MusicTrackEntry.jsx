@@ -11,20 +11,19 @@ class MusicTrackListEntry extends React.Component {
 
   render() {
     return (
-
-  <div>
-    <Panel header={this.props.track.name}>
-      <div className='col-sm-3' >
-        <img className="media-object" src={this.props.track.album.images[0].url} style={{height: 100, width: 170}} />
+      <div>
+        <Panel header={this.props.track.name}>
+          <div className='col-sm-3' >
+            <img className="media-object" src={this.props.track.album.images[0].url} style={{height: 100, width: 170}} />
+          </div>
+          <div className='col-sm-6'>
+            {this.props.track.artists[0].name}
+          </div>
+          <div className='col-sm-3'>
+            <h1>{this.props.BPM}</h1>
+          </div>
+        </Panel>
       </div>
-      <div className='col-sm-6'>
-        {this.props.track.artists[0].name}
-      </div>
-      <div className='col-sm-3'>
-        <h1>170</h1>
-      </div>
-    </Panel>
-  </div>
     );
   }
 }

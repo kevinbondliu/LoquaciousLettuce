@@ -6,22 +6,19 @@ import MusicTrackEntry from './MusicTrackEntry.jsx';
 class MusicTrackList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+    };
   }
-
-  getProps() {
-    console.log(this.props.music.tracks.items);
-  }
-
-
 
   render() {
     return (
-      <div className = 'MusicTrack' style={{height: 450, overflow: 'overlay'}}>
-        <button onClick={this.getProps.bind(this)}></button>
+      <div className = 'MusicTrack' style={{height: 400, overflow: 'scroll'}}>
         {this.props.music.tracks.items.map((item, index)=> (
           <MusicTrackEntry
             key = {index}
+            counter = {index}
             track={item}
+            BPM={this.props.BPM[index].tempo}
           />
         ))}
       </div>
@@ -31,7 +28,8 @@ class MusicTrackList extends React.Component {
 
 var mapStateToProps = (state) => {
   return {
-    music: state.music.trackObject
+    music: state.music.trackObject,
+    BPM: state.music.trackObject.BPMItems
   };
 };
 

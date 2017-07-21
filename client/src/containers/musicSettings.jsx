@@ -15,7 +15,6 @@ class MusicSettings extends React.Component {
     this.state = {
     },
     this.search = '';
-    this.getAudioBPM = this.getAudioBPM.bind(this);
     this.getAudioTrackID = this.getAudioTrackID.bind(this);
     this.getToken = this.getToken.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,32 +51,6 @@ class MusicSettings extends React.Component {
     this.props.getTracks(FETCH_URL, myOptions);
   }
 
-  getAudioBPM(token) {
-    console.log('this was clicked');
-
-    const BASE_URL = 'https://api.spotify.com/v1/audio-features/5ChkMS8OtdzJeqyybCc9R5';
-    const FETCH_URL = BASE_URL + 'q=' + 'michael jackson' + '&type=artist&limit=1';
-    var accessToken = token;
-
-    var myOptions = {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Bearer ' + accessToken
-      },
-      mode: 'cors',
-      cache: 'default'
-    };
-    this.props.getTracks(BASE_URL, myOptions);
-    // fetch(BASE_URL, myOptions)
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     console.log(json);
-    //     const artist = json.artists.items[0];        
-    //     this.setState({ artist });
-    //   });
-  }
-
-
   getInitialState() {
     return {
       key: 1
@@ -98,12 +71,8 @@ class MusicSettings extends React.Component {
     var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'musicSettingsPage'>
-      MUSICCCCCCC SPOTIFYYYYYYYYYYY<br></br>
-      <div>
-        <button onClick = {this.getAudioBPM.bind(this)}>Audio</button>
-        <button onClick = {this.getToken.bind(this)}>Button</button>
-      </div>
-        <div className="col-sm-12" style={{ background: 'black', height: 500, overflow: 'scroll'}}>
+      Select Your Music<br></br>
+        <div className="col-sm-12" style={{ background: 'white', height: 550}}>
           <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
             <Tab eventKey={1} title="Library">
             </Tab>

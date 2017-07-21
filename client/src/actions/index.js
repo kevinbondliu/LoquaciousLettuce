@@ -1,4 +1,5 @@
 import axios from 'axios';
+var Promise = require('bluebird');
 
 export const selectUser = (user) => { // function that is the action creator
   console.log('You clicked on user: ', user.username);
@@ -19,16 +20,31 @@ const setTracks = (object) => {
 export const getTracks = (url, options) => (dispatch, getState) => {
   axios.get(url, options)
     .then((data) => {
-      return dispatch(setTracks(data.data));
+      var storage = data.data.tracks.items;
+      var count = 0;
+      var SpotifyIDstorage = [];
+      data.data['BPMItems'] = [];
+      for (var i = 0; i < storage.length; i ++) {
+        data.data.BPMItems.push(
+          axios('https://api.spotify.com/v1/audio-features/' + storage[i].id, options)
+            .then((data) => {
+              return data.data;
+            })  
+        );
+      }
+      Promise.all(data.data.BPMItems)
+        .then(function(result) {
+          data.data.BPMItems = result;
+          return data.data;
+        })
+        .then((data)=> {
+          return dispatch(setTracks(data));
+        });
     })
     .catch((error) => {
       console.log(error);
     });
 };
-
-
-
-
 
 export const changeSong = (song) => {
   console.log('song', song);
