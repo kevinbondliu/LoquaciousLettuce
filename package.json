@@ -49,6 +49,8 @@
     "react-sound": "^0.6.2",
     "redis": "^2.7.1",
     "redux": "^3.7.2",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
     "request": "^2.81.0"
   },
   "devDependencies": {
