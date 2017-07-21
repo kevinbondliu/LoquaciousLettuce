@@ -16,7 +16,7 @@ const allReducers = combineReducers({
   game: GameReducer,
   view: ViewReducer,
   homeView: HomeViewReducer,
-  showScoreModal: ScoreModalReducer,
+  showScoreModal: showModalReducer,
   music: MusicReducer
 });
 
