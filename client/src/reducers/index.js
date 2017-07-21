@@ -3,9 +3,10 @@ import test from './example.js';
 import UserReducer from './reducer-users';
 import GameReducer from './reducer-game';
 import ViewReducer from './reducer-view';
-import ScoreModalReducer from './reducer-score-modal';
+import ShowModalReducer from './reducer-score-modal';
 import SelectedUserReducer from './reducer-selected-user';
-import ShowModalsReducer from './reducer-score-modal';
+import HomeViewReducer from './reducer-home-view';
+
 
 //combined reducers comines all the files inside the reduce file and allReducer becomes the storage
 const allReducers = combineReducers({
@@ -14,7 +15,8 @@ const allReducers = combineReducers({
   selectedUser: SelectedUserReducer,
   game: GameReducer,
   view: ViewReducer,
-  showScoreModal: ScoreModalReducer
+  showScoreModal: ShowModalReducer,
+  homeView: HomeViewReducer
 
 });
 

@@ -45,7 +45,12 @@ class ScoreList extends React.Component {
                 <Modal.Title> {this.props.showScoreModal.user.username} </Modal.Title>
               </Modal.Header>
               <Modal.Body>
+                <img src={this.props.showScoreModal.user.image} height="200" width="200"/>
+                     RANKING:   ROCKSTAR
+                <br></br>
                 USER STATS:
+                <br></br>
+                HIGH SCORE:
                 <br></br>
                 {this.props.showScoreModal.user.score}
               </Modal.Body>

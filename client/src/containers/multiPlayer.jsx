@@ -4,7 +4,7 @@ import keyboardJS from 'keyboardjs';
 import patterns from './patterns.jsx';
 import { Redirect, Link } from 'react-router-dom';
 import ReactAudioPlayer from 'react-audio-player';
-import {connect} from 'react-redux'; 
+import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeSong, getGame} from '../actions/index';
 
@@ -25,7 +25,7 @@ class Multiplayer extends React.Component {
       song: this.props.game.song,
       bpm: this.props.game.bpm,
       difficulty: this.props.game.difficulty,
-      //player: this.props.game.difficulty, 
+      //player: this.props.game.difficulty,
       attemptPressesP1: 0,
       attemptPressesP2: 0
     };
@@ -44,7 +44,7 @@ class Multiplayer extends React.Component {
   componentDidMount() {
     console.log('THIS IS THE GAME', this.props.game, this.state);
   }
-  
+
   increasescoreP1() {
     this.setState({scoreP1: this.state.scoreP1 + 10 + this.state.comboP1, hitP1: true});
   }
@@ -236,8 +236,8 @@ class Multiplayer extends React.Component {
             ctx.fillStyle = 'white';
             ctx.fillRect(550, 572.5, 400, 10);
           }
-          
-  /*                Player 1 Dot Advance           */       
+
+  /*                Player 1 Dot Advance           */
           allRowsP1.rows.forEach(function(row) {
             row.drawRow();
             row.advanceRow();
@@ -511,6 +511,9 @@ class Multiplayer extends React.Component {
     return (
       <div>
         <div>
+          <div>
+          <Link to='/score'>Scores and Stats</Link>
+          </div>
           <canvas ref="canvas" width={1000} height={625}/>
         </div>
               <ReactAudioPlayer
