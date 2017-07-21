@@ -108,7 +108,7 @@ var mapStateToProps = (state) => {
   };
 };
 
-var mapDispatchToProps = (dispatch) => {
+var matchDispatchToProps = (dispatch) => {
   return bindActionCreators({changeView: changeView, getTracks: getTracks}, dispatch);
 };
 

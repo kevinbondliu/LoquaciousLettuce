@@ -5,7 +5,6 @@ import Home from '../containers/home.jsx';
 import Settings from '../containers/settings.jsx';
 import MusicSettings from '../containers/musicSettings.jsx';
 import Game from '../containers/game.jsx';
-import Audio from '../containers/Audiotest.jsx';
 import MultiPlayer from '../containers/multiPlayer.jsx';
 import Score from '../containers/score.jsx';
 import {Link, IndexRoute, browserHistory, DefaultRoute} from 'react-router';
