@@ -3,8 +3,8 @@ exports.up = function (knex, Promise) {
   return Promise.all([
     knex.schema.createTableIfNotExists('profiles', function (table) {
       table.increments('id').unsigned().primary();
-      table.string('firstname', 100).nullable();
-      table.string('lastname', 100).nullable();
+      table.string('first', 100).nullable();
+      table.string('last', 100).nullable();
       table.string('display', 100).nullable();
       table.string('email', 100).nullable().unique();
       table.string('phone', 100).nullable();
