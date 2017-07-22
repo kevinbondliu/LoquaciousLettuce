@@ -286,7 +286,7 @@ class Multiplayer extends React.Component {
           
         } else {
 
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.clearRect(-50, -50, 1500, 1500);
           ctx.fillStyle = 'black';
           ctx.fillRect(0, 0, 1500, 800);
           ctx.fillStyle = 'white';
@@ -526,9 +526,6 @@ class Multiplayer extends React.Component {
     return (
       <div className= 'multiplayer text-center'>
         <div>
-          <div>
-          <Link to='/score'>Scores and Stats</Link>
-          </div>
           <canvas ref="canvas" width={1000} height={625}/>
         </div>
               <ReactAudioPlayer

@@ -175,10 +175,10 @@ class Game extends React.Component {
       analyser.fftSize = 256;
       var bufferLength = analyser.frequencyBinCount;
       var frequencyData = new Uint8Array(bufferLength);
-      
+
       var counter = 0;
       function draw() {
-        
+
         analyser.getByteFrequencyData(frequencyData);
         console.log(frequencyData);
 
@@ -218,7 +218,7 @@ class Game extends React.Component {
             ctx.fillRect(0, 572.5, 400, 10);
           }
 
-          
+
 
           allRows.rows.forEach(function(row) {
             row.drawRow();
@@ -227,7 +227,7 @@ class Game extends React.Component {
           allRows.checkDelete();
           allRows.flashDots();
         } else {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.clearRect(-50, -50, 1500, 1500);
           ctx.fillStyle = 'black';
           ctx.fillRect(5, 5, 400, 600);
           ctx.fillStyle = 'white';
@@ -243,7 +243,7 @@ class Game extends React.Component {
         audio.play();
       }, (475 / (4 * (1000 / 30))) * 1000);
 
-      
+
       setInterval(()=> {
         draw();
       }, 1000 / 30);
@@ -369,12 +369,6 @@ class Game extends React.Component {
       listenToJEY();
 
     }
-/*                    Audio Visual                             */
-
-
-
-
-
   }
 
   trackEnd() {
@@ -382,25 +376,12 @@ class Game extends React.Component {
     this.setState({end: true});
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
   render() {
     var boundEnd = this.trackEnd.bind(this);
     var startSong = this.startSong.bind(this);
     var song = this.state.song;
     return (
       <div className= 'text-center'>
-        <Link to='/score'>Scores and Stats</Link>
         <div>
           <canvas ref="canvas" width={600} height={625}/>
         </div>
@@ -417,7 +398,7 @@ class Game extends React.Component {
               }
               {
                 this.state.end === true &&
-                <Button alignItems="center"><Link to='/score'>MultiPlayer</Link></Button>
+                <Button className="btn btn-primary btn-sx" alignItems="center"><Link to='/score'>High Scores</Link></Button>
               }
       </div>
     );
