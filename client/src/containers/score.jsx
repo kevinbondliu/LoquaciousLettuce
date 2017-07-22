@@ -8,8 +8,10 @@ import ScoreList from './scoreList.jsx';
 class Score extends React.Component {
   render() {
     return (
+
       <div className = 'scorePage'>
-      HIGH SCORE_______
+      <div id="title">Title</div>
+        <div id="highScore">HIGH SCORE</div>
         <Link to='/settings'>PLAY AGAIN!</Link>
         <br></br>
           <ScoreList key={this.props.users.id}/>

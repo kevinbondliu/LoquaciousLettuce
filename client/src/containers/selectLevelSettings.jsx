@@ -15,7 +15,7 @@ class SelectLevelSettings extends React.Component {
       <div className = 'selectLevelPage'>
         <div className="container">
           <div className="row">
-            <div className="col-sm-12" style={{background:'black', height: 500}}>Level<br></br>
+            <div className="col-sm-12" style={{background:'#1a1a1a', height: 500}}>Level<br></br>
 
               <ButtonGroup vertical className="col-sm-12">
                 <Button onClick={()=> {changeDiff('super_beginner'); changeView('song');} } >Super Beginner</Button>
