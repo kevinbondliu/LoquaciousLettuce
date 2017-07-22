@@ -1,0 +1,44 @@
+h1 {
+  font-size: 30px;
+  color: #00cc66;
+  padding-bottom: 5px;
+}
+
+body {
+  background-color: black;
+}
+
+#title {
+  margin-top: 45px;
+  color: white;
+  background-color: black;
+  font-size: 90px;
+}
+
+#content {
+  height: 50;
+  background-color: #1a1a1a;
+}
+
+.spotify {
+  margin-left: 40%;
+}
+
+#highScore {
+  font-size: 50px;
+  color: white;
+/*  align-content: center;*/
+/*  position: absolute;*/
+  /*float: center;*/
+}
+
+/*.btn {
+  border-radius: 96px !important;
+  width: 33vw !important;
+  background-color: blue;
+}*/
+
+/*.btn:hover {
+
+  background-color: #00cc66;
+}

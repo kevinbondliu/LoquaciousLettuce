@@ -8,7 +8,7 @@ export default function() {
     { id: 2,
       username: 'Jey',
       score: 100000000000000000000000000000000,
-      image: 'https://s-media-cache-ak0.pinimg.com/originals/58/88/04/5888042d60b337419a73da08dc073c24.jpg'
+      image: 'https://www.spgesports.com/wp-content/uploads/2016/11/spg-player.png'
     },
     { username: 'paul',
       score: 104290348923,
@@ -32,7 +32,7 @@ export default function() {
     { id: 7,
       username: 'xrandox',
       score: 123,
-      image: 'http://images.naldzgraphics.net/2014/07/2-black-cat-icon.jpg'
+      image: 'https://www.spgesports.com/wp-content/uploads/2016/11/spg-player.png'
     },
     { id: 8,
       username: 'coffee',

@@ -1,40 +1,40 @@
 <% include head.ejs%>
+    <div id="title" class="col-sm-4 col-sm-offset-4">Tessell<span class="fa fa-sign-in"></span> </div>
 
-    <div class="col-sm-6 col-sm-offset-3">
+        <div id="content" class="col-sm-4 col-sm-offset-4">
 
-        <h1><span class="fa fa-sign-in"></span> Tessell8</h1>
+            <h1>Login</h1>
 
-        <% if (message.length) { %>
-        <div class="alert alert-danger"><%= message %></div>
-        <% } %>
+            <% if (message.length) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } %>
 
-        <!-- LOGIN FORM -->
-        <form action="/login" method="post">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" class="form-control" name="email">
+            <!-- LOGIN FORM -->
+            <form action="/login" method="post">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="email" placeholder="Email">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+
+                <button type="submit" class="btn btn-warning btn-lg">Login</button>
+            </form>
+
+            <hr>
+            <div class="spotify">
+                Or login with Spotify<br />
+
+                 <a style="margin-left:15px" href="/auth/spotify"><img style="width:70px" src="/assets/Spotify.png" /></a>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password">
-            </div>
+            <hr>
 
-            <button type="submit" class="btn btn-warning btn-lg">Login</button>
-        </form>
+            <p>Need to sign up for an account? <a href="/signup">Signup</a></p>
+            <p><a href="/">home</a></p>
 
-        <hr>
-        <div>
-            Or login with any of the following services:<br />
-            <a style="margin-right:15px" href="/auth/facebook"><img src="/assets/fb-logo.png" /></a>
-            <a style="margin-left:15px;margin-right:15px" href="/auth/google"><img style="width:29px" src="/assets/google-logo.png" /></a>
-            <a style="margin-left:15px" href="/auth/twitter"><img style="width:48px" src="/assets/twitter-logo.png" /></a>
-             <a style="margin-left:15px" href="/auth/spotify"><img style="width:36px" src="/assets/Spotify.png" /></a>
         </div>
-        <hr>
 
-        <p>Need to sign up for an account? <a href="/signup">Signup</a></p>
-        <p><a href="/">home</a></p>
-
-    </div>
 
 <% include foot.ejs%>
