@@ -7,6 +7,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeSong, getGame} from '../actions/index';
+import {Button} from 'react-bootstrap';
 
 class Game extends React.Component {
   constructor(props) {
@@ -174,10 +175,10 @@ class Game extends React.Component {
       analyser.fftSize = 256;
       var bufferLength = analyser.frequencyBinCount;
       var frequencyData = new Uint8Array(bufferLength);
-      
+
       var counter = 0;
       function draw() {
-        
+
         analyser.getByteFrequencyData(frequencyData);
         console.log(frequencyData);
 
@@ -217,7 +218,7 @@ class Game extends React.Component {
             ctx.fillRect(0, 572.5, 400, 10);
           }
 
-          
+
 
           allRows.rows.forEach(function(row) {
             row.drawRow();
@@ -242,7 +243,7 @@ class Game extends React.Component {
         audio.play();
       }, (475 / (4 * (1000 / 30))) * 1000);
 
-      
+
       setInterval(()=> {
         draw();
       }, 1000 / 30);
@@ -381,25 +382,15 @@ class Game extends React.Component {
     this.setState({end: true});
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
   render() {
     var boundEnd = this.trackEnd.bind(this);
     var startSong = this.startSong.bind(this);
     var song = this.state.song;
     return (
       <div>
-        <Link to='/score'>Scores and Stats</Link>
+        <Button>
+          <Link to='/score'>Scores and Stats</Link>
+        </Button>
         <div>
           <canvas ref="canvas" width={600} height={625}/>
         </div>
