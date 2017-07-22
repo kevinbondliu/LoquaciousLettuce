@@ -10,7 +10,7 @@ class Score extends React.Component {
     return (
 
       <div className = 'scorePage'>
-      <div id="title">Title</div>
+      <div id="title">Tessell8</div>
         <div id="highScore">HIGH SCORE</div>
         <Link to='/settings'>PLAY AGAIN!</Link>
         <br></br>
