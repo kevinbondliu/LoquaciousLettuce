@@ -7,7 +7,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeSong, getGame} from '../actions/index';
-
+import visuals from '../visualizations/songVisuals.js';
 
 class Multiplayer extends React.Component {
   constructor(props) {
@@ -74,9 +74,9 @@ class Multiplayer extends React.Component {
     if (this.state.game === true) {
       if (this.state.ongoing === false) {
         this.updateCanvas();
-        setTimeout(function() {
-          audio.play();
-          }, (475 / (4 * (1000 / 30))) * 1000);
+        // setTimeout(function() {
+        //   audio.play();
+          // }, (475 / (4 * (1000 / 30))) * 1000);
         this.setState({ongoing: true});
       }
     }
@@ -194,6 +194,19 @@ class Multiplayer extends React.Component {
         }
       };
 
+
+
+      var audioCtx = new AudioContext();
+      var audio = ReactDOM.findDOMNode(this.refs.audio);
+      var audioSrc = audioCtx.createMediaElementSource(audio);
+      var analyser = audioCtx.createAnalyser();
+
+      audioSrc.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      analyser.fftSize = 256;
+      var bufferLength = analyser.frequencyBinCount;
+      var frequencyData = new Uint8Array(bufferLength);
+
       var allRowsP2 = Object.assign({}, allRowsP1, {rows: []});
       var counterP1 = 0;
       var counterP2 = 0;
@@ -203,9 +216,20 @@ class Multiplayer extends React.Component {
 
 
         if (context.state.end === false) {
+          var upperX = 5;
+          var upperY = 5;
+          var lowerX = 1000;
+          var lowerY = 600;
+          analyser.getByteFrequencyData(frequencyData);
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = 'black';
-          ctx.fillRect(5, 5, 1000, 600);
+          ctx.fillRect(upperX, upperY, lowerX, lowerY);
+
+// BACKGROUND FOR AUDIO ANALYTICS
+          visuals[1](upperX, upperY, lowerX, lowerY, frequencyData, ctx, bufferLength);
+          
+// ACTUAL GAME GAME STUFF
+
           ctx.fillStyle = 'white';
           ctx.font = '40px Arial';
           ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
@@ -272,6 +296,10 @@ class Multiplayer extends React.Component {
           ctx.fillText(' The Lucky Lemons Dev Group ', 380, 350);
         }
       }
+
+      setTimeout(function() {
+        audio.play();
+      }, (375 / (4 * (1000 / 30))) * 1000);
 
       setInterval(()=> {
         draw();
@@ -494,7 +522,7 @@ class Multiplayer extends React.Component {
     var startSong = this.startSong.bind(this);
     var song = this.state.song;
     return (
-      <div>
+      <div class= 'multiplayer'>
         <div>
           <div>
           <Link to='/score'>Scores and Stats</Link>
