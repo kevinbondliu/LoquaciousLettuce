@@ -4,6 +4,7 @@ import keyboardJS from 'keyboardjs';
 import patterns from './patterns.jsx';
 import { Redirect, Link } from 'react-router-dom';
 import ReactAudioPlayer from 'react-audio-player';
+import {Button, ButtonGroup, Navbar, FormGroup, FormControl, Tabs, Tab} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeSong, getGame} from '../actions/index';
@@ -398,7 +399,7 @@ class Game extends React.Component {
     var startSong = this.startSong.bind(this);
     var song = this.state.song;
     return (
-      <div>
+      <div className= 'text-center'>
         <Link to='/score'>Scores and Stats</Link>
         <div>
           <canvas ref="canvas" width={600} height={625}/>
@@ -410,7 +411,14 @@ class Game extends React.Component {
                 ref="audio"
                 onEnded={function() { boundEnd(); } }
               />
-              <button onClick={function() { startSong(); } }> Start Song </button>
+              {
+                this.state.ongoing === false &&
+                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); } }> Start Song </Button>
+              }
+              {
+                this.state.end === true &&
+                <Button alignItems="center"><Link to='/score'>MultiPlayer</Link></Button>
+              }
       </div>
     );
   }

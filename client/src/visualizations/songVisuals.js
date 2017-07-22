@@ -1,6 +1,6 @@
 var visuals = {
   0: (upperX, UpperY, lowerX, lowerY, frequencyData, ctx, bufferLength)=>{
-    console.log(frequencyData);
+    //console.log(frequencyData);
     var barWidth = (lowerX / bufferLength);
     var barHeight;
     var x = upperX;
