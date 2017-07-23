@@ -4,10 +4,10 @@ import keyboardJS from 'keyboardjs';
 import patterns from './patterns.jsx';
 import { Redirect, Link } from 'react-router-dom';
 import ReactAudioPlayer from 'react-audio-player';
+import {Button, ButtonGroup, Navbar, FormGroup, FormControl, Tabs, Tab} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeSong, getGame} from '../actions/index';
-import {Button} from 'react-bootstrap';
 
 class Game extends React.Component {
   constructor(props) {
@@ -227,7 +227,7 @@ class Game extends React.Component {
           allRows.checkDelete();
           allRows.flashDots();
         } else {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.clearRect(-50, -50, 1500, 1500);
           ctx.fillStyle = 'black';
           ctx.fillRect(5, 5, 400, 600);
           ctx.fillStyle = 'white';
@@ -369,12 +369,6 @@ class Game extends React.Component {
       listenToJEY();
 
     }
-/*                    Audio Visual                             */
-
-
-
-
-
   }
 
   trackEnd() {
@@ -387,10 +381,7 @@ class Game extends React.Component {
     var startSong = this.startSong.bind(this);
     var song = this.state.song;
     return (
-      <div>
-        <Button>
-          <Link to='/score'>Scores and Stats</Link>
-        </Button>
+      <div className= 'text-center'>
         <div>
           <canvas ref="canvas" width={600} height={625}/>
         </div>
@@ -401,7 +392,14 @@ class Game extends React.Component {
                 ref="audio"
                 onEnded={function() { boundEnd(); } }
               />
-              <button onClick={function() { startSong(); } }> Start Song </button>
+              {
+                this.state.ongoing === false &&
+                <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); } }> Start Song </Button>
+              }
+              {
+                this.state.end === true &&
+                <Button className="btn btn-primary btn-sx" alignItems="center"><Link to='/score'>High Scores</Link></Button>
+              }
       </div>
     );
   }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import keyboardJS from 'keyboardjs';
 import patterns from './patterns.jsx';
 import { Redirect, Link } from 'react-router-dom';
+import {Button} from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -285,9 +286,9 @@ class Multiplayer extends React.Component {
           
         } else {
 
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.clearRect(-50, -50, 1500, 1500);
           ctx.fillStyle = 'black';
-          ctx.fillRect(5, 5, 1000, 600);
+          ctx.fillRect(0, 0, 1500, 800);
           ctx.fillStyle = 'white';
           ctx.fillText(' FINAL SCORE PLAYER 1: ' + context.state.scoreP1, 20, 50);
           ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 600, 50);
@@ -320,8 +321,8 @@ class Multiplayer extends React.Component {
 
       setInterval(()=>{
         var patternType = Math.floor(Math.random() * 10);
-        var formationP1 = makeRow(4, 1);
-        var formationP2 = makeRow(4, 2);
+        var formationP1 = makeRow(patternType, 1);
+        var formationP2 = makeRow(patternType, 2);
         allRowsP1.rows.push(formationP1);
         allRowsP2.rows.push(formationP2);
       }, (60000 / (context.state.bpm * modifier)) );
@@ -521,12 +522,10 @@ class Multiplayer extends React.Component {
     var boundEnd = this.trackEnd.bind(this);
     var startSong = this.startSong.bind(this);
     var song = this.state.song;
+    console.log('OBJECT', this.state);
     return (
-      <div class= 'multiplayer'>
+      <div className= 'multiplayer text-center'>
         <div>
-          <div>
-          <Link to='/score'>Scores and Stats</Link>
-          </div>
           <canvas ref="canvas" width={1000} height={625}/>
         </div>
               <ReactAudioPlayer
@@ -536,7 +535,15 @@ class Multiplayer extends React.Component {
                 ref="audio"
                 onEnded={function() { boundEnd(); } }
               />
-              <button onClick={function() { startSong(); } }> Start Song </button>
+              {
+                this.state.ongoing === false &&
+                <Button alignItems="center" className="btn btn-primary btn-sx" onClick={function() { startSong(); } }> Start Song </Button>
+              }
+              {
+                this.state.end === true &&
+                <Button alignItems="center"><Link to='/score'>Score</Link></Button>
+              }
+              
       </div>
     );
   }
@@ -552,3 +559,4 @@ var matchDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(Multiplayer);
+
