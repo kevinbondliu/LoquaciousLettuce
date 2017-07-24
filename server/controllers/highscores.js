@@ -15,8 +15,6 @@ module.exports.getAll = (req, res) => {  // [ R ]
     });
 };
 
-// WHY WERE SOME OF THESE METHODS COMMENTED OUT?
-
 module.exports.create = (req, res) => {  // [ C ]
   models.Highscore.forge({
     profile_id: req.params.profile_id,
@@ -35,6 +33,38 @@ module.exports.create = (req, res) => {  // [ C ]
 
 module.exports.getAllForUser = (req, res) => {  // [ R ]
   models.Highscore.where({ profile_id: req.params.profile_id }).fetch() // 'params' = SOME NODE THING WHICH WILL AUTO-BE THERE
+    .then(highscore => {
+      if (!highscore) {
+        throw highscore;
+      }
+      res.status(200).send(highscore);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+
+module.exports.getForUserBySong = (req, res) => {  // [ R ]
+  models.Highscore.where({ profile_id: req.params.profile_id, song_id: req.params.song_id} ).fetch() // 'params' = SOME NODE THING WHICH WILL AUTO-BE THERE
+    .then(highscore => {
+      if (!highscore) {
+        throw highscore;
+      }
+      res.status(200).send(highscore);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      res.sendStatus(404);
+    });
+};
+
+module.exports.getAllForUserByLevel = (req, res) => {  // [ R ]
+  models.Highscore.where({ profile_id: req.params.profile_id, difficultylevel: req.params.difficultylevel} ).fetch() // 'params' = SOME NODE THING WHICH WILL AUTO-BE THERE
     .then(highscore => {
       if (!highscore) {
         throw highscore;
