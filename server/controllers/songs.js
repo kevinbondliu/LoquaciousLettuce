@@ -16,7 +16,9 @@ module.exports.getAll = (req, res) => {  // [ R ]
 // WHY WERE SOME OF THESE METHODS COMMENTED OUT?
 
 module.exports.create = (req, res) => {  // [ C ]
-  models.Song.forge({ url: req.params.url,
+  models.Song.forge({ 
+    url: req.params.url,
+    owner: req.params.owner,
     songname: req.params.songname,
     bpm: req.params.bpm,
     key: req.params.highscore,
