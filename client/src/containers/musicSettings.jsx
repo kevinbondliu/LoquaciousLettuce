@@ -7,17 +7,21 @@ import {changeView} from '../actions/index.js';
 import {Button, ButtonGroup, Navbar, FormGroup, FormControl, Tabs, Tab} from 'react-bootstrap';
 import axios from 'axios';
 import MusicTrackList from './MusicTrackList.jsx';
+import MusicTrackListLib from './MusicTrackListLib.jsx';
 import {getTracks} from '../actions/index';
 
 class MusicSettings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      
     },
     this.search = '';
     this.getAudioTrackID = this.getAudioTrackID.bind(this);
     this.getToken = this.getToken.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.testIframe = this.testIframe.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   getToken() {
@@ -57,8 +61,20 @@ class MusicSettings extends React.Component {
     };
   }
 
+  testIframe(event) {
+    console.log('clicked');
+    var string = "<iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling='no' src='//www.youtubeinmp3.com/widget/button/?video=https://www.youtube.com/watch?v=ePpPVE-GGJw'/>";
+    document.getElementById('test').innerHTML = string;
+    console.log(document.getElementById('test'));
+    // console.log(document.getElementById('test').html(string));
+  }
+
+
   handleSelect(key) {
-    this.setState({key});
+    console.log(key);
+    this.setState({
+      key: key
+    });
   }
 
   handleSubmit(event) {
@@ -66,15 +82,16 @@ class MusicSettings extends React.Component {
     this.search = this.input.value;
     this.getToken();
   }
-
   render() {
     var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'musicSettingsPage'>
       Select Your Music<br></br>
         <div className="col-sm-12" style={{ background: 'white', height: 550}}>
+
           <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
             <Tab eventKey={1} title="Library">
+              <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
             </Tab>
             <Tab eventKey={2} title="Find Track">
               <Navbar>
@@ -85,16 +102,18 @@ class MusicSettings extends React.Component {
                       <input type="text" placeholder={'Song Name'} ref={(input) => this.input = input} />
                       <input type="submit" value="Search!"/>
                     </div>
+                    <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src="//www.youtubeinmp3.com/widget/button/?video=https://www.youtube.com/watch?v=ePpPVE-GGJw"/>                  
                   </form>
+                  <button onClick={this.testIframe}>This is the button</button>
                 </Navbar.Collapse>
               </Navbar>
-              <MusicTrackList className = 'container'></MusicTrackList>
+              <MusicTrackList view = {this.state.key} className = 'container'></MusicTrackList>
             </Tab>
           </Tabs>
         </div>
         <Button onClick={ () => { changeView('difficulty'); } }>Back</Button>
         <Button onClick={ () => { changeView('difficulty'); } }>Waiting for Kevin to kick Spotify's butt. Go Kevin!!!</Button>
-        <Button onClick={ () => { changeView('players')} }><Link to='/game'>Play!</Link></Button>
+        <Button onClick={ () => { changeView('players'); } }><Link to='/game'>Play!</Link></Button>
         <Button onClick={ () => { changeView('players'); } }><Link to='/multiPlayer'>MultiPlayer</Link></Button>
 
       </div>

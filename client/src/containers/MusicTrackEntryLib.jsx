@@ -7,24 +7,31 @@ class MusicTrackListEntry extends React.Component {
     super(props);
     this.state = {
     };
+
+    this.songChange = this.songChange.bind(this);
   }
 
   handleSubmit() {
     console.log(this.props.track);
   }
 
+  songChange() {
+    var item = this.props.item.mp3;
+    this.props.choose(item);
+  }
+
   render() {
     return (
       <div>
-        <Panel header={this.props.track.name}>
+        <Panel header={this.props.item.name} onClick = {this.songChange}>
           <div className='col-sm-3' >
-            <img className="media-object" src={this.props.track.album.images[0].url} style={{height: 100, width: 170}} />
+            <img className="media-object" src={this.props.item.url} style={{height: 100, width: 170}} />
           </div>
           <div className='col-sm-6'>
-            {this.props.track.artists[0].name}
+            {this.props.item.artist}
           </div>
           <div className='col-sm-3'>
-            <h1>{this.props.BPM}</h1>
+            <h1>{this.props.item.BPM}</h1>
           </div>
         </Panel>
       </div>
