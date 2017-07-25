@@ -3,8 +3,8 @@
     "client": "postgresql",
     "connection": {
       "database": "thesis",
-      "user": "postgres",
-      "password": "password", // IF THIS IS 'chon', SORRY. THAT IS FOR MY MACHINE ONLY AND I APPARENTLY FORGOT TO CHANGE IT BACK BEFORE PUSHING. IT WAS 'postgres' IN THE STARTER REPO, AND 'password' WHEN I GOT Y'ALL'S CHANGES ON 07/19.
+      "user": "jey",
+      "password": "", // IF THIS IS 'chon', SORRY. THAT IS FOR MY MACHINE ONLY AND I APPARENTLY FORGOT TO CHANGE IT BACK BEFORE PUSHING. IT WAS 'postgres' IN THE STARTER REPO, AND 'password' WHEN I GOT Y'ALL'S CHANGES ON 07/19.
       "host": "localhost",
       "port": 5432,
       "charset" : "utf8"
@@ -27,5 +27,9 @@
     "Facebook": {},
     "Twitter": {},
     "Spotify": {}
+  },
+
+  "redis": {
+    "REDIS_URL" : "redis://h:p2d6ad8ea14b918689908b992fac1f5ae663e4b7ef855c10aec3b6ff311503cfe@ec2-52-3-6-123.compute-1.amazonaws.com:22399"
   }
 }

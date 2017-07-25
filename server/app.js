@@ -14,6 +14,11 @@ app.use(middleware.bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//var sessionStart = middleware.auth.session;
+// console.log('SESSSIION DOT STOREEEEE ', sessionStart.store);
+// sessionStart.store.auth('1f5bf94b621a2a7ca2be18a02309d78e', function() {
+//   console.log('Redis client connected');
+// });
 app.use(middleware.auth.session);
 app.use(middleware.passport.initialize());
 app.use(middleware.passport.session());
