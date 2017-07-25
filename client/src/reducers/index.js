@@ -7,6 +7,7 @@ import ShowScoreModalReducer from './reducer-score-modal';
 import SelectedUserReducer from './reducer-selected-user';
 import HomeViewReducer from './reducer-home-view';
 import MusicReducer from './reducer-music';
+import LibraryReducer from './reducer-library';
 
 //combined reducers comines all the files inside the reduce file and allReducer becomes the storage
 const allReducers = combineReducers({
@@ -17,7 +18,8 @@ const allReducers = combineReducers({
   view: ViewReducer,
   homeView: HomeViewReducer,
   showScoreModal: ShowScoreModalReducer,
-  music: MusicReducer
+  music: MusicReducer,
+  library: LibraryReducer
 });
 
 export default allReducers;

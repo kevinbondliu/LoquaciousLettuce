@@ -13,14 +13,16 @@ class MusicTrackList extends React.Component {
   render() {
     return (
       <div className = 'MusicTrack' style={{height: 400, overflow: 'scroll'}}>
-        {this.props.music.tracks.items.map((item, index)=> (
+        {
+          this.props.music.tracks.items.map((item, index)=> (
           <MusicTrackEntry
             key = {index}
             counter = {index}
             track={item}
             BPM={this.props.BPM[index].tempo}
           />
-        ))}
+          ))
+        }
       </div>
     );
   }
@@ -30,6 +32,7 @@ var mapStateToProps = (state) => {
   return {
     music: state.music.trackObject,
     BPM: state.music.trackObject.BPMItems
+    // example: state.music.example
   };
 };
 
