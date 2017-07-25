@@ -27,6 +27,6 @@
     }
   },
   "redis": {
-    "REDIS_URL" : "redis://h:p2d6ad8ea14b918689908b992fac1f5ae663e4b7ef855c10aec3b6ff311503cfe@ec2-52-3-6-123.compute-1.amazonaws.com:22399"
+    "REDIS_URL" : "redis://h:p0742d847e9e1034e012ee151e9859cd31afdc76dee688f50f6bd4938099580f6@ec2-52-3-6-123.compute-1.amazonaws.com:22389"
   }
 }
