@@ -9,10 +9,18 @@ export const selectUser = (user) => { // function that is the action creator
   };
 };
 
-const setTracks = (object) => {
+export const setTracks = (object) => {
   console.log('object', object);
   return {
     type: 'GET_TRACKS',
+    payload: object
+  };
+};
+
+export const addLibrary = (object) => {
+  console.log('add objet', object);
+  return {
+    type: 'ADD_LIBRARY',
     payload: object
   };
 };

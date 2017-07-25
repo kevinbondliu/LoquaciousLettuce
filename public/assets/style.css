@@ -8,6 +8,13 @@ body {
   background-color: black;
 }
 
+.youtubeform {
+  /*margin: left !important;*/
+  /*margin: right !important;*/
+  /*margin-left: 40%;*/
+  display: inline-block;
+  margin-right: 30px;
+}
 #title {
   margin-top: 45px;
   color: white;

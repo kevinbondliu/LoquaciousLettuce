@@ -14,9 +14,10 @@ class MusicSettings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      youtubeSearch: ''
     },
     this.search = '';
+    // this.youtubeSearch = '';
     this.getAudioTrackID = this.getAudioTrackID.bind(this);
     this.getToken = this.getToken.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -82,13 +83,20 @@ class MusicSettings extends React.Component {
     this.search = this.input.value;
     this.getToken();
   }
+
+  handleYoutube(event) {
+    event.preventDefault();
+    console.log(this.youtubeInput.value);
+    this.setState({
+      youtubeSearch: '//www.youtubeinmp3.com/widget/button/?video=' + this.youtubeInput.value
+    });
+  }
   render() {
     var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'musicSettingsPage'>
       Select Your Music<br></br>
         <div className="col-sm-12" style={{ background: 'white', height: 550}}>
-
           <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
             <Tab eventKey={1} title="Library">
               <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
@@ -96,15 +104,23 @@ class MusicSettings extends React.Component {
             <Tab eventKey={2} title="Find Track">
               <Navbar>
                 <Navbar.Collapse>
+                  <span>
                   <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className="search-container">
                       Song Name:
                       <input type="text" placeholder={'Song Name'} ref={(input) => this.input = input} />
                       <input type="submit" value="Search!"/>
                     </div>
-                    <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src="//www.youtubeinmp3.com/widget/button/?video=https://www.youtube.com/watch?v=ePpPVE-GGJw"/>                  
                   </form>
-                  <button onClick={this.testIframe}>This is the button</button>
+                  <form className='youtubeform' onSubmit={this.handleYoutube.bind(this)}>
+                    <div className="search-container">
+                      youtubeInput Name:
+                      <input type="text" placeholder={'Youtube URL'} ref={(youtubeInput) => this.youtubeInput = youtubeInput} />
+                      <input type="submit" value="Search!"/>
+                    </div>
+                    <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.state.youtubeSearch}/>                  
+                  </form>
+                  </span>
                 </Navbar.Collapse>
               </Navbar>
               <MusicTrackList view = {this.state.key} className = 'container'></MusicTrackList>
