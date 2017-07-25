@@ -16,20 +16,6 @@ export default (state = {
           BPM: 95,
           mp3: 'Close.mp3'
         },
-        {
-          name: 'Def',
-          url: 'https://i.scdn.co/image/797009754c30847254b48de483f256258d90df7f',
-          artists: 'Kitty Kat',
-          BPM: 120,
-          mp3: 'Def.mp3'
-        },
-        {
-          name: 'Face',
-          url: 'https://i.scdn.co/image/797009754c30847254b48de483f256258d90df7f',
-          artists: 'Kat Kitty',
-          BPM: 150,
-          mp3: 'Face.mp3'
-        },
       ]
     }
   }     

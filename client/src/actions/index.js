@@ -18,7 +18,7 @@ export const setTracks = (object) => {
 };
 
 export const addLibrary = (object) => {
-  console.log('add objet', object);
+  console.log('add object', object);
   return {
     type: 'ADD_LIBRARY',
     payload: object

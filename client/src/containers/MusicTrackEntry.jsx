@@ -21,10 +21,20 @@ class MusicTrackListEntry extends React.Component {
       url: this.props.track.album.images[0].url,
       artists: this.props.track.artists[0].name,
       BPM: this.props.BPM,
-      mp3: 'example.mp3'
+      mp3: this.props.track.name + '.mp3'
     };
     console.log(track);
-    this.props.addLibrary(track);
+    var counter = 0;
+    for (var i = 0; i < this.props.library.length; i++) {
+      if (track.name === this.props.library[i].name &&
+          track.artists === this.props.library[i].track.artists) {
+        counter += 1;
+      }
+    }
+
+    if (counter === 0) {
+      this.props.addLibrary(track);
+    }
   }
 
   render() {
@@ -48,7 +58,7 @@ class MusicTrackListEntry extends React.Component {
 
 var mapStateToProps = (state) => {
   return {
-    library: state.library
+    library: state.library.example.tracks.items
   };
 };
 
