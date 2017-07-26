@@ -34,12 +34,13 @@ passport.use('local-signup', new LocalStrategy({
   passReqToCallback: true
 },
   (req, email, password, done) => {
+    var {display} = req.body;
     // check to see if there is any account with this email address
     return models.Profile.where({ email }).fetch()
       .then(profile => {
         // create a new profile if a profile does not exist
         if (!profile) {
-          return models.Profile.forge({ email }).save();
+          return models.Profile.forge({ email, display }).save();
         }
         // throw if any auth account already exists
         if (profile) {
