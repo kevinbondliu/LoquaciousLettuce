@@ -8,6 +8,7 @@ import SelectedUserReducer from './reducer-selected-user';
 import HomeViewReducer from './reducer-home-view';
 import MusicReducer from './reducer-music';
 import LibraryReducer from './reducer-library';
+import YoutubeReducer from './reducer-youtube';
 
 //combined reducers comines all the files inside the reduce file and allReducer becomes the storage
 const allReducers = combineReducers({
@@ -19,7 +20,8 @@ const allReducers = combineReducers({
   homeView: HomeViewReducer,
   showScoreModal: ShowScoreModalReducer,
   music: MusicReducer,
-  library: LibraryReducer
+  library: LibraryReducer,
+  youtube: YoutubeReducer
 });
 
 export default allReducers;
