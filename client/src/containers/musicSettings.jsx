@@ -8,7 +8,7 @@ import {Button, ButtonGroup, Navbar, FormGroup, FormControl, Tabs, Tab} from 're
 import axios from 'axios';
 import MusicTrackList from './MusicTrackList.jsx';
 import MusicTrackListLib from './MusicTrackListLib.jsx';
-import {getTracks} from '../actions/index';
+import {getTracks, getYoutube} from '../actions/index';
 
 class MusicSettings extends React.Component {
   constructor(props) {
@@ -21,7 +21,6 @@ class MusicSettings extends React.Component {
     this.getAudioTrackID = this.getAudioTrackID.bind(this);
     this.getToken = this.getToken.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.testIframe = this.testIframe.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
@@ -53,7 +52,22 @@ class MusicSettings extends React.Component {
       mode: 'cors',
       cache: 'default'
     };
+    var youtubeOptions = {
+      method: 'GET',
+      params: {
+        key: '',
+        q: this.search,
+        type: 'video',
+        part: 'snippet',
+        maxResults: 1,
+        videoEmbeddable: 'true'
+      },
+      responseType: 'json'
+    };
+    
+    this.props.getYoutube(youtubeOptions);
     this.props.getTracks(FETCH_URL, myOptions);
+    // this.props.getYoutube
   }
 
   getInitialState() {
@@ -61,15 +75,6 @@ class MusicSettings extends React.Component {
       key: 1
     };
   }
-
-  testIframe(event) {
-    console.log('clicked');
-    var string = "<iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling='no' src='//www.youtubeinmp3.com/widget/button/?video=https://www.youtube.com/watch?v=ePpPVE-GGJw'/>";
-    document.getElementById('test').innerHTML = string;
-    console.log(document.getElementById('test'));
-    // console.log(document.getElementById('test').html(string));
-  }
-
 
   handleSelect(key) {
     console.log(key);
@@ -87,15 +92,19 @@ class MusicSettings extends React.Component {
   handleYoutube(event) {
     event.preventDefault();
     console.log(this.youtubeInput.value);
-    this.setState({
-      youtubeSearch: '//www.youtubeinmp3.com/widget/button/?video=' + this.youtubeInput.value
-    });
+    console.log('this is the youtube search link', this.state.youtubeSearch);
   }
+
+  youtubeSearch(event) {
+    console.log('this is the state', this.props.youtube);
+  }
+
   render() {
     var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'musicSettingsPage'>
       Select Your Music<br></br>
+      <Button onClick = {this.youtubeSearch.bind(this)}>HEHLLO</Button>
         <div className="col-sm-12" style={{ background: 'white', height: 550}}>
           <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
             <Tab eventKey={1} title="Library">
@@ -118,7 +127,7 @@ class MusicSettings extends React.Component {
                       <input type="text" placeholder={'Youtube URL'} ref={(youtubeInput) => this.youtubeInput = youtubeInput} />
                       <input type="submit" value="Search!"/>
                     </div>
-                    <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.state.youtubeSearch}/>                  
+                    <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.props.youtube.youtubeLink}/>                  
                   </form>
                   </span>
                 </Navbar.Collapse>
@@ -139,12 +148,13 @@ class MusicSettings extends React.Component {
 
 var mapStateToProps = (state) => {
   return {
-    music: state.music
+    music: state.music,
+    youtube: state.youtube
   };
 };
 
 var matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({changeView: changeView, getTracks: getTracks}, dispatch);
+  return bindActionCreators({changeView: changeView, getTracks: getTracks, getYoutube: getYoutube}, dispatch);
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
