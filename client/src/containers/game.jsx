@@ -8,6 +8,7 @@
  import {connect} from 'react-redux';
  import {bindActionCreators} from 'redux';
  import {changeSong, getGame} from '../actions/index';
+ import {getTopTenScores, saveGame} from '../actions/index';
 
  class Game extends React.Component {
    constructor(props) {
@@ -257,7 +258,32 @@
            context.setState({end: true});
          }
        }, 1000 / 30);
+       
+       var frameCheck = setInterval(()=> {
+        draw();
+        if (context.state.health <= 0) {
+          audio.pause();
+          //console.log(context.state);
+          console.log('----> current user',this.props.currentUser);
+          saveGame(this.props.currentUser.id, context.state);
+          //getTopTenScores(context.state);
+          context.setState({end: true});
+          clearInterval(frameCheck);
+          draw();
+        }
+      }, 1000 / 30);
 
+
+       /*
+
+      var refreshId = setInterval(function() {
+      var properID = CheckReload();
+      if (properID > 0) {
+          clearInterval(refreshId);
+        }
+      }, 10000);
+
+       */
 
        var modifier = 1;
        if (context.state.difficulty === 'super_beginner') {
@@ -422,12 +448,14 @@
 }
  var mapStateToProps = (state) => {
    return {
-     game: state.game
+     game: state.game,
+     getTopTenScores: state.getTopTenScores,
+     currentUser: state.currentUser
    };
  };
 
  var matchDispatchToProps = (dispatch) => {
-   return bindActionCreators({getGame: getGame, changeSong: changeSong}, dispatch);
+   return bindActionCreators({getGame: getGame, changeSong: changeSong, getTopTenScores: getTopTenScores, saveGame: saveGame}, dispatch);
  };
 
  export default connect(mapStateToProps, matchDispatchToProps)(Game);

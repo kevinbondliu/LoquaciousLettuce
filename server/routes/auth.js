@@ -71,13 +71,12 @@ router.get('/auth/spotify/callback', middleware.passport.authenticate('spotify',
 }));
 
 
-// router.get('/auth/twitter', middleware.passport.authenticate('twitter'));
+router.route('/userInfo')
+.get((req, res) => {
+  //console.log('req---', req.user);
+  res.send(200, req.user);
+});
 
-// router.get('/auth/twitter/callback', middleware.passport.authenticate('twitter', {
-//   successRedirect: '/profile',
-//   failureRedirect: '/login'
-// }));
 
-router.use(middleware.auth.verify, (req, res) => { res.render('index'); });
 
 module.exports = router;

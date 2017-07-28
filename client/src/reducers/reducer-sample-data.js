@@ -1,5 +1,4 @@
-export default function() {
-  return [
+export default [
     { id: 1,
       username: 'juli4',
       score: 2400233428888888888887798798798798798349,
@@ -10,7 +9,8 @@ export default function() {
       score: 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
       image: 'https://www.spgesports.com/wp-content/uploads/2016/11/spg-player.png'
     },
-    { username: 'paul',
+    { id: 3,
+      username: 'paul',
       score: 104290348923,
       image: 'http://images.naldzgraphics.net/2014/07/2-black-cat-icon.jpg'
     },
@@ -50,4 +50,4 @@ export default function() {
       image: 'http://ak-hdl.buzzfed.com/static/2015-10/19/11/enhanced/webdr04/original-20795-1445268798-17.jpg'
     }
   ];
-}
+

@@ -6,30 +6,32 @@ import {selectUser} from '../actions/index';
 import {showModal} from '../actions/index';
 import {closeModal} from '../actions/index';
 import {Button, Modal} from 'react-bootstrap';
+import {getTopTenScores} from '../actions/index';
 
 class ScoreList extends React.Component {
 
   createScoreListEntries() {
 
-    var sorted = this.props.users.sort( (a, b) => {
+    var sorted = this.props.topTenScoresUsers.sort( (a, b) => {
       return b.score - a.score;
     });
-
+    // this.props.selectUser(user) line 25
 
     return sorted.map((user, index) => {
+      // console.log(user.id);
       return (
-        <div>
+        <div >
 
-          <li key={user.id} onClick={() => { this.props.selectUser(user); this.props.showModal({visibility: true, user: user}); } }>
+          <li key={user.id.toString()} onClick={() => { this.props.selectUser(user); this.props.showModal({visibility: true, user: user}); } }>
 
-            <div id="items" className="col-sm-6-offset-3">
-            <div id="scoreList" className="col-sm-8">
-              <img id="userImage" src={user.image} height="45" width="45"/>
-                {user.username}
+              <div id="items" className="col-sm-6-offset-3">
+              <div id="scoreList" className="col-sm-8">
+                <img id="userImage" src={user.image} height="45" width="45"/>
+                  {user.username}
+                </div>
+
+                <div id="score">{user.score}<br></br></div>
               </div>
-
-              <div id="score">{user.score}<br></br></div>
-            </div>
 
 
           </li>
@@ -63,7 +65,6 @@ class ScoreList extends React.Component {
                   Rockstar: <br></br>
                 </div>
                 <div id="scr" className="col-sm-2">highdcores: {this.props.showScoreModal.user.score}</div>
-
               </Modal.Body>
               <Modal.Footer>
                footer
@@ -80,25 +81,15 @@ class ScoreList extends React.Component {
 
 var mapStateToProps = (state) => {
   return {
-    users: state.users,
-    showScoreModal: state.showScoreModal
+    topTenScoresUsers: state.topTenScoresUsers,
+    showScoreModal: state.showScoreModal,
+    //getTopTenScores: state.getTopTenScores
   };
 };
 
 var mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({selectUser: selectUser, showModal: showModal, closeModal: closeModal}, dispatch);
+  return bindActionCreators({selectUser: selectUser, showModal: showModal, closeModal: closeModal, getTopTenScores: getTopTenScores}, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScoreList);
 
-
-
-                // <img src={this.props.showScoreModal.user.image} height="200" width="200"/>
-                //      RANKING:   ROCKSTAR
-
-                // USER STATS:
-
-                // <br></br>
-                // HIGH SCORE:
-                // <br></br>
-                // {this.props.showScoreModal.user.score}

@@ -1,6 +1,10 @@
 import axios from 'axios';
 var Promise = require('bluebird');
 
+
+//--------------------------------USER--------------------------------//
+
+
 export const selectUser = (user) => { // function that is the action creator
   console.log('You clicked on user: ', user.username);
   return {
@@ -8,6 +12,57 @@ export const selectUser = (user) => { // function that is the action creator
     payload: user
   };
 };
+
+
+export const setCurrentUser = (username) => {
+  return {
+    type: 'SET_CURRENT_USER',
+    payload: username
+  };
+};
+
+export const getCurrentUser = () => (dispatch, getState) => {
+  console.log('--getting user info request');
+  axios.get('/userInfo')
+  .then((result) => {
+    console.log('--result here', result);
+    return dispatch(setCurrentUser(result.data));
+  })
+  .catch((error) => {
+    console.error('Error getting current user: ', error);
+  });
+};
+
+//--------------------------------VIEWS/MODALS--------------------------------//
+
+
+export const changeView = (view) => {
+  console.log("View", view);
+  return {
+    type: 'CHANGE_VIEW',
+    payload: view
+  };
+};
+
+
+export const showModal = (obj) => {
+  console.log("OPENED ---obj", obj);
+  return {
+    type: 'SHOW_MODAL',
+    payload: obj
+  };
+};
+
+export const closeModal = (obj) => {
+  console.log("CLOSED --");
+  return {
+    type: 'CLOSE_MODAL',
+    payload: obj
+  };
+};
+
+
+//--------------------------------MUSIC--------------------------------//
 
 export const setTracks = (object) => {
   console.log('object', object);
@@ -38,7 +93,7 @@ export const getTracks = (url, options) => (dispatch, getState) => {
           axios('https://api.spotify.com/v1/audio-features/' + storage[i].id, options)
             .then((data) => {
               return data.data;
-            })  
+            })
         );
       }
       Promise.all(data.data.BPMItems)
@@ -85,6 +140,8 @@ export const changeSong = (song) => {
   };
 };
 
+//--------------------------------GAME--------------------------------//
+
 export const changeDifficulty = (difficulty) => {
   console.log('difficulty', difficulty);
   return {
@@ -116,42 +173,74 @@ export const selectMode = (playerMode) => {
   };
 };
 
+export const saveGame = (profileID, game) => {
+  console.log('current game---', game);
+  console.log('current profile---', profileID);
+  axios.post('/api/games')
+  .then( (result) => {
+    console.log('result for save game', result);
+  })
+  .catch( (error) => {
+    console.error('failed to save game');
+  })
+}
 
-/***********VIEW CHANGES************/
 
-export const changeHomeView = (view) => {
-  console.log("Home View", view);
-  return {
-    type: 'CHANGE_HOME_VIEW',
-    payload: view
-  };
+//--------------------------------SCORELIST--------------------------------//
+
+// export const totalSingleScore = (score) => {
+//   console.log("score---", score);
+//   return {
+//     type: 'UPDATE_TOTAL_SCORE',
+//     payload: view
+//   };
+// };
+
+
+/**************CHANGE USERS LIST (TOP TEN)***************/
+//need to make a current song reducer;???
+
+export const getTopTenScores = (profileID, game) => {
+  console.log('current game---', game);
+  console.log('current profile---', profileID);
+  axios.put('/api/games/1')
+  .then( (result)=> {
+    console.log('song result--', result.data);
+    //console.log(result.data)
+  })
+  .catch( (error) => {
+    console.error('failed test--', error);
+  });
 };
 
-export const changeView = (view) => {
-  console.log("View", view);
-  return {
-    type: 'CHANGE_VIEW',
-    payload: view
-  };
+
+
+
+
+// needs to query db
+export const changeUsersList = () => (dispatch, getState) => {
+  axios.get('/score')
+  .then((result) => { // want to get array back
+    console.log('-----result data-----', result.data);
+    return dispatch(updateUsersScores(result.data));
+  })
+  .catch((error) => {
+    console.error('Failed to get top ten scores and users', error);
+  });
 };
 
-/**************MODALS***************/
 
-export const showModal = (obj) => {
-  console.log("OPENED ---obj", obj);
-  return {
-    type: 'SHOW_MODAL',
-    payload: obj
-  };
-};
 
-export const closeModal = (obj) => {
-  console.log("CLOSED --");
-  return {
-    type: 'CLOSE_MODAL',
-    payload: obj
-  };
-};
+
+
+
+
+
+
+
+
+
+
 
 
 
