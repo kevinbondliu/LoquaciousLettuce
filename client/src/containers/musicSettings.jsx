@@ -100,7 +100,7 @@ class MusicSettings extends React.Component {
     var context = this;
     file.onchange = function() {
       var files = this.files;
-      console.log(URL.createObjectURL(files[0]));
+      console.log('SONG BLOB HERE', URL.createObjectURL(files[0]));
       var sound = new Audio(URL.createObjectURL(files[0]));
       context.props.changeSong(URL.createObjectURL(files[0]));
       sound.play();
@@ -135,14 +135,7 @@ class MusicSettings extends React.Component {
                       <input type="submit" value="Search!"/>
                     </div>
                   </form>
-                  <form className='youtubeform' onSubmit={this.handleYoutube.bind(this)}>
-                    <div className="search-container">
-                      youtubeInput Name:
-                      <input type="text" placeholder={'Youtube URL'} ref={(youtubeInput) => this.youtubeInput = youtubeInput} />
-                      <input type="submit" value="Search!"/>
-                    </div>
                     <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.props.youtube.youtubeLink}/>                  
-                  </form>
                   </span>
                 </Navbar.Collapse>
               </Navbar>
