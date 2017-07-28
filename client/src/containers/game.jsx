@@ -387,6 +387,10 @@
      this.setState({end: true});
    }
 
+   playMusic() {
+     var sound = new Audio();
+   }
+
    render() {
      var boundEnd = this.trackEnd.bind(this);
      var startSong = this.startSong.bind(this);
@@ -394,6 +398,7 @@
      return (
       <div className= 'text-center'>
         <div>
+          <button onClick = {this.playMusic.bind(this)}>Button</button>
           <canvas ref="canvas" width={400} height={625}/>
         </div>
               <ReactAudioPlayer

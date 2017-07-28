@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {changeView} from '../actions/index.js';
+import {changeView, changeSong} from '../actions/index.js';
 import {Button, ButtonGroup, Navbar, FormGroup, FormControl, Tabs, Tab} from 'react-bootstrap';
 import axios from 'axios';
 import MusicTrackList from './MusicTrackList.jsx';
@@ -96,7 +96,17 @@ class MusicSettings extends React.Component {
   }
 
   youtubeSearch(event) {
-    console.log('this is the state', this.props.youtube);
+    var file = document.getElementById("music");
+    var context = this;
+    file.onchange = function() {
+      var files = this.files;
+      console.log(URL.createObjectURL(files[0]));
+      var sound = new Audio(URL.createObjectURL(files[0]));
+      context.props.changeSong(URL.createObjectURL(files[0]));
+      sound.play();
+    };
+    file.onchange();
+    // audio.
   }
 
   render() {
@@ -105,11 +115,15 @@ class MusicSettings extends React.Component {
       <div className = 'musicSettingsPage'>
       Select Your Music<br></br>
       <Button onClick = {this.youtubeSearch.bind(this)}>HEHLLO</Button>
+        <div id="content">
+          <input type="file" id="music" accept="audio/*" />
+        </div>
         <div className="col-sm-12" style={{ background: 'white', height: 550}}>
           <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
             <Tab eventKey={1} title="Library">
               <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
             </Tab>
+            
             <Tab eventKey={2} title="Find Track">
               <Navbar>
                 <Navbar.Collapse>
@@ -138,9 +152,8 @@ class MusicSettings extends React.Component {
         </div>
         <Button onClick={ () => { changeView('difficulty'); } }>Back</Button>
         <Button onClick={ () => { changeView('difficulty'); } }>Waiting for Kevin to kick Spotify's butt. Go Kevin!!!</Button>
-        <Button onClick={ () => { changeView('players')} }><Link to='/game'>Play!</Link></Button>
+        <Button onClick={ () => { changeView('players'); } }><Link to='/game'>Play!</Link></Button>
         <Button onClick={ () => { changeView('players'); } }><Link to='/multiPlayer'>MultiPlayer</Link></Button>
-
       </div>
     );
   }
@@ -154,7 +167,7 @@ var mapStateToProps = (state) => {
 };
 
 var matchDispatchToProps = (dispatch) => {
-  return bindActionCreators({changeView: changeView, getTracks: getTracks, getYoutube: getYoutube}, dispatch);
+  return bindActionCreators({changeView: changeView, getTracks: getTracks, getYoutube: getYoutube, changeSong: changeSong}, dispatch);
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);

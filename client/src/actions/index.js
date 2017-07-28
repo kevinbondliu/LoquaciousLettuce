@@ -28,6 +28,7 @@ export const addLibrary = (object) => {
 export const getTracks = (url, options) => (dispatch, getState) => {
   axios.get(url, options)
     .then((data) => {
+      console.log('THIS IS THE DATA', data);
       var storage = data.data.tracks.items;
       var count = 0;
       var SpotifyIDstorage = [];
