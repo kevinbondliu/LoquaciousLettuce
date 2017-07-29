@@ -422,7 +422,7 @@
      var startSong = this.startSong.bind(this);
      var song = this.state.song;
      return (
-      <div className= 'text-center transition-item list-page'>
+      <div className= 'text-center transition-item game'>
         <div>
           <button onClick = {this.playMusic.bind(this)}>Button</button>
           <canvas ref="canvas" width={400} height={625}/>
