@@ -23,7 +23,7 @@ router.route('/:id')
   .delete(GameController.deleteOne)
   ;
 
-router.route('/getAllGamesForUser/:profile_id')
+router.route('/getAllGamesForUser/:id')
   .get(GameController.getAllGamesForUser)
   ;
 
