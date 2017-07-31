@@ -95,29 +95,30 @@ module.exports.deleteOne = (req, res) => {  // [ D ]
     });
 };
 
-module.exports.getAllSongsForUser = (req, res) => {  // [ R ]
-  models.Song.where({profile_id: req.params.profile_id})
-  .query((qb) => {
-    qb.orderBy('songname', 'ASC');
-  })
-  .fetchAll({
-    withRelated: ['profiles']
-  })
-  .then(function(song) {
-    if (!song) {
-      throw song;
-    }
-    res.status(200).send(song);
-  })
-  .error(err => {
-    res.status(500).send(err);
-  })
-  .catch(() => {
-    console.log('NO SONGS FOUND FOR THAT USER');
-    res.sendStatus(404);
-  });
-};
 
+module.exports.getAllSongsForUser = (req, res) => {
+  console.log('GET ALL SONGS FOR USER REVERSE. PARAMS = ', req.params);
+  models.Profile.where({id: req.params.id})
+    .fetchAll({
+      withRelated: [{'songs': function(qb) {
+        qb.orderBy('songname', 'ASC');
+      }}],
+//      columns: ['display']  // I HAVE NOT BEEN ABLE TO GET THIS TO WORK :(
+    })
+    .then(function(song) {
+      if (!song) {
+        throw song;
+      }
+      res.status(200).send(song);
+    })
+    .error(err => {
+      res.status(500).send(err);
+    })
+    .catch(() => {
+      console.log('NO SONGS FOUND FOR THAT USER');
+      res.sendStatus(404);
+    });
+};
 
 ////////////////////////////////////////////////////////////////////
 ///////////////  TEST FUNCTIONS FOR DB QUERIES  ////////////////////

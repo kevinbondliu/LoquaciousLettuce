@@ -1,5 +1,5 @@
-// THIS FILE CONTAINS THE ATOMIC DB FUNCTIONS FOR THE 'games' TABLE ONLY. IT IS DRAWN IN BY THE 'index.js' FILE IN THIS SAME FOLDER.
-
+// THIS FILE CONTAINS THE ATOMIC DB FUNCTIONS FOR THE 'songs' TABLE ONLY. IT IS DRAWN IN BY THE 'index.js' FILE IN THIS SAME FOLDER.
+const knex = require('knex')(require('../../knexfile'));
 const models = require('../../db/models');
 
 module.exports.getAll = (req, res) => {  // [ R ]
@@ -57,21 +57,26 @@ module.exports.create = (req, res) => {  // [ C ]
 };
 
 
-module.exports.getAllGamesForUser = (req, res) => {  // [ R ]
+module.exports.getAllGamesForUser = (req, res) => {
   console.log('REQ.PARAMS.PROFILE_ID = ', req.params.profile_id);
-  models.Game.where({ profile_id: req.params.profile_id }).fetchAll() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
-    .then(game => {
-      if (!game) {
-        throw game;
-      }
-      res.status(200).send(game);
-    })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
-    });
+  models.Profile.where({ id: req.params.id })
+  .fetchAll({
+    withRelated: [{'games': function(qb) {
+      qb.orderBy('score', 'DESC');
+    }}],
+  })
+  .then(game => {
+    if (!game) {
+      throw game;
+    }
+    res.status(200).send(game);
+  })
+  .error(err => {
+    res.status(500).send(err);
+  })
+  .catch(() => {
+    res.sendStatus(404);
+  });
 };
 
 
