@@ -96,20 +96,26 @@ module.exports.deleteOne = (req, res) => {  // [ D ]
 };
 
 module.exports.getAllSongsForUser = (req, res) => {  // [ R ]
-  console.log('PARAMS = ', req.params);
-  models.Song.where({ profile_id: req.params.profile_id }).fetchAll() // 'params' = SOME NODE THING WHICH WILL AUTO-BE THERE
-    .then(song => {
-      if (!song) {
-        throw song;
-      }
-      res.status(200).send(song);
-    })
-    .error(err => {
-      res.status(500).send(err);
-    })
-    .catch(() => {
-      res.sendStatus(404);
-    });
+  models.Song.where({profile_id: req.params.profile_id})
+  .query((qb) => {
+    qb.orderBy('songname', 'ASC');
+  })
+  .fetchAll({
+    withRelated: ['profiles']
+  })
+  .then(function(song) {
+    if (!song) {
+      throw song;
+    }
+    res.status(200).send(song);
+  })
+  .error(err => {
+    res.status(500).send(err);
+  })
+  .catch(() => {
+    console.log('NO SONGS FOUND FOR THAT USER');
+    res.sendStatus(404);
+  });
 };
 
 
@@ -148,7 +154,6 @@ module.exports.testAdd = (req, res) => {  // [ C ]
 };
 
 
-
 module.exports.getOwner = (req, res) => {  // [ R ]
   console.log('PARAMS = ', req.params);
   models.Song.where({ profile_id: req.params.profile_id }).fetch({withRelated: ['profiles.display']}) // 'params' = SOME NODE THING WHICH WILL AUTO-BE THERE
@@ -167,61 +172,31 @@ module.exports.getOwner = (req, res) => {  // [ R ]
 };
 
 
-/*
-new User({id: 2}).fetch({
-  withRelated: [{'account': function(qb) {
-    qb.column('id', 'balance', 'total');
-  }}],
-  columns: ['id', 'name', 'accountId']
-})
-
-*/
-
-let qb = models.Song.query();
+// let qb = models.Song.query();
 
 module.exports.relTest = (req, res) => {
   console.log('RELTEST');
 
 //  knex.column('display').select().from('profiles').where({id: 7})
 
-  models.Song.where({profile_id: 7}).fetchAll({
+  models.Song.where({profile_id: 7})
+  .query((qb) => {
+    qb.orderBy('songname', 'ASC');
+  })
+  .fetchAll({
 
 //    withRelated: [{'profiles': function(qb) {
 //      qb.column('display');
 //    }}]
 //   })
 
-    withRelated: [{'profiles': function() {
-      qb.column('display').select().from('profiles').where({id: 7});
-    }}]
+//    withRelated: [{'profiles': function() {
+//      qb.column('display').select().from('profiles').where({id: 7});
+//    }}]
+//  })
+
+    withRelated: ['profiles']
   })
-
-//    withRelated: ['profiles']
-//   })
-
-
-/////////////////////////////////////////////////////////////
-//////////////////  VINCENT'S CODE  /////////////////////////
-/////////////////////////////////////////////////////////////
-/*
-MODELS.SONG.WHERE (spec)
-
-
-module.exports.getPartyInfoCustomer = (req, res) => {
-  models.Party.where({id: res.party_id})
-    .query((qb) => {
-      qb.orderBy('wait_time', 'ASC');
-    })
-    .fetchAll({
-      withRelated: ['queue', {
-        'profile': (qb) => {
-          qb.select('id', 'first', 'last', 'email', 'phone');
-        }}],
-      columns: ['id', 'queue_id', 'wait_time', 'profile_id', 'party_size', 'first_name', 'phone_number']
-    })
-
-*/
-
   .then(function(song) {
 
     console.log('DATABASE QUERY RETURNS: ');
@@ -242,23 +217,31 @@ module.exports.getPartyInfoCustomer = (req, res) => {
 // SELECT profiles.display, songs.songname FROM profiles INNER JOIN songs ON profiles.id=songs.profile_id AND profiles.id=7;
 
 module.exports.relTest2 = (req, res) => {
-  console.log('RELTEST2');
-
-//  models.Song.query('SELECT', 'profiles.display,', 'songs.songname', 'FROM', 'profiles', 'INNER JOIN', 'songs', 'ON', 'profiles.id', '=', 'songs.profile_id', 'AND', 'profiles.id', '=', '7')
-  models.Song.query({songname: 'Face'})
-  .fetch()
-  .then(function(data) {
-
+  console.log('RELTEST2. PARAMS = ', req.params);
+  
+  models.Song.where({profile_id: req.params.profile_id})
+    .query((qb) => {
+      qb.orderBy('songname', 'ASC');
+    })
+    .fetchAll({
+      withRelated: [{
+        'profile': (qb) => {
+          console.log('QB = ', qb);
+          qb.select('display');
+        }}]
+    })
+  .then(function(songs) {
     console.log('DATABASE QUERY RETURNS: ');
-    if (!data) {
-      throw data;
+    if (!songs) {
+      throw songs;
     }
-    res.status(200).send(data);
+    res.status(200).send(songs);
   })
   .error(err => {
     res.status(500).send(err);
   })
   .catch(() => {
+    console.log('DATABASE QUERY RETURNS: ');
     res.sendStatus(404);
   });
 };
@@ -266,10 +249,7 @@ module.exports.relTest2 = (req, res) => {
 
 module.exports.testqb = (req, res) => {
   console.log('TESTQB');
-
-//  knex.select('display').from('profiles').where({id: 7})
   knex.column('display').select().from('profiles').where({id: 7})
-//  models.Song.query('where', 'songname', '=', 'Face').fetch()
   .then(function(song) {
 
     console.log('TESTQB RETURNS: ', song);
