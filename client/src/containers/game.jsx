@@ -35,6 +35,7 @@
 
      this.increaseAttempt = this.increaseAttempt.bind(this);
      this.decreaseAttempt = this.decreaseAttempt.bind(this);
+     
    }
 
    componentDidMount() {
@@ -57,6 +58,7 @@
      this.setState({attemptPresses: this.state.attemptPresses - 1});
     //console.log(this.state.attemptPresses);
    }
+
 
    startSong() {
      this.setState({game: true});
@@ -276,18 +278,6 @@
            draw();
          }
        }, 1000 / 30);
-
-
-       /*
-
-      var refreshId = setInterval(function() {
-      var properID = CheckReload();
-      if (properID > 0) {
-          clearInterval(refreshId);
-        }
-      }, 10000);
-
-       */
 
        var modifier = 1;
        if (context.state.difficulty === 'super_beginner') {
