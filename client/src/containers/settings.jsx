@@ -9,7 +9,6 @@ import MusicSettings from './musicSettings.jsx';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import {getCurrentUser} from '../actions/index';
 import {getActiveProfile} from '../actions/index';
-import PageTransition from 'react-router-page-transition';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
 
 class Settings extends React.Component {
