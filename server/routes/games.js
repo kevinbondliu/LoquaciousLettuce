@@ -8,9 +8,15 @@ router.route('/')
   .post(GameController.create)
   ;
 
-router.route('/getAllGamesForSongAtDifficulty')
-  .post(GameController.getAllGamesForSongAtDifficulty)
-  ;
+
+// router.route('/getAllGamesForSongAtDifficulty')
+//   .post(GameController.getAllGamesForSongAtDifficulty)
+//   ;
+
+router.route('/getAllGamesForSongAtDifficultylevel')
+ .post(GameController.getAllGamesForSongAtDifficultylevel)
+ ;
+
 
 router.route('/:id')
   .get(GameController.getOne)

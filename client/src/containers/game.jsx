@@ -35,7 +35,7 @@
 
      this.increaseAttempt = this.increaseAttempt.bind(this);
      this.decreaseAttempt = this.decreaseAttempt.bind(this);
-     
+
    }
 
    componentDidMount() {
@@ -78,7 +78,7 @@
        ListenEvents();
        var canvas = this.refs.canvas;
        var ctx = this.refs.canvas.getContext('2d');
-       
+
 
        var makeBall = function (xCor, yCor, color, keyBind) {
          var ball = {
@@ -212,6 +212,7 @@
 // HEALTH INDICATOR
            ctx.fillRect(10, 60, context.state.health * 4, 25);
 //
+
            if (context.state.hit === true) {
              if (counter === 5) {
                context.setState({hit: false});
@@ -266,11 +267,12 @@
            draw();
          }
        }, 1000 / 30);
-       
+
        var frameCheck = setInterval(()=> {
          draw();
          if (context.state.health <= 0) {
            audio.pause();
+           console.log('----> current user',this.props.currentUser);
            saveGame(this.props.currentUser.id, context.state);
            context.setState({end: true});
            clearInterval(frameCheck);
@@ -278,6 +280,18 @@
            draw();
          }
        }, 1000 / 30);
+
+
+       /*
+
+      var refreshId = setInterval(function() {
+      var properID = CheckReload();
+      if (properID > 0) {
+          clearInterval(refreshId);
+        }
+      }, 10000);
+
+       */
 
        var modifier = 1;
        if (context.state.difficulty === 'super_beginner') {
@@ -319,7 +333,7 @@
              } else if (moveCheck[moveCheck.length - 1] < 20) {
                console.log('great!')
              } else if (moveCheck[moveCheck.length - 1] < 30) {
-               console.log('okay!'); 
+               console.log('okay!');
              } else {
                console.log('nice try');
              }

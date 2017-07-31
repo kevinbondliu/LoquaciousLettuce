@@ -13,6 +13,8 @@ module.exports.getAll = (req, res) => {
     });
 };
 
+
+
 // WHY IS THIS COMMENTED OUT? BECAUSE REDIS IS HANDLING IT?
 
 // module.exports.create = (req, res) => {

@@ -35,6 +35,9 @@ module.exports.create = (req, res) => {  // [ C ]
 };
 
 module.exports.getOne = (req, res) => {  // [ R ]
+
+  console.log('---', req.params.id);
+
   models.Song.where({ id: req.params.id }).fetch() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
     .then(song => {
       if (!song) {
@@ -216,7 +219,7 @@ module.exports.getPartyInfoCustomer = (req, res) => {
         }}],
       columns: ['id', 'queue_id', 'wait_time', 'profile_id', 'party_size', 'first_name', 'phone_number']
     })
-    
+
 */
 
   .then(function(song) {
@@ -240,7 +243,7 @@ module.exports.getPartyInfoCustomer = (req, res) => {
 
 module.exports.relTest2 = (req, res) => {
   console.log('RELTEST2');
-  
+
 //  models.Song.query('SELECT', 'profiles.display,', 'songs.songname', 'FROM', 'profiles', 'INNER JOIN', 'songs', 'ON', 'profiles.id', '=', 'songs.profile_id', 'AND', 'profiles.id', '=', '7')
   models.Song.query({songname: 'Face'})
   .fetch()
@@ -263,7 +266,7 @@ module.exports.relTest2 = (req, res) => {
 
 module.exports.testqb = (req, res) => {
   console.log('TESTQB');
-  
+
 //  knex.select('display').from('profiles').where({id: 7})
   knex.column('display').select().from('profiles').where({id: 7})
 //  models.Song.query('where', 'songname', '=', 'Face').fetch()

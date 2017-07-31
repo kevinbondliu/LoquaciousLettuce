@@ -16,7 +16,7 @@ class Settings extends React.Component {
     super(props);
     this.state = {
       songPlay: true,
-      background: null, 
+      background: null,
     };
   }
 
@@ -31,10 +31,10 @@ class Settings extends React.Component {
     if (this.state.songPlay === true) {
       background.volume = 0.2;
       background.id = 'background';
-      
+
       window.background = background;
-      background.play(); 
-      
+      background.play();
+
       this.changeSongState();
     }
     return (

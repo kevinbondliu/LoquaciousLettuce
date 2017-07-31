@@ -30,20 +30,32 @@ module.exports.getOne = (req, res) => {  // [ R ]
 };
 
 module.exports.create = (req, res) => {  // [ C ]
+  // console.log('--->about to save game');
+  // console.log('profileID----------------', req.user.id);
+  // console.log('bod----------------', req.body);
+  // res.send(201, 'saveddddddd???')
+
+
+
   models.Game.forge({
-    profile_id: req.body.profile_id,
-    song_id: req.body.song_id,
+    profile_id: req.body.profileId,
+    song_id: 1,
     score: req.body.score,
-    difficulty: req.body.difficulty,
+
+    //difficulty: req.body.difficulty,
+
+    difficultylevel: req.body.difficulty,
+
   })
     .save()
     .then(result => {
-      res.status(201).send(result);
+      res.send(201, result);
     })
     .catch(err => {
       res.status(500).send(err);
     });
 };
+
 
 module.exports.getAllGamesForUser = (req, res) => {  // [ R ]
   console.log('REQ.PARAMS.PROFILE_ID = ', req.params.profile_id);
@@ -99,14 +111,20 @@ module.exports.getHighscoreForUserForSongForDifficulty = (req, res) => {
 };
 
 
-module.exports.getAllGamesForSongAtDifficulty = (req, res) => {
-  console.log('REQ.BODY = ', req.body);
-  models.Game.where({ song_id: req.body.song_id, difficulty: req.body.difficulty }).fetchAll()
-    .then(game => {
-      if (!game) {
-        throw game;
+// module.exports.getAllGamesForSongAtDifficulty = (req, res) => {
+//   console.log('REQ.BODY = ', req.body);
+//   models.Game.where({ song_id: req.body.song_id, difficulty: req.body.difficulty }).fetchAll()
+//     .then(game => {
+//       if (!game) {
+//         throw game;
+// =======
+module.exports.getAllForUser = (req, res) => {  // [ R ]
+  models.Game.where({ profile_id: req.body.profile_id }).fetch() // 'body' = SOME NODE THING WHICH WILL AUTO-BE THERE
+    .then(games => {
+      if (!games) {
+        throw games;
       }
-      res.status(200).send(game);
+      res.status(200).send(games);
     })
     .error(err => {
       res.status(500).send(err);
@@ -114,6 +132,27 @@ module.exports.getAllGamesForSongAtDifficulty = (req, res) => {
     .catch(() => {
       res.sendStatus(404);
     });
+};
+
+
+
+module.exports.getAllGamesForSongAtDifficultylevel = (req, res) => {
+ console.log('REQ.BODY = ', req.body);
+ // console.log('REQ.PARAMS', req.params);
+ // res.send(201, 'hi');
+ models.Game.where({ song_id: req.body.songId, difficultylevel: req.body.difficulty }).fetchAll()
+   .then(games => {
+     if (!games) {
+       throw games;
+     }
+     res.status(200).send(games);
+   })
+   .error(err => {
+     res.status(500).send(err);
+   })
+   .catch(() => {
+     res.sendStatus(404);
+   });
 };
 
 
