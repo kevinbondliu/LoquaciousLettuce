@@ -33,6 +33,13 @@ export const getCurrentUser = () => (dispatch, getState) => {
   });
 };
 
+export const getAllGamesForUser = (currentUserId) => (dispatch, getState) => {
+  axios.get(`/api/games/getAllGamesForUser/{currentUserId}`)
+  .then((result) => {
+    console.log('games for user---', result.data);
+  })
+}
+
 //--------------------------------VIEWS/MODALS--------------------------------//
 
 
@@ -237,22 +244,23 @@ export const saveGame = (profileId, game) => {
         var scores = rankedTen.map( (item) => {
           return item.score;
         });
+        changeTopTenScores(scores); //***********************************
 
         var profileIds = rankedTen.map( (item) => {
           return item.profile_id;
         });
         console.log('prof_idsss', profileIds);
-        // then get users
-          //return axios.get()
-        //changeTopTenScoresUsers(result.data)
-        return axios.get(`/api/profiles/profileIds`, {profileIds: profileIds})
+
+        //query function needed from kurt
+        return axios.post(`/api/profiles/getProfilesByList`, {profileIds: profileIds})
         .then( (result) => {
-          console.log(result.data);
+          console.log('here are the users---->', result.data);
+          changeTopTenScoresUsers(result.data)
         })
 
       })
       .catch( (error) => {
-        console.error('failed to save game');
+        console.error('failed to save game and grab top scores');
       })
 
       // then check all games and for game/difficulty level
@@ -266,51 +274,18 @@ export const saveGame = (profileId, game) => {
 
 export const changeTopTenScoresUsers = (users) => {
   return {
-    type: UPDATE_USERS_SCORES,
+    type: UPDATE_TOP_TEN_USERS,
     payload: users
   }
 }
-// export const totalSingleScore = (score) => {
-//   console.log("score---", score);
-//   return {
-//     type: 'UPDATE_TOTAL_SCORE',
-//     payload: view
-//   };
-// };
 
+export const changeTopTenScores = (scores) => {
+  return {
+    type: UPDATE_TOP_TEN_USERS_SCORES,
+    payload: users
+  }
+}
 
-
-/**************CHANGE USERS LIST (TOP TEN)***************/
-//need to make a current song reducer;???
-
-export const getTopTenScores = (profileID, game) => {
-  console.log('current game---', game);
-  console.log('current profile---', profileID);
-  axios.put('/api/games/1')
-  .then( (result)=> {
-    console.log('song result--', result.data);
-    //console.log(result.data)
-  })
-  .catch( (error) => {
-    console.error('failed test--', error);
-  });
-};
-
-
-
-
-
-// needs to query db
-export const changeUsersList = () => (dispatch, getState) => {
-  axios.get('/score')
-  .then((result) => { // want to get array back
-    console.log('-----result data-----', result.data);
-    return dispatch(updateUsersScores(result.data));
-  })
-  .catch((error) => {
-    console.error('Failed to get top ten scores and users', error);
-  });
-};
 
 
 

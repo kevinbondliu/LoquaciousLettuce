@@ -68,9 +68,11 @@ module.exports.update = (req, res) => {
 
 
 module.exports.getProfilesByList = (req, res) => {
-  models.Profile.where('id', 'IN', JSON.parse(req.body.profileListArray))
+  console.log('bodyyyy---', req.body);
+  models.Profile.where('id', 'IN', (req.body.profileIds))
     .fetchAll()
     .then(profiles => {
+
       res.status(200).send(profiles);
     })
     .catch(err => {

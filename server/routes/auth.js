@@ -1,5 +1,7 @@
 const express = require('express');
 const middleware = require('../middleware');
+//const models = require('../db/models');
+//const ProfileController = require('./controllers').Profiles;
 
 const router = express.Router();
 
@@ -30,9 +32,21 @@ router.route('/signup')
   }));
 
 router.route('/profile')
+//
+// query db for all user games
+//get the user id first then all the games of user
+  //.get(ProfileController.getOne)
+
+ // models.Profile.where({id: })
+
   .get(middleware.auth.verify, (req, res) => {
     res.render('profile.ejs', {
       user: req.user // get the user out of session and pass to template
+      //games:
+      //
+      //
+      //
+
     });
   });
 
@@ -73,7 +87,7 @@ router.get('/auth/spotify/callback', middleware.passport.authenticate('spotify',
 
 router.route('/userInfo')
 .get((req, res) => {
-  //console.log('req---', req.user);
+  console.log('req---the userrrrrrr', req.user);
   res.send(200, req.user);
 
   // res.status(200).send(req.user);
