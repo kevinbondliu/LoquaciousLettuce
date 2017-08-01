@@ -247,7 +247,7 @@ class Multiplayer extends React.Component {
 // ACTUAL GAME GAME STUFF
 
           ctx.fillStyle = 'white';
-          ctx.font = '30px Arial';
+          ctx.font = '30px Iceland';
           ctx.fillText('ScoreP1: ' + context.state.scoreP1, 15, 50);
           ctx.fillText('ComboP1: ' + context.state.comboP1, 200, 50);
           ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
@@ -295,7 +295,7 @@ class Multiplayer extends React.Component {
               context.setState({exclamationChangeP1: false});
             }
             ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounterP1 + ')';
-            ctx.font = '40px Arial';
+            ctx.font = '40px Iceland';
             ctx.fillText(`${context.state.exclamationP1}`, 50, 150);
             exclamationCounterP1 -= .05;
             if (exclamationCounterP1 <= 0) {
@@ -438,10 +438,10 @@ class Multiplayer extends React.Component {
           ctx.fillStyle = 'black';
           ctx.fillRect(0, 0, 1500, 800);
           ctx.fillStyle = 'white';
-          ctx.font = '20px Arial';
+          ctx.font = '20px Iceland';
           ctx.fillText(' FINAL SCORE PLAYER 1: ' + context.state.scoreP1, 20, 50);
           ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 560, 50);
-          ctx.font = '20px Arial';
+          ctx.font = '20px Iceland';
           ctx.fillText(' THANKS FOR PLAYING ', 400, 150);
           ctx.fillText(' The Lucky Lemons Dev Group ', 380, 350);
         }

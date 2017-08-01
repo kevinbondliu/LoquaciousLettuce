@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Iceland);
+
 h1 {
   font-size: 30px;
   color: #00cc66;
@@ -330,6 +332,3 @@ body {
 
 
 /*           Jey's Styling            */
-.singlePlayerGame {
-  background-image: url("https://www.pexels.com/photo/sky-space-milky-way-stars-110854/");
-}
