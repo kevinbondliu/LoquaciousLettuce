@@ -33,7 +33,11 @@ class Multiplayer extends React.Component {
       //player: this.props.game.difficulty,
       attemptPressesP1: 0,
       attemptPressesP2: 0,
-      songBlob: this.props.game.songBlob
+      songBlob: this.props.game.songBlob,
+      exclamationP1: null,
+      exclamationChangeP1: false,
+      exclamationP2: null,
+      exclamationChangeP2: false
     };
     this.updateCanvas = this.updateCanvas.bind(this);
 
@@ -87,7 +91,6 @@ class Multiplayer extends React.Component {
       if (this.state.ongoing === false) {
         this.updateCanvas();
         // setTimeout(function() {
-        //   audio.play();
           // }, (475 / (4 * (1000 / 30))) * 1000);
         this.setState({ongoing: true});
       }
@@ -223,6 +226,9 @@ class Multiplayer extends React.Component {
       var counterP1 = 0;
       var counterP2 = 0;
 
+      var exclamationCounterP1 = 1;
+      var exclamationCounterP2 = 1;
+
       function draw() {
 
         if (context.state.end === false) {
@@ -241,9 +247,12 @@ class Multiplayer extends React.Component {
 // ACTUAL GAME GAME STUFF
 
           ctx.fillStyle = 'white';
-          ctx.font = '40px Arial';
-          ctx.fillText('scoreP1: ' + context.state.scoreP1, 50, 50);
+          ctx.font = '30px Arial';
+          ctx.fillText('ScoreP1: ' + context.state.scoreP1, 15, 50);
+          ctx.fillText('ComboP1: ' + context.state.comboP1, 200, 50);
           ctx.fillText('scoreP2: ' + context.state.scoreP2, 575, 50);
+          ctx.fillText('ComboP2: ' + context.state.comboP2, 770, 50);
+
 // HEALTH INDICATOR
           if (context.state.healthP1 > 0) {
             ctx.fillRect(10, 60, context.state.healthP1 * 4, 25);
@@ -251,7 +260,34 @@ class Multiplayer extends React.Component {
           if (context.state.healthP2 > 0) {
             ctx.fillRect(580, 60, context.state.healthP2 * 4, 25);
           }
-
+// EXCLAMATIONS
+          if (context.state.exclamationP1 !== null) {
+            if (context.state.exclamationChangeP1 === true) {
+              exclamationCounterP1 = 1;
+              context.setState({exclamationChangeP1: false});
+            }
+            ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounterP1 + ')';
+            ctx.fillText(`${context.state.exclamationP1}`, 50, 150);
+            exclamationCounterP1 -= .05;
+            if (exclamationCounterP1 <= 0) {
+              context.setState({exclamationP1: null});
+              exclamationCounterP1 = 1;
+            }
+          }
+          
+          if (context.state.exclamationP2 !== null) {
+            if (context.state.exclamationChangeP2 === true) {
+              exclamationCounterP2 = 1;
+              context.setState({exclamationChangeP2: false});
+            }
+            ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounterP2 + ')';
+            ctx.fillText(`${context.state.exclamationP2}`, 800, 150);
+            exclamationCounterP2 -= .05;
+            if (exclamationCounterP2 <= 0) {
+              context.setState({exclamationP2: null});
+              exclamationCounterP2 = 1;
+            }
+          }
 // BORDER
           ctx.fillStyle = 'rgb(' + (255 - context.state.healthP1 * 2) + ',' + ( Math.floor(context.state.healthP1 * 2.5)) + ',' + (Math.floor( context.state.healthP1 * 2.5)) + ')';          
           ctx.fillRect(0, 0, canvas.width / 2, 10);
@@ -317,13 +353,14 @@ class Multiplayer extends React.Component {
           ctx.fillRect(0, 0, 1500, 800);
           ctx.fillStyle = 'white';
           ctx.fillText(' FINAL SCORE PLAYER 1: ' + context.state.scoreP1, 20, 50);
-          ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 600, 50);
+          ctx.fillText(' FINAL SCORE PLAYER 2: ' + context.state.scoreP2, 560, 50);
           ctx.font = '20px Arial';
           ctx.fillText(' THANKS FOR PLAYING ', 400, 150);
           ctx.fillText(' The Lucky Lemons Dev Group ', 380, 350);
         }
       }
 
+      audio.play();
       var drawLoop = setInterval(()=> {
         draw();
         if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {
@@ -386,15 +423,33 @@ class Multiplayer extends React.Component {
               context.decreaseAttemptP2();
             }
           }
-          if (moveCheck[moveCheck.length - 1] < 35) {
+          if (moveCheck[moveCheck.length - 1] < 40) {
             if (moveCheck[0] === keyCodes) {
               if (player === 'playerOne') {
+                if (moveCheck[moveCheck.length - 1] < 5) {
+                  context.setState({exclamationP1: 'Pefect!', exclamationChangeP1: true} );
+                } else if (moveCheck[moveCheck.length - 1] < 20) {
+                  context.setState({exclamationP1: 'Great!', exclamationChangeP1: true });
+                } else if (moveCheck[moveCheck.length - 1] < 30) {
+                  context.setState({exclamationP1: 'Good!', exclamationChangeP1: true }); 
+                } else {
+                  context.setState({exclamationP1: 'Nice try buddy!', exclamationChangeP1: true});
+                }
                 context.increaseScoreP1();
                 context.setState({comboP1: context.state.comboP1 + 1});
                 allRowsP1.rows.shift();
               } else {
+                if (moveCheck[moveCheck.length - 1] < 5) {
+                  context.setState({exclamationP2: 'Pefect!', exclamationChangeP2: true} );
+                } else if (moveCheck[moveCheck.length - 1] < 20) {
+                  context.setState({exclamationP2: 'Great!', exclamationChangeP2: true });
+                } else if (moveCheck[moveCheck.length - 1] < 30) {
+                  context.setState({exclamationP2: 'Good!', exclamationChangeP2: true }); 
+                } else {
+                  context.setState({exclamationP2: 'Nice try buddy!', exclamationChangeP2: true});
+                }
                 context.increaseScoreP2();
-                context.setState({comboP2: context.state.comboP2 + 2});
+                context.setState({comboP2: context.state.comboP2 + 1});
                 allRowsP2.rows.shift();
               }
               ctx.fillStyle = 'black';
