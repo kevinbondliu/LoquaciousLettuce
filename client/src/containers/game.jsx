@@ -208,7 +208,7 @@
            }
 // ACTUAL GAME GAME STUFF
            ctx.fillStyle = 'white';
-           ctx.font = '30px Arial';
+           ctx.font = '30px Iceland';
            ctx.fillText('Score: ' + context.state.score, 10, 50);
            ctx.fillText('Combo: ' + context.state.combo, 190, 50);
 
@@ -255,7 +255,7 @@
                context.setState({exclamationChange: false});
              }
              ctx.fillStyle = 'rgba(255, 255, 255,' + exclamationCounter + ')';
-             ctx.font = '50px Arial';
+             ctx.font = '50px Iceland';
              ctx.fillText(`${context.state.exclamation}`, 125, 150);
              exclamationCounter -= .05;
              if (exclamationCounter <= 0) {
@@ -305,7 +305,7 @@
            ctx.fillRect(5, 5, 400, 600);
            ctx.fillStyle = 'white';
            ctx.fillText(' FINAL SCORE: ' + context.state.score, 20, 50);
-           ctx.font = '20px Arial';
+           ctx.font = '20px Iceland';
            ctx.fillText(' THANKS FOR PLAYING ', 30, 150);
            ctx.fillText(' The Lucky Lemons Dev Group ', 40, 350);
          }
