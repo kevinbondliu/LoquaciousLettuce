@@ -40,10 +40,14 @@ class Settings extends React.Component {
     return (
       <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <img src="assets/pics/logoTest.png" height = "300" width="1100" className ='logo'></img>
 =======
         <img src="assets/pics/logoTest.png" height = "300" width="1100"classname ='logo' align='middle'></img>
 >>>>>>> added better animation + logo
+=======
+        <img src="assets/pics/logoTest.png" height = "300" width="1100" className ='logo'></img>
+>>>>>>> bug fix
         <br />
           <div>
             <div className="settingsPage">Settings Page</div>
