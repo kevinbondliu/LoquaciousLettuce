@@ -16,7 +16,11 @@ body {
   background-image: url("pics/background.gif");
   background-size: cover;
 }
-
+.logo{
+  margin: auto !important;
+  vertical-align: middle;
+  
+}
 .youtubeform {
   /*margin: left !important;*/
   /*margin: right !important;*/
