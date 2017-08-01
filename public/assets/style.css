@@ -114,8 +114,10 @@ body {
 .loginBtn:hover, .signUpBtn:hover{
   background-color: #00cc66;
 }
-
-.musicButton {
+#controlled-tab-example-tab-1{
+  cursor: url('pics/cursorPink.png'), auto !important;
+}
+#controlled-tab-example-tab-2{
   cursor: url('pics/cursorPink.png'), auto !important;
 }
 
