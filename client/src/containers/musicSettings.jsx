@@ -131,9 +131,9 @@ class MusicSettings extends React.Component {
         <div id="content">
           <input type="file" id="music" accept="audio/*" />
         </div>
-        <div className="col-sm-12" className= 'musicButton' style={{ background: 'white', height: 550}}>
-          <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example">
-            <Tab eventKey={1} title="Library" className= 'musicButton'>
+        <div className="col-sm-12 musicButton" style={{ background: 'white', height: 550}}>
+          <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example" className = 'musicButton'>
+            <Tab eventKey={1} title="Library" className= 'musicButton' >
               <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
             </Tab>
             
