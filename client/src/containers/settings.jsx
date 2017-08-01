@@ -39,7 +39,7 @@ class Settings extends React.Component {
     }
     return (
       <div>
-        <img src="assets/pics/logoTest.png" height = "300" width="1100"classname ='logo' align='middle'></img>
+        <img src="assets/pics/logoTest.png" height = "300" width="1100" className ='logo'></img>
         <br />
           <div>
             <div className="settingsPage">Settings Page</div>
