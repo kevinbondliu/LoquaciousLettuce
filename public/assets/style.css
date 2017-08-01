@@ -4,9 +4,13 @@ h1 {
   padding-bottom: 5px;
 }
 
+html {
+  cursor: url('pics/cursorBlue.png'), auto !important;
+}
 body {
   background-color: black;
   background-image: url("https://www.pexels.com/photo/sky-space-milky-way-stars-110854/");
+  cursor: url('pics/cursorBlue.png'), auto !important;
 }
 
 .youtubeform {
@@ -110,6 +114,12 @@ body {
 .loginBtn:hover, .signUpBtn:hover{
   background-color: #00cc66;
 }
+#controlled-tab-example-tab-1{
+  cursor: url('pics/cursorPink.png'), auto !important;
+}
+#controlled-tab-example-tab-2{
+  cursor: url('pics/cursorPink.png'), auto !important;
+}
 
 .playerMode {
   margin-top: 150px;
@@ -118,6 +128,7 @@ body {
 .playerChoiceBtn, .levelChoiceBtn {
   font-size: 20px;
   border-style: solid;
+  cursor: url('pics/cursorPink.png'), auto !important;
 }
 
 .playerChoiceBtn:hover, .levelChoiceBtn:hover {
@@ -296,15 +307,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  transform: translate3d(100%, 0, 0);
+  transform: translate3d(80%, 0, 0);
 }
 
 .example-enter.example-enter-active {
   position: absolute;
   left: 0;
-  width: 100%;
+  width: 80%;
   height: 100%;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(13%, 0, 0);
   transition: all ease-out 600ms;
 
 }
