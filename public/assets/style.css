@@ -121,10 +121,6 @@ body {
   cursor: url('pics/cursorPink.png'), auto !important;
 }
 
-.musicButton {
-  cursor: url('pics/cursorPink.png'), auto !important;
-}
-
 .playerMode {
   margin-top: 150px;
 }
