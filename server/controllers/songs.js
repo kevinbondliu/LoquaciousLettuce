@@ -247,10 +247,12 @@ module.exports.relTest2 = (req, res) => {
   });
 };
 
+// SELECT profiles.display, songs.songname FROM profiles INNER JOIN songs ON profiles.id=songs.profile_id AND profiles.id=7;
+// knex.raw('select * from users where id = ?', [1]).then(function(resp) { ... });
 
 module.exports.testqb = (req, res) => {
   console.log('TESTQB');
-  knex.column('display').select().from('profiles').where({id: 7})
+  knex.raw('SELECT profiles.display, songs.* FROM profiles INNER JOIN songs ON profiles.id=songs.profile_id AND profiles.id=?', [req.params.id])
   .then(function(song) {
 
     console.log('TESTQB RETURNS: ', song);

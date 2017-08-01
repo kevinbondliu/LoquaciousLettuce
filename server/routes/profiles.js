@@ -16,7 +16,10 @@ router.route('/:id') // NOTE: PAYLOAD DATA ARE EMBEDDED IN THE req OBJECT, BUT A
 
 router.route('/getProfilesByList')
   .post(ProfileController.getProfilesByList)
-  // .post(ProfileController.create)
+  ;
+
+router.route('/getProfilesByList2')
+  .post(ProfileController.getProfilesByList2)
   ;
 
 
