@@ -11,6 +11,8 @@ const dummyProfileData = {
 
   phone: ['415.555.1234', '612.633.3636', '801.778.9293', '911.911.9111', '310.555.8989', '715.882.9395', '512.726.8956', '212.274.1644', '718.562.4499', '206.650.2096'],
 
+  imageurl: 'http://tinyurl.com/y9p8bvud',
+
   accessToken: ['', '', '', '', '', '', '', '', '', ''],
 
   refreshToken: ['', '', '', '', '', '', '', '', '', ''],
@@ -28,6 +30,7 @@ let createProfile = (knex, i) => {
         display: dummyProfileData.display[i],
         email: dummyProfileData.email[i],
         phone: dummyProfileData.phone[i],
+        imageurl: dummyProfileData.imageurl,
         accessToken: dummyProfileData.accessToken[i],
         refreshToken: dummyProfileData.refreshToken[i],
       }).save();
