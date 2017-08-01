@@ -6,13 +6,21 @@ h1 {
 
 html {
   cursor: url('pics/cursorBlue.png'), auto !important;
+  /*background-image: url("pics/test.gif");*/
+
 }
 body {
   background-color: black;
   background-image: url("https://www.pexels.com/photo/sky-space-milky-way-stars-110854/");
   cursor: url('pics/cursorBlue.png'), auto !important;
+  background-image: url("pics/background.gif");
+  background-size: cover;
 }
-
+.logo{
+  margin: auto !important;
+  vertical-align: middle;
+  
+}
 .youtubeform {
   /*margin: left !important;*/
   /*margin: right !important;*/

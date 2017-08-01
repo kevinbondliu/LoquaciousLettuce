@@ -39,12 +39,7 @@ class Settings extends React.Component {
     }
     return (
       <div>
-        <div id="settingsTitle" className="col-sm-4 col-sm-offset-4">Tessell8</div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <img src="assets/pics/logoTest.png" height = "300" width="1100" className ='logo'></img>
         <br />
           <div>
             <div className="settingsPage">Settings Page</div>
@@ -85,3 +80,6 @@ var mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+
+
+/*<div id="settingsTitle" className="col-sm-4 col-sm-offset-4">Tessell8</div>*/
