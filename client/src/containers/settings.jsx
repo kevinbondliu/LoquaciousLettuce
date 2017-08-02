@@ -50,11 +50,9 @@ class Settings extends React.Component {
 >>>>>>> bug fix
         <br />
           <div>
-            <div className="settingsPage">Settings Page</div>
             <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
             {this.props.view === 'players' ?
               <div key = {'players'}>
-                Player Count
                 <SelectPlayerSettings className="playerMode"/>
               </div>
             : this.props.view === 'song' ?

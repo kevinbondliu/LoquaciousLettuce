@@ -20,15 +20,22 @@ class SelectPlayerSettings extends React.Component {
 
         <div className="playerContainer">
           <div className="row">
-            <div id="titleBar" className="col-sm-8-offset-2" >Game<br></br>
-              <div className="playerBox" style={{background:'#1a1a1a', height: 120}}>
-                <ButtonGroup vertical className="col-sm-12">
-                  <Button className="playerChoiceBtn" onClick={()=> {changePlayers(1); changeView('difficulty'); } }>Single Player</Button>
-                  <Button className="playerChoiceBtn" onClick={()=> {changePlayers(2); changeView('difficulty'); } }>MultiPlayer</Button>
-                </ButtonGroup>
+              <div className="playerBox">
+                <div className='singlePlayerBox' onClick={()=> {changePlayers(1); changeView('difficulty');}}>
+                  <br/>
+                  <h3>Single-Player</h3>
+                  <div className='imgContainer'>
+                    <img src="assets/pics/singlePlayer.gif" height = "200" width="200"></img>
+                  </div>
+                </div>
+                <div className='multiPlayerBox' onClick={()=> {changePlayers(2); changeView('difficulty');}}>
+                  <br/>
+                  <h3>Multi-Player</h3>
+                  <div className='imgContainerMulti'>
+                    <img src="assets/pics/multiPlayer.gif" height = "260" width="280"></img>
+                  </div>
+                </div>
               </div>
-
-            </div>
           </div>
         </div>
 
@@ -56,4 +63,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(SelectPlayerSettings
 //   //   selectMode: (playerMode) => {dispatch(selectMode(playerMode))}
 //   // }
 // };
+
+                // <ButtonGroup vertical className="col-sm-6">
+                //   <Button className="multiPlayerChoiceBtn" onClick={()=> {changePlayers(2); changeView('difficulty'); } }>MultiPlayer</Button>
+                // </ButtonGroup>
 

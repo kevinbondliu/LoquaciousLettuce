@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Iceland);
 
-.image-upload > input
-{
+.image-upload > input {
     display: none;
 }
 
@@ -24,13 +23,19 @@ h1 {
   padding-bottom: 5px;
 }
 
+h3 {
+  font-family: Iceland;
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
 html {
   cursor: url('pics/cursorBlue.png'), auto !important;
   /*background-image: url("pics/test.gif");*/
 
 }
 body {
-  background-color: black;
   background-image: url("https://www.pexels.com/photo/sky-space-milky-way-stars-110854/");
   cursor: url('pics/cursorBlue.png'), auto !important;
   background-image: url("pics/background.gif");
@@ -39,9 +44,19 @@ body {
 .logo{
   margin: auto !important;
   vertical-align: middle;
-
-  
 }
+
+.imgContainer {
+  margin-top: 50px;
+  margin-left: 100px;
+}
+
+
+.imgContainerMulti {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+
 .youtubeform {
   /*margin: left !important;*/
   /*margin: right !important;*/
@@ -154,15 +169,77 @@ body {
   margin-top: 150px;
 }
 
-.playerChoiceBtn, .levelChoiceBtn {
+.levelChoiceBtn {
   font-size: 20px;
   border-style: solid;
   cursor: url('pics/cursorPink.png'), auto !important;
 }
 
-.playerChoiceBtn:hover, .levelChoiceBtn:hover {
+.singlePlayerBox {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  background-color: black;
+  height: 450px;
+  width: 400px;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
+  display: inline-block;
+  margin-left: 165px;
+  border-radius: 10px;
+}
+
+.singlePlayerBox:hover {
+  background-color: lightblue;
+}
+
+.multiPlayerBox {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  background-color: black;
+  height: 450px;
+  width: 400px;
+  display: inline-block;
+  margin-left: 30px;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
+  border-radius: 10px;
+}
+
+.multiPlayerBox:hover {
+  background-color: lightblue;
+}
+
+/*.singlePlayerChoiceBtn {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  width: 200px;
+  height: 300px;
+
+}
+
+.multiPlayerChoiceBtn {
+  cursor: url('pics/cursorPink.png'), auto !important;
+  width: 200px;
+  height: 300px;
+}*/
+.levelChoiceBtn:hover {
   background-color: #4d94ff;
 }
+
+/*.multiPlayerChoiceBtn:hover{
+  background-image: url('pics/multiPlayer.gif');
+  background-size: 300px 300px;
+  background-color: #4d94ff;
+}
+ .singlePlayerChoiceBtn:hover {
+  background-image: url('pics/singlePlayer.gif');
+  background-color: #4d94ff;
+ }*/
 
 #profileImage {
   width: 320px;
