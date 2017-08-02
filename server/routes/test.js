@@ -29,7 +29,7 @@ router.route('/testh')
   .post(HighscoreController.testAdd)
   ;
 
-router.route('/testqb')
+router.route('/testqb/:id')
   .get(SongController.testqb)
   ;
 

@@ -44,7 +44,7 @@ module.exports.create = (req, res) => {  // [ C ]
 
     //difficulty: req.body.difficulty,
 
-    difficultylevel: req.body.difficulty,
+    difficulty: req.body.difficulty,
 
   })
     .save()
@@ -139,25 +139,55 @@ module.exports.getAllForUser = (req, res) => {  // [ R ]
     });
 };
 
+module.exports.getTopTenScoresForSongAtDifficulty = (req, res) => {
+  console.log('REQ.BODY = ', req.body);
+  models.Game.where({ song_id: req.body.song_id, difficulty: req.body.difficulty })
+  .orderBy('-score')
+  .fetchAll({
+    withRelated: ['profiles', 'songs'],
+  })
+  .then(games => {
+    if (!games) {
+      throw games;
+    }
+    res.status(200).send(games);
+  })
+  .error(err => {
+    res.status(500).send(err);
+  })
+  .catch(() => {
+    res.sendStatus(404);
+  });
+};
 
+/*
 
-module.exports.getAllGamesForSongAtDifficultylevel = (req, res) => {
- console.log('REQ.BODY = ', req.body);
- // console.log('REQ.PARAMS', req.params);
- // res.send(201, 'hi');
- models.Game.where({ song_id: req.body.songId, difficultylevel: req.body.difficulty }).fetchAll()
-   .then(games => {
-     if (!games) {
-       throw games;
-     }
-     res.status(200).send(games);
-   })
-   .error(err => {
-     res.status(500).send(err);
-   })
-   .catch(() => {
-     res.sendStatus(404);
-   });
+module.exports.getAllSongsForUser = (req, res) => {
+  console.log('GET ALL SONGS FOR USER REVERSE. PARAMS = ', req.params);
+  models.Profile.where({id: req.params.id})
+    .fetchAll({
+      withRelated: [{'songs': function(qb) {
+        qb.orderBy('songname', 'ASC');
+      }}],
+//      columns: ['display']  // I HAVE NOT BEEN ABLE TO GET THIS TO WORK :(
+    })
+
+*/
+module.exports.getAllGamesForSongAtDifficulty = (req, res) => {
+  console.log('REQ.BODY = ', req.body);
+  models.Game.where({ song_id: req.body.song_id, difficulty: req.body.difficulty }).fetchAll()
+  .then(games => {
+    if (!games) {
+      throw games;
+    }
+    res.status(200).send(games);
+  })
+  .error(err => {
+    res.status(500).send(err);
+  })
+  .catch(() => {
+    res.sendStatus(404);
+  });
 };
 
 
