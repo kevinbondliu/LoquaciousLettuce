@@ -232,14 +232,7 @@ export const saveGame = (profileId, game) => (dispatch, getState) => {
       })
       .then( (result) => {
         console.log('data back------>', result.data);
-
-        var usersRanked = result.data.map( (games) => {
-          return games.profiles;
-        });
-        console.log('usersRanked---', usersRanked);
-        console.log('before---');
-        return dispatch(changeTopTenScoresUsers(usersRanked));
-        // console.log('after---');
+        return dispatch(changeTopTen(result.data));
       })
       .catch( (error) => {
         console.error('failed to save game and grab top scores');
@@ -264,7 +257,12 @@ export const changeTopTenScores = (scores) => {
   }
 }
 
-
+export const changeTopTen = (games) => {
+  return {
+    type: 'UPDATE_TOP_TEN',
+    payload: games
+  }
+}
 
 
 
