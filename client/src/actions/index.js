@@ -211,69 +211,69 @@ export const selectMode = (playerMode) => {
 
 
 
-export const saveGame = (profileId, game) => {
-  console.log('current game---', game);
-  console.log('current profile---', profileId);
-  console.log('diff---', game.difficulty);
-  var level = 0;
-  if (game.difficulty === 'super beginner') {
-    level = 1;
-  } else if (game.difficulty === 'beginner') {
-    level = 2;
-  } else if (game.difficulty === 'intermediate') {
-    level = 3;
-  } else if (game.difficulty === 'advanced') {
-    level = 4;
-  } else if (game.difficulty === 'rockstar') {
-    level = 5;
-  }
-  // axios.get('/') // get song first then store game
-      axios.post('/api/games', {profileId: profileId, song: game.song, score: game.score, difficulty: level})
-      .then( (result) => {
-        console.log('result for save game', result.data);
-        return axios.post('/api/games/getAllGamesForSongAtDifficultylevel', {songId: result.data.song_id, difficulty: result.data.difficultylevel})
-      })
-      .then( (result) => {
-        //console.log('games------>', result.data);
-        var ranked = result.data.sort( (a, b) => {
-          return b.score - a.score;
-        });
-        var rankedTen = ranked.slice(0,10);
-        console.log(rankedTen);
+// export const saveGame = (profileId, game) => {
+//   console.log('current game---', game);
+//   console.log('current profile---', profileId);
+//   console.log('diff---', game.difficulty);
+//   var level = 0;
+//   if (game.difficulty === 'super beginner') {
+//     level = 1;
+//   } else if (game.difficulty === 'beginner') {
+//     level = 2;
+//   } else if (game.difficulty === 'intermediate') {
+//     level = 3;
+//   } else if (game.difficulty === 'advanced') {
+//     level = 4;
+//   } else if (game.difficulty === 'rockstar') {
+//     level = 5;
+//   }
+//   // axios.get('/') // get song first then store game
+//       axios.post('/api/games', {profileId: profileId, song: game.song, score: game.score, difficulty: level})
+//       .then( (result) => {
+//         console.log('result for save game', result.data);
+//         return axios.post('/api/games/getAllGamesForSongAtDifficultylevel', {songId: result.data.song_id, difficulty: result.data.difficultylevel})
+//       })
+//       .then( (result) => {
+//         //console.log('games------>', result.data);
+//         var ranked = result.data.sort( (a, b) => {
+//           return b.score - a.score;
+//         });
+//         var rankedTen = ranked.slice(0,10);
+//         console.log(rankedTen);
 
-        var scores = rankedTen.map( (item) => {
-          return item.score;
-        });
-        changeTopTenScores(scores); //***********************************
+//         var scores = rankedTen.map( (item) => {
+//           return item.score;
+//         });
+//         changeTopTenScores(scores); //***********************************
 
-        var profileIds = rankedTen.map( (item) => {
-          return item.profile_id;
-        });
-        console.log('prof_idsss', profileIds);
+//         var profileIds = rankedTen.map( (item) => {
+//           return item.profile_id;
+//         });
+//         console.log('prof_idsss', profileIds);
 
-        //query function needed from kurt
-        return axios.post(`/api/profiles/getProfilesByList`, {profileIds: profileIds})
-        .then( (result) => {
-          console.log('here are the users---->', result.data);
-          changeTopTenScoresUsers(result.data)
-        })
+//         //query function needed from kurt
+//         return axios.post(`/api/profiles/getProfilesByList`, {profileIds: profileIds})
+//         .then( (result) => {
+//           console.log('here are the users---->', result.data);
+//           changeTopTenScoresUsers(result.data)
+//         })
 
-      })
-      .catch( (error) => {
-        console.error('failed to save game and grab top scores');
-      })
+//       })
+//       .catch( (error) => {
+//         console.error('failed to save game and grab top scores');
+//       })
 
-}
+// }
 
 
 //--------------------------------SCORELIST--------------------------------//
 
-export const changeTopTenScoresUsers = (users) => {
-  return {
-    type: UPDATE_TOP_TEN_USERS,
-    payload: users
-  }
-}
+// export const changeTopTenScoresUsers = (users) => {
+//   return {
+//     type: UPDATE_TOP_TEN_USERS,
+//     payload: users
+//   }
+// }
 // export const totalSingleScore = (score) => {
 //   console.log("score---", score);
 //   return {
@@ -351,12 +351,12 @@ export const changeTopTenScoresUsers = (users) => {
   }
 }
 
-export const changeTopTenScores = (scores) => {
-  return {
-    type: UPDATE_TOP_TEN_USERS_SCORES,
-    payload: users
-  }
-}
+// export const changeTopTenScores = (scores) => {
+//   return {
+//     type: UPDATE_TOP_TEN_USERS_SCORES,
+//     payload: users
+//   }
+// }
 
 
 
