@@ -35,13 +35,15 @@ passport.use('local-signup', new LocalStrategy({
   passReqToCallback: true
 },
   (req, email, password, done) => {
-    var {display} = req.body;
+    //
+    var {display, imageurl} = req.body;
+    var imageurl = !!imageurl ? imageurl : 'https://files.slack.com/files-pri/T5B9UC4RM-F6GNVBDJ6/photo2.png';
     // check to see if there is any account with this email address
     return models.Profile.where({ email }).fetch()
       .then(profile => {
         // create a new profile if a profile does not exist
         if (!profile) {
-          return models.Profile.forge({ email, display }).save();
+          return models.Profile.forge({ email, display, imageurl }).save();
         }
         // throw if any auth account already exists
         if (profile) {
