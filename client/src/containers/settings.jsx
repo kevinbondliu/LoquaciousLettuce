@@ -54,7 +54,6 @@ class Settings extends React.Component {
               </div>
             : this.props.view === 'difficulty' ?
               <div key = {'difficulty'}>
-              Level Settings
                 <SelectLevelSettings background={this.state.background}/>
               </div>
             : <div key = {'noview'}>
