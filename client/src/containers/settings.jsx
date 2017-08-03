@@ -39,24 +39,20 @@ class Settings extends React.Component {
     }
     return (
       <div>
-        <img src="assets/pics/logoTest.png" height = "300" width="1100" className ='logo'></img>
+        <img src="assets/pics/logoTest.png" height = "250" width="1100" className ='logo'></img>
         <br />
           <div>
-            <div className="settingsPage">Settings Page</div>
             <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
             {this.props.view === 'players' ?
               <div key = {'players'}>
-                Player Count
                 <SelectPlayerSettings className="playerMode"/>
               </div>
             : this.props.view === 'song' ?
               <div key = {'song'}>
-                Music Settings
                 <MusicSettings background={this.state.background}/>
               </div>
             : this.props.view === 'difficulty' ?
               <div key = {'difficulty'}>
-              Level Settings
                 <SelectLevelSettings background={this.state.background}/>
               </div>
             : <div key = {'noview'}>
