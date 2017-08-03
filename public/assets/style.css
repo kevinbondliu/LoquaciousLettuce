@@ -182,6 +182,61 @@ body {
   cursor: url('pics/cursorPink.png'), auto !important;
 }
 
+.musicSearchBarContainer {
+  background-color: blue;
+  height: 100px;
+  width: 900px;
+}
+
+.libraryTab {
+  background-color: yellow;
+  width: 400px;
+  height: 100px;
+  display: inline-block;
+}
+
+.searchTab {
+  margin-left: 100px;
+  background-color: yellow;
+  width: 400px;
+  height: 100px;
+  display: inline-block;
+}
+
+.musicBack {
+  background-color: red;
+  height: 100px;
+  width: 200px;
+  display: inline-block;
+}
+
+.musicPlay {
+  background-color: red;
+  height: 100px;
+  width: 200px;
+  float: right;
+  display: inline-block;
+}
+
+.settingInput {
+  background-color: green;
+  height: 100px;
+  width: 900px;
+}
+
+.musicChoiceContainer {
+  background: white;
+  height: 600px;
+  width: 900px;
+}
+
+.musicSettingContainer {
+  background-color: black;
+  height: 600px;
+  width: 900px;
+  margin: auto;
+}
+
 .settingContainer {
   margin: auto;
   height: 625px;

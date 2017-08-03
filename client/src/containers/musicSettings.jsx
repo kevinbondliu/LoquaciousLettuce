@@ -115,48 +115,28 @@ class MusicSettings extends React.Component {
     woosh.play(); 
     var click = new Audio("assets/sfx/Click.mp3");
     var youtubeBind = this.youtubeSearch.bind(this);
-    
     var changeView = this.props.changeView.bind(this);
     return (
       <div className = 'musicSettingsPage transition-item music-setting'>
-      Select Your Music<br></br>
-      {
-        this.props.game.players === 1 &&
-        <Link to='/game'><Button className="levelChoiceBtn" onClick = {()=> { youtubeBind(); changeView('players');  } }>Play!</Button></Link>
-      }
-      {
-        this.props.game.players === 2 &&
-        <Link to='/multiPlayer'><Button className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>Play!</Button></Link>
-      }
-        <div id="content">
-          <input type="file" id="music" accept="audio/*" />
+        <div className = 'musicSettingContainer'>
+          <div className = 'musicChoiceContainer'>
+            <div className = 'musicSearchBarContainer'>
+              <div className = 'libraryTab'>
+              
+              </div>
+              <div className='searchTab'>
+              
+              </div>
+            </div>
+          </div>
+          <div className='settingInput'></div>
+          <div className = 'musicBack'>
+
+          </div>
+          <div className = 'musicPlay'>
+
+          </div>
         </div>
-        <div className="col-sm-12 musicButton" style={{ background: 'white', height: 550}}>
-          <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example" className = 'musicButton'>
-            <Tab eventKey={1} title="Library" className= 'musicButton' >
-              <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
-            </Tab>
-            
-            <Tab eventKey={2} title="Find Track" className= 'musicButton'>
-              <Navbar>
-                <Navbar.Collapse>
-                  <span>
-                  <form onSubmit={this.handleSubmit.bind(this)}>
-                    <div className="search-container">
-                      Song Name:
-                      <input type="text" placeholder={'Song Name'} ref={(input) => this.input = input} />
-                      <input type="submit" value="Search!"/>
-                    </div>
-                  </form>
-                    <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.props.youtube.youtubeLink}/>                  
-                  </span>
-                </Navbar.Collapse>
-              </Navbar>
-              <MusicTrackList view = {this.state.key} className = 'container'></MusicTrackList>
-            </Tab>
-          </Tabs>
-        </div>
-        <Button className="levelChoiceBtn" onClick={ () => { changeView('difficulty'); } }>Back</Button>
       </div>
     );
   }
@@ -175,3 +155,41 @@ var matchDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
+
+      // {
+      //   this.props.game.players === 1 &&
+      //   <Link to='/game'><Button className="levelChoiceBtn" onClick = {()=> { youtubeBind(); changeView('players');  } }>Play!</Button></Link>
+      // }
+      // {
+      //   this.props.game.players === 2 &&
+      //   <Link to='/multiPlayer'><Button className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>Play!</Button></Link>
+      // }
+                          // <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.props.youtube.youtubeLink}/>
+        //                         Select Your Music<br></br>
+        // <div id="content">
+        //   <input type="file" id="music" accept="audio/*" />
+        // </div>
+        // <div className="col-sm-12 musicButton" style={{ background: 'white', height: 550}}>
+        //   <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example" className = 'musicButton'>
+        //     <Tab eventKey={1} title="Library" className= 'musicButton' >
+        //       <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
+        //     </Tab>
+        //     <Tab eventKey={2} title="Find Track" className= 'musicButton'>
+        //       <Navbar>
+        //         <Navbar.Collapse>
+        //           <span>
+        //           <form onSubmit={this.handleSubmit.bind(this)}>
+        //             <div className="search-container">
+        //               Song Name:
+        //               <input type="text" placeholder={'Song Name'} ref={(input) => this.input = input} />
+        //               <input type="submit" value="Search!"/>
+        //             </div>
+        //           </form>            
+        //           </span>
+        //         </Navbar.Collapse>
+        //       </Navbar>
+        //       <MusicTrackList view = {this.state.key} className = 'container'></MusicTrackList>
+        //     </Tab>
+        //   </Tabs>
+        // </div>
+        // <Button className="levelChoiceBtn" onClick={ () => { changeView('difficulty'); } }>Back</Button>      

@@ -49,7 +49,6 @@ class Settings extends React.Component {
               </div>
             : this.props.view === 'song' ?
               <div key = {'song'}>
-                Music Settings
                 <MusicSettings background={this.state.background}/>
               </div>
             : this.props.view === 'difficulty' ?
