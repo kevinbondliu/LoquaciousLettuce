@@ -183,13 +183,10 @@ body {
 }
 
 .settingContainer {
-  background-color: black;
-  -moz-box-shadow: 0px 0 50px #fff;
-  -webkit-box-shadow: 0 0 50px #fff;
-  box-shadow: 0px 0px 50px #fff;
   margin: auto;
   height: 625px;
   width: 600px;
+  border-radius: 10px;
 }
 .levelChangeDiv {
   cursor: url('pics/cursorPink.png'), auto !important;
@@ -197,8 +194,12 @@ body {
   border-style: double;
   border-color: white;
   border-width: 5px;
+  border-radius: 10px;
   height: 100px;
   margin-bottom: 5px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
 }
 
 .levelChangeDiv:hover{
@@ -246,31 +247,10 @@ body {
   background-color: lightblue;
 }
 
-/*.singlePlayerChoiceBtn {
-  cursor: url('pics/cursorPink.png'), auto !important;
-  width: 200px;
-  height: 300px;
-
-}
-
-.multiPlayerChoiceBtn {
-  cursor: url('pics/cursorPink.png'), auto !important;
-  width: 200px;
-  height: 300px;
-}*/
 .levelChoiceBtn:hover {
   background-color: #4d94ff;
 }
 
-/*.multiPlayerChoiceBtn:hover{
-  background-image: url('pics/multiPlayer.gif');
-  background-size: 300px 300px;
-  background-color: #4d94ff;
-}
- .singlePlayerChoiceBtn:hover {
-  background-image: url('pics/singlePlayer.gif');
-  background-color: #4d94ff;
- }*/
 
 #profileImage {
   width: 320px;

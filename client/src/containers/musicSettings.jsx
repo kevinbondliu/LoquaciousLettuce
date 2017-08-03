@@ -10,6 +10,7 @@ import MusicTrackList from './MusicTrackList.jsx';
 import MusicTrackListLib from './MusicTrackListLib.jsx';
 import {getTracks, getYoutube} from '../actions/index';
 import PageTransition from 'react-router-page-transition';
+import youtube from '../../../config/development.json';
 
 
 class MusicSettings extends React.Component {
@@ -57,7 +58,7 @@ class MusicSettings extends React.Component {
     var youtubeOptions = {
       method: 'GET',
       params: {
-        key: '',
+        key: youtube.youtubeKey.key,
         q: this.search,
         type: 'video',
         part: 'snippet',
@@ -66,7 +67,6 @@ class MusicSettings extends React.Component {
       },
       responseType: 'json'
     };
-    
     this.props.getYoutube(youtubeOptions);
     this.props.getTracks(FETCH_URL, myOptions);
     // this.props.getYoutube
