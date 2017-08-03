@@ -135,7 +135,12 @@ class MusicSettings extends React.Component {
               }
             </div>
           </div>
-          <div className='settingInput'></div>
+          <div className='settingInput'>
+            <div className='settingInputTextContainer'>
+              <h5>Click on White to Upload MP3 -></h5>
+            </div>
+            <input className='uploadButton' type="file" id="music" accept="audio/*"/>
+          </div>
           <div className = 'musicBack'>
             <div className="levelChoiceBtn" onClick={ () => { changeView('difficulty'); } }>
               <h3>Back</h3>
@@ -150,7 +155,7 @@ class MusicSettings extends React.Component {
             }
             {
               this.props.game.players === 2 &&
-              <Link to='/multiPlayer'><div className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>
+              <Link to='/multiPlayer' style={{textDecoration: 'none'}}><div className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>
                 <h3>Play!</h3>
               </div></Link>
             }

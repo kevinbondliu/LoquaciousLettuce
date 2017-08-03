@@ -27,7 +27,6 @@ h2{
   margin-left: 18px;
   margin-top: 0px;
   font-size: 30px;
-  /*text-align: left;*/
   font-family: Iceland;
   color: black;
 }
@@ -45,7 +44,12 @@ h4 {
   font-size: 35px;
   text-align: center;
 }
-
+h5 {
+  font-family: Iceland;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
 html {
   cursor: url('pics/cursorBlue.png'), auto !important;
   /*background-image: url("pics/test.gif");*/
@@ -57,6 +61,43 @@ body {
   background-image: url("pics/background.gif");
   background-size: cover;
 }
+
+.uploadButton {
+  background-color: white;
+  height: 90px;
+  width: 400px;
+  float:right;
+  display: inline-block none;
+  padding: 90px 0 0 0;
+  box-sizing: border-box;
+}
+
+/*input#file {
+  display: inline-block;
+  width: 100%;
+  padding: 120px 0 0 0;
+  height: 100px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url('http://archisnapper.com/cloud.png') center center no-repeat #e4e4e4;
+  border-radius: 20px;
+  background-size: 150px 100px;
+}*/
+
+.settingInputTextContainer {
+  height: 100px;
+  width: 450px;
+  display: inline-block;
+  padding-top: 15px;
+  padding-left: 5px;
+}
+
+/*#music{
+  height: 50px;
+  width: 100px;
+}*/
 
 .logo{
   margin: auto !important;
@@ -198,33 +239,60 @@ body {
 
 .entryContainer {
   border-style: double;
-  border-color: white;
+  border-color: black;
   border-width: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 170px;
   background-color: black;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
 }
 
 .media-object {
   border-style: solid;
   border-color: black;
   border-width: 5px;
-  height: 120px;
-  width: 170px;
+  /*margin-top: 3px;*/
+  height: 125px;
+  width: 200px;
+  margin:auto;
 }
 
 .libTitleBar {
+  border-radius: 5px;
   background-color: white;
   height: 40px;
+}
+
+.imageContainer {
+  width: 250px;
+  height: 120px;
+  display: inline-block;
+  vertical-align:top;
+}
+
+.artistsContainer {
+  width: 400px;
+  height: 120px;
+  display: inline-block;
+  vertical-align:top;
+}
+
+.bpmContainer {
+  width: 230px;
+  height: 120px;
+  display: inline-block;
+  vertical-align:top;
 }
 
 .MusicTrack {
   height: 500px;
   overflow: scroll;
-  border-style: solid;
+  border-style: double;
   border-color: white;
-  border-width: 10px;
+  border-width: 5px;
   border-radius: 10px;
   -moz-box-shadow: 0px 0 50px #fff;
   -webkit-box-shadow: 0 0 50px #fff;
@@ -237,13 +305,13 @@ body {
 }
 
 .libraryTab {
-  margin-left: 10px;
+  /*margin-left: 10px;*/
   background-color: black;
   border-style: double;
   border-color: white;
   border-width: 5px;
   border-radius: 10px;
-  width: 435px;
+  width: 450px;
   height: 100px;
   display: inline-block;
   -moz-box-shadow: 0px 0 50px #fff;
@@ -252,7 +320,7 @@ body {
 }
 
 .searchTab {
-  margin-right: 10px;
+  /*margin-right: 10px;*/
   /*margin-left: px;*/
   float: right; 
   background-color: black;
@@ -260,7 +328,7 @@ body {
   border-color: white;
   border-width: 5px;
   border-radius: 10px;
-  width: 435px;
+  width: 450px;
   height: 100px;
   display: inline-block;
   -moz-box-shadow: 0px 0 50px #fff;
@@ -269,14 +337,12 @@ body {
 }
 
 .musicBack {
-  background-color: red;
   height: 100px;
   width: 200px;
   display: inline-block;
 }
 
 .musicPlay {
-  background-color: red;
   height: 100px;
   width: 200px;
   float: right;
@@ -284,9 +350,18 @@ body {
 }
 
 .settingInput {
-  background-color: green;
+  background-color: black;
   height: 100px;
   width: 900px;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
+  margin-bottom: 5px;
+  margin-top: 9px;
 }
 
 .musicChoiceContainer {
@@ -296,6 +371,7 @@ body {
 }
 
 .musicSettingPageContainer {
+  margin-top: 5px;
   height: 500px;
 }
 
