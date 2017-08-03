@@ -33,9 +33,7 @@
        gifFrame: 0
      };
      this.updateCanvas = this.updateCanvas.bind(this);
-
      this.increaseScore = this.increaseScore.bind(this);
-
      this.increaseAttempt = this.increaseAttempt.bind(this);
      this.decreaseAttempt = this.decreaseAttempt.bind(this);
 
@@ -43,6 +41,7 @@
 
    componentDidMount() {
      console.log('THIS IS THE GAME', this.props.game);
+
    }
 
    increaseScore() {
@@ -100,7 +99,7 @@
        var makeRow = function(hexCode) {
          var rowArr = [0, 0, 0, 0, ];
          var corArr = ['a', 's', 'd', 'f'];
-         
+
          for (let i = 0; i < 4; i++) {
            if (patterns[hexCode][i] === 1) {
              rowArr[i] = {
@@ -235,7 +234,7 @@
                context.setState({hit: false});
                counter = 0;
              } else {
-               
+
               //  img.src = 'assets/dots/crosshairHit.png';
               //  var frame = (context.state.gifFrame % 30) + 1;
               // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 20, 552, 50, 50);
@@ -312,14 +311,13 @@
            });
            allRows.checkDelete();
            allRows.flashDots();
-           
 
-           
+
+
          } else {
 
-           console.log('hi');
-           console.log('----> current user', context.props.currentUser);
-           saveGame(context.props.currentUser.id, context.state);
+           console.log('----> current user',context.props.currentUser);
+           context.props.saveGame(context.props.currentUser.id, context.state);
 
            ctx.clearRect(-50, -50, 1500, 1500);
            ctx.fillStyle = 'black';
@@ -394,7 +392,7 @@
          allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
          if (context.state.health <= 0) {
            audio.pause();
-           saveGame(this.props.currentUser.id, context.state);
+           // saveGame(this.props.currentUser.id, context.state);
            context.setState({end: true});
            clearInterval(frameCheck);
            clearInterval(drawLoop);
@@ -512,7 +510,7 @@
        }
        function listenToJEY() {
          keyboardJS.bind('j + e + y', function(e) {
-           //context.setState({score: context.state.score + 999});
+           context.setState({score: context.state.score + 999});
          });
        }
        listenToJEY();
