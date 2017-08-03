@@ -198,18 +198,7 @@ export const selectMode = (playerMode) => {
 };
 
 
-
 //--------------------------------SCORELIST--------------------------------//
-
-// export const totalSingleScore = (score) => {
-//   console.log("score---", score);
-//   return {
-//     type: 'UPDATE_TOTAL_SCORE',
-//     payload: view
-//   };
-// };
-
-
 
 export const saveGame = (profileId, game) => (dispatch, getState) => {
   console.log('in the saveGame function');
@@ -227,11 +216,11 @@ export const saveGame = (profileId, game) => (dispatch, getState) => {
   }
       axios.post('/api/games', {profileId: profileId, song: game.song, score: game.score, difficulty: level})
       .then( (result) => {
-        console.log('result for save game', result.data);
+        //console.log('result for save game', result.data);
         return axios.post('/api/games/getTopTenScoresForSongAtDifficulty', {songId: result.data.song_id, difficulty: result.data.difficulty})
       })
       .then( (result) => {
-        console.log('data back------>', result.data);
+        //console.log('data back------>', result.data);
         return dispatch(changeTopTen(result.data));
       })
       .catch( (error) => {
@@ -242,21 +231,6 @@ export const saveGame = (profileId, game) => (dispatch, getState) => {
 
 //--------------------------------SCORELIST--------------------------------//
 
-export const changeTopTenScoresUsers = (users) => {
-  // console.log('tessstttttt');
-  return {
-    type: 'UPDATE_TOP_TEN_USERS',
-    payload: users
-  }
-}
-
-export const changeTopTenScores = (scores) => {
-  return {
-    type: 'UPDATE_TOP_TEN_USERS_SCORES',
-    payload: scores
-  }
-}
-
 export const changeTopTen = (games) => {
   return {
     type: 'UPDATE_TOP_TEN',
@@ -264,20 +238,37 @@ export const changeTopTen = (games) => {
   }
 }
 
+export const getTopGames = (game) => (dispatch,getState) => {
+  console.log('in the getTopGames function!!!!! julia');
+  var level = 0;
+  if (game.difficulty === 'super beginner') {
+    level = 1;
+  } else if (game.difficulty === 'beginner') {
+    level = 2;
+  } else if (game.difficulty === 'intermediate') {
+    level = 3;
+  } else if (game.difficulty === 'advanced') {
+    level = 4;
+  } else if (game.difficulty === 'rockstar') {
+    level = 5;
+  }
+
+  axios.post(`/api/songs/nameUrl`, {url: game.song})
+  .then( (result) => {
+    // console.log('result------>here', result.data);
+    return axios.post('/api/games/getTopTenScoresForSongAtDifficulty', {songId: result.data.id, difficulty: level})
+  })
+  .then( (result) => {
+    // console.log('should be top scores for mount------->', result.data);
+    return dispatch(changeTopTen(result.data));
+  })
+
+  .catch( (error) => {
+    console.error('failed to get top scores');
+  })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
