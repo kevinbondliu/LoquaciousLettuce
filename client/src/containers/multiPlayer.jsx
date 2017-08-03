@@ -485,7 +485,7 @@ class Multiplayer extends React.Component {
           context.setState({gifFrame: 1});
         }
         draw();
-        if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {
+        if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0 || context.state.end === true) {
           audio.pause();
           context.setState({end: true});
           clearInterval(frameCheck);
@@ -514,7 +514,7 @@ class Multiplayer extends React.Component {
         var formationP2 = makeRow(patternType, 2);
         allRowsP1.rows.push(formationP1);
         allRowsP2.rows.push(formationP2);
-        if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0) {
+        if (context.state.healthP1 <= 0 && context.state.healthP2 <= 0 || context.state.end === true) {
           clearInterval(drawLoop);
           clearInterval(frameCheck);
         }

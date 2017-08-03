@@ -76,6 +76,11 @@
        var context = this;
        var canvas = this.refs.canvas;
        var ctx = this.refs.canvas.getContext('2d');
+       var ballImg = new Image();
+       ballImg.src = 'assets/dots/shiny.png';
+
+       var targetImg = new Image();
+       targetImg.src = 'assets/dots/crosshair.png';
        ListenEvents();
 
        var makeBall = function (xCor, yCor, color, keyBind) {
@@ -86,11 +91,9 @@
            vy: 4,
            keyBind: keyBind,
            draw: function() {
-             var img = new Image();
-             img.src = 'assets/dots/shiny.png';
              var heightContext = 1 + Math.floor(context.state.gifFrame / 75);
              var widthContext = context.state.gifFrame % 75;
-             ctx.drawImage(img, (img.width / 75) * widthContext, (heightContext - 1) * img.height / 2, img.width / 75, (img.height / 2), this.x, this.y, 50, 50);
+             ctx.drawImage(ballImg, (ballImg.width / 75) * widthContext, (heightContext - 1) * ballImg.height / 2, ballImg.width / 75, (ballImg.height / 2), this.x, this.y, 50, 50);
            }
          };
          return ball;
@@ -197,7 +200,7 @@
            var x = 5;
            for (var i = 0; i < bufferLength; i++) {
              barHeight = frequencyData[i];
-             ctx.fillStyle = 'rgba( 10,' + (barHeight + 100) +',255, 0.4)';
+             ctx.fillStyle = 'rgba( 10,' + (barHeight + 100) + ',255, 0.4)';
              ctx.fillRect(x, 600 - 2 * barHeight, barWidth, 2 * barHeight);
              x += barWidth;
            }
@@ -227,8 +230,7 @@
            ctx.fillRect(10, 60, context.state.health * 4, 25);
 
 // Hit the dots
-           var img = new Image();
-
+           
            if (context.state.hit === true) {
              if (counter === 5) {
                context.setState({hit: false});
@@ -248,15 +250,15 @@
            }
            ctx.font = '30px Iceland';
            ctx.fillStyle = 'white';
-           img.src = 'assets/dots/crosshair.png';
+           
            var frame = (context.state.gifFrame % 29);
-           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 20, 552, 50, 50);
+           ctx.drawImage(targetImg, (targetImg.width / 30) * frame, 0, targetImg.width / 30, targetImg.height, 20, 552, 50, 50);
            ctx.fillText('A', 37, 586);
-           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 120, 552, 50, 50);
+           ctx.drawImage(targetImg, (targetImg.width / 30) * frame, 0, targetImg.width / 30, targetImg.height, 120, 552, 50, 50);
            ctx.fillText('S', 137, 586);
-           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 220, 552, 50, 50);
+           ctx.drawImage(targetImg, (targetImg.width / 30) * frame, 0, targetImg.width / 30, targetImg.height, 220, 552, 50, 50);
            ctx.fillText('D', 237, 586);
-           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 320, 552, 50, 50);
+           ctx.drawImage(targetImg, (targetImg.width / 30) * frame, 0, targetImg.width / 30, targetImg.height, 320, 552, 50, 50);
            ctx.fillText('F', 337, 586);
             //  ctx.fillStyle = 'white';
             //  ctx.fillRect(0, 572.5, 400, 10);
@@ -333,26 +335,25 @@
        }
        audio.play();
        var drawLoop = setInterval(()=> {
-         //console.log(context.state.gifFrame);
-         if (context.state.gifFrame < 150) {
+         if (context.state.gifFrame < 149) {
            context.setState({gifFrame: this.state.gifFrame + 1});
          } else {
            context.setState({gifFrame: 1});
          }
-        //  draw();
-        //  if (context.state.health <= 0) {
-        //    audio.pause();
-        //    context.setState({end: true});
-        //    clearInterval(frameCheck);
-        //    clearInterval(drawLoop);
-        //    clearInterval(generateTarget);
-        //    draw();
-        //  }
+
+         if (context.state.health <= 0 || context.state.end === true) {
+           audio.pause();
+           context.setState({end: true});
+           clearInterval(frameCheck);
+           clearInterval(drawLoop);
+           clearInterval(generateTarget);
+           draw();
+         }
        }, 1000 / 30);
 
        var frameCheck = setInterval(()=> {
          draw();
-         if (context.state.health <= 0) {
+         if (context.state.health <= 0 || context.state.end === true) {
            audio.pause();
 
            context.setState({end: true});
@@ -390,7 +391,7 @@
 
        var generateTarget = setInterval(()=>{
          allRows.rows.push(makeRow(Math.floor(Math.random() * 10)));
-         if (context.state.health <= 0) {
+         if (context.state.health <= 0 || context.state.end === true) {
            audio.pause();
            // saveGame(this.props.currentUser.id, context.state);
            context.setState({end: true});
