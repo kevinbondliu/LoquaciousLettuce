@@ -1,14 +1,14 @@
-export default (state = [], action) => {
-  switch (action.type) {
-    case 'CHANGE_USERS' : {
 
+import UsersData from './reducer-sample-data';
+
+export default (state = UsersData, action) => {
+  console.log('here');
+  switch (action.type) {
+    case 'UPDATE_TOP_TEN': {
+      state = action.payload;
+      console.log('hereeeeeee');
+      break;
     }
   }
-}
-
-
-
-
-
-// top ten users grab from db after score of current game is added
-// then query for top ten scores for specific song, specific level
+  return state;
+};

@@ -11,14 +11,9 @@ import {getTopTenScores} from '../actions/index';
 class ScoreList extends React.Component {
 
   createScoreListEntries() {
-
-    var sorted = this.props.topTenScoresUsers.sort( (a, b) => {
-      return b.score - a.score;
-    });
-    // this.props.selectUser(user) line 25
-
-    return sorted.map((user, index) => {
-      // console.log(user.id);
+    console.log('top games', this.props.topTen);
+    return this.props.topTen.map((game, index) => {
+      var user = game.profiles;
       return (
 
         <div key={index} >
@@ -27,15 +22,11 @@ class ScoreList extends React.Component {
 
               <div id="items" className="col-sm-6-offset-3">
               <div id="scoreList" className="col-sm-8">
-                <img id="userImage" src={user.image} height="45" width="45"/>
-                  {user.username}
+                <img id="userImage" src={user.imageurl} height="45" width="45"/>
+                  {user.display}
                 </div>
-
-
-                <div id="score">{this.props.topTenScores[index]}<br></br></div>
+                <div id="score">{game.score}<br></br></div>
               </div>
-
-
           </li>
 
         </div>
@@ -87,12 +78,12 @@ var mapStateToProps = (state) => {
   return {
     topTenScoresUsers: state.topTenScoresUsers,
     showScoreModal: state.showScoreModal,
-    topTenScores: state.topTenScores
+    topTen: state.topTen
   };
 };
 
 var mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({selectUser: selectUser, showModal: showModal, closeModal: closeModal, getTopTenScores: getTopTenScores}, dispatch);
+  return bindActionCreators({selectUser: selectUser, showModal: showModal, closeModal: closeModal}, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScoreList);
