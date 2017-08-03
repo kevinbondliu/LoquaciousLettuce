@@ -10,7 +10,9 @@ import MusicTrackList from './MusicTrackList.jsx';
 import MusicTrackListLib from './MusicTrackListLib.jsx';
 import {getTracks, getYoutube} from '../actions/index';
 import PageTransition from 'react-router-page-transition';
-import youtube from '../../../config/development.json';
+//const config = require('config')['youtube'];
+//console.log('THIS IS THE CONFIG FILE', config);
+import youtube from '../../../config/production.json';
 
 
 class MusicSettings extends React.Component {
@@ -120,6 +122,7 @@ class MusicSettings extends React.Component {
         <div className = 'musicSettingContainer'>
           <div className = 'musicChoiceContainer'>
             <div className = 'musicSearchBarContainer'>
+
               <div className = 'libraryTab' onClick={this.libraryTab.bind(this)}>
                 <h3>Library</h3>
               </div>
@@ -207,4 +210,3 @@ export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
         //     </Tab>
         //   </Tabs>
         // </div>
-   
