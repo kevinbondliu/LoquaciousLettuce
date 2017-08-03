@@ -122,19 +122,35 @@ class MusicSettings extends React.Component {
           <div className = 'musicChoiceContainer'>
             <div className = 'musicSearchBarContainer'>
               <div className = 'libraryTab'>
-              
+                <h3>Library</h3>
               </div>
               <div className='searchTab'>
-              
+                <h3>Search For Music</h3>
               </div>
+            </div>
+            <div className="musicSettingPageContainer">
+
             </div>
           </div>
           <div className='settingInput'></div>
           <div className = 'musicBack'>
-
+            <div className="levelChoiceBtn" onClick={ () => { changeView('difficulty'); } }>
+              <h3>Back</h3>
+            </div> 
           </div>
           <div className = 'musicPlay'>
-
+            {
+              this.props.game.players === 1 &&
+              <Link to='/game'><div className="levelChoiceBtn" onClick = {()=> { youtubeBind(); changeView('players');  } }>
+                <h3>Play!</h3>
+              </div></Link>
+            }
+            {
+              this.props.game.players === 2 &&
+              <Link to='/multiPlayer'><div className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>
+                <h3>Play!</h3>
+              </div></Link>
+            }
           </div>
         </div>
       </div>
@@ -155,15 +171,6 @@ var matchDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
-
-      // {
-      //   this.props.game.players === 1 &&
-      //   <Link to='/game'><Button className="levelChoiceBtn" onClick = {()=> { youtubeBind(); changeView('players');  } }>Play!</Button></Link>
-      // }
-      // {
-      //   this.props.game.players === 2 &&
-      //   <Link to='/multiPlayer'><Button className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>Play!</Button></Link>
-      // }
                           // <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.props.youtube.youtubeLink}/>
         //                         Select Your Music<br></br>
         // <div id="content">

@@ -40,14 +40,15 @@ h4 {
 html {
   cursor: url('pics/cursorBlue.png'), auto !important;
   /*background-image: url("pics/test.gif");*/
-
 }
+
 body {
   background-image: url("https://www.pexels.com/photo/sky-space-milky-way-stars-110854/");
   cursor: url('pics/cursorBlue.png'), auto !important;
   background-image: url("pics/background.gif");
   background-size: cover;
 }
+
 .logo{
   margin: auto !important;
   vertical-align: middle;
@@ -177,8 +178,12 @@ body {
 }
 
 .levelChoiceBtn {
-  font-size: 20px;
-  border-style: solid;
+  background-color: black;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  height: 100px;
   cursor: url('pics/cursorPink.png'), auto !important;
 }
 
@@ -189,16 +194,27 @@ body {
 }
 
 .libraryTab {
-  background-color: yellow;
-  width: 400px;
+  margin-left: 10px;
+  background-color: black;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  width: 435px;
   height: 100px;
   display: inline-block;
 }
 
 .searchTab {
-  margin-left: 100px;
-  background-color: yellow;
-  width: 400px;
+  margin-right: 10px;
+  /*margin-left: px;*/
+  float: right; 
+  background-color: black;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  width: 435px;
   height: 100px;
   display: inline-block;
 }
@@ -230,6 +246,11 @@ body {
   width: 900px;
 }
 
+.musicSettingPageContainer {
+  height: 500px;
+  background: orange;
+}
+
 .musicSettingContainer {
   background-color: black;
   height: 600px;
@@ -257,7 +278,7 @@ body {
   box-shadow: 0px 0px 50px #fff;
 }
 
-.levelChangeDiv:hover{
+.levelChangeDiv:hover , .searchTab:hover, .libraryTab:hover{
   background-image: url('pics/waves.gif');
 
 }
