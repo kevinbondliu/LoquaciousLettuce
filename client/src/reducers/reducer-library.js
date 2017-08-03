@@ -3,11 +3,11 @@ export default (state = {
     tracks: {
       items: [
         {
-          name: 'U2',
+          name: '2U',
           url: 'https://i.scdn.co/image/a22859e63b13a4794de56084d458e78e0bc95a57',
           artists: 'David Guetta/Justin Bieber',
           BPM: 144,
-          mp3: 'U2.mp3'
+          mp3: '2U.mp3'
         },
         {
           name: 'Closer',

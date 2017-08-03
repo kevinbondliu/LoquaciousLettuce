@@ -12,7 +12,7 @@ class MusicTrackListEntry extends React.Component {
   }
 
   handleSubmit() {
-    console.log(this.props.track);
+    console.log(this.props.item);
   }
 
   songChange() {
@@ -25,21 +25,36 @@ class MusicTrackListEntry extends React.Component {
 
   render() {
     return (
-      <div>
-        <Panel header={this.props.item.name} onClick = {this.songChange}>
-          <div className='col-sm-3' >
-            <img className="media-object" src={this.props.item.url} style={{height: 100, width: 170}} />
-          </div>
-          <div className='col-sm-6'>
-            {this.props.item.artist}
-          </div>
-          <div className='col-sm-3'>
-            <h1>{this.props.item.BPM}</h1>
-          </div>
-        </Panel>
+      <div className='entryContainer' onClick = {this.songChange}>
+        <div className='libTitleBar'>
+          <h2>{this.props.item.name}</h2>
+        </div>
+        <div className='imageContainer'>
+          <img className="media-object" src={this.props.item.url} />
+        </div>
+        <div className='artistsContainer'>
+          <br/><br/>
+          <h4>{this.props.item.artists}</h4>
+        </div>
+        <div className='bpmContainer'>
+          <br/><br/>
+          <h4>{this.props.item.BPM}</h4>
+        </div>
       </div>
     );
   }
 }
 
 export default MusicTrackListEntry;
+
+        // <Panel header={this.props.item.name} onClick = {this.songChange}>
+        //   <div className='col-sm-3' >
+        //     <img className="media-object" src={this.props.item.url} style={{height: 100, width: 170}} />
+        //   </div>
+        //   <div className='col-sm-6'>
+        //     {this.props.item.artist}
+        //   </div>
+        //   <div className='col-sm-3'>
+        //     <h1>{this.props.item.BPM}</h1>
+        //   </div>
+        // </Panel>

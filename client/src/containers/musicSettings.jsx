@@ -19,14 +19,14 @@ class MusicSettings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      youtubeSearch: ''
+      youtubeSearch: '',
+      key: 1
     },
     this.search = '';
     // this.youtubeSearch = '';
     this.getAudioTrackID = this.getAudioTrackID.bind(this);
     this.getToken = this.getToken.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
   }
 
   getToken() {
@@ -74,19 +74,6 @@ class MusicSettings extends React.Component {
     // this.props.getYoutube
   }
 
-  getInitialState() {
-    return {
-      key: 1
-    };
-  }
-
-  handleSelect(key) {
-    console.log(key);
-    this.setState({
-      key: key
-    });
-  }
-  
 
   handleSubmit(event) {
     event.preventDefault();
@@ -111,6 +98,18 @@ class MusicSettings extends React.Component {
     };
     file.onchange();
   }
+  
+  libraryTab() {
+    this.setState({
+      key: 1
+    });
+  }
+
+  searchTab() {
+    this.setState({
+      key: 2
+    });
+  }
 
   render() {
     var woosh = new Audio("assets/sfx/Woosh.wav");
@@ -123,18 +122,28 @@ class MusicSettings extends React.Component {
         <div className = 'musicSettingContainer'>
           <div className = 'musicChoiceContainer'>
             <div className = 'musicSearchBarContainer'>
-              <div className = 'libraryTab'>
+
+              <div className = 'libraryTab' onClick={this.libraryTab.bind(this)}>
                 <h3>Library</h3>
               </div>
-              <div className='searchTab'>
+              <div className='searchTab' onClick={this.searchTab.bind(this)}>
                 <h3>Search For Music</h3>
               </div>
             </div>
             <div className="musicSettingPageContainer">
-
+              {this.state.key === 1 ? 
+                <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
+              :
+                <MusicTrackList view = {this.state.key} className = 'container'></MusicTrackList>
+              }
             </div>
           </div>
-          <div className='settingInput'></div>
+          <div className='settingInput'>
+            <div className='settingInputTextContainer'>
+              <h5>Click on White to Upload MP3 -></h5>
+            </div>
+            <input className='uploadButton' type="file" id="music" accept="audio/*"/>
+          </div>
           <div className = 'musicBack'>
             <div className="levelChoiceBtn" onClick={ () => { changeView('difficulty'); } }>
               <h3>Back</h3>
@@ -147,10 +156,9 @@ class MusicSettings extends React.Component {
                 <h3>Play!</h3>
               </div></Link>
             }
-            
             {
               this.props.game.players === 2 &&
-              <Link to='/multiPlayer'><div className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>
+              <Link to='/multiPlayer' style={{textDecoration: 'none'}}><div className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>
                 <h3>Play!</h3>
               </div></Link>
             }
@@ -174,7 +182,7 @@ var matchDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
-                          // <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.props.youtube.youtubeLink}/>
+        // <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.props.youtube.youtubeLink}/>
         //                         Select Your Music<br></br>
         // <div id="content">
         //   <input type="file" id="music" accept="audio/*" />
@@ -202,4 +210,3 @@ export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
         //     </Tab>
         //   </Tabs>
         // </div>
-        // <Button className="levelChoiceBtn" onClick={ () => { changeView('difficulty'); } }>Back</Button>      
