@@ -23,6 +23,15 @@ h1 {
   padding-bottom: 5px;
 }
 
+h2{
+  margin-left: 18px;
+  margin-top: 0px;
+  font-size: 30px;
+  /*text-align: left;*/
+  font-family: Iceland;
+  color: black;
+}
+
 h3 {
   font-family: Iceland;
   color: white;
@@ -33,7 +42,7 @@ h3 {
 h4 {
   font-family: Iceland;
   color: white;
-  font-size: 30px;
+  font-size: 35px;
   text-align: center;
 }
 
@@ -187,8 +196,42 @@ body {
   cursor: url('pics/cursorPink.png'), auto !important;
 }
 
+.entryContainer {
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  height: 170px;
+  background-color: black;
+  margin-bottom: 5px;
+}
+
+.media-object {
+  border-style: solid;
+  border-color: black;
+  border-width: 5px;
+  height: 120px;
+  width: 170px;
+}
+
+.libTitleBar {
+  background-color: white;
+  height: 40px;
+}
+
+.MusicTrack {
+  height: 500px;
+  overflow: scroll;
+  border-style: solid;
+  border-color: white;
+  border-width: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
+}
+
 .musicSearchBarContainer {
-  background-color: blue;
   height: 100px;
   width: 900px;
 }
@@ -203,6 +246,9 @@ body {
   width: 435px;
   height: 100px;
   display: inline-block;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
 }
 
 .searchTab {
@@ -217,6 +263,9 @@ body {
   width: 435px;
   height: 100px;
   display: inline-block;
+  -moz-box-shadow: 0px 0 50px #fff;
+  -webkit-box-shadow: 0 0 50px #fff;
+  box-shadow: 0px 0px 50px #fff;
 }
 
 .musicBack {
@@ -241,14 +290,13 @@ body {
 }
 
 .musicChoiceContainer {
-  background: white;
+  /*background: white;*/
   height: 600px;
   width: 900px;
 }
 
 .musicSettingPageContainer {
   height: 500px;
-  background: orange;
 }
 
 .musicSettingContainer {

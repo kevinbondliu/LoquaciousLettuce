@@ -21,7 +21,7 @@ class MusicTrackListLib extends React.Component {
 
   render() {
     return (
-      <div className = 'MusicTrack' style={{height: 400, overflow: 'scroll'}}>
+      <div className = 'MusicTrack'>
           {
             this.props.library.example.tracks.items.map((item, index) => (
               <MusicTrackEntryLib
