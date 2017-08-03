@@ -29,7 +29,8 @@
        attemptPresses: 0,
        songBlob: this.props.game.songBlob,
        exclamation: null,
-       exclamationChange: false
+       exclamationChange: false,
+       gifFrame: 0
      };
      this.updateCanvas = this.updateCanvas.bind(this);
 
@@ -54,17 +55,14 @@
 
    increaseAttempt() {
      this.setState({attemptPresses: this.state.attemptPresses + 1});
-    //console.log(this.state.attemptPresses);
    }
    decreaseAttempt() {
      this.setState({attemptPresses: this.state.attemptPresses - 1});
-    //console.log(this.state.attemptPresses);
    }
 
 
    startSong() {
      this.setState({game: true});
-    //console.log(this.state.game);
      var audio = ReactDOM.findDOMNode(this.refs.audio);
      if (this.state.game === true) {
        if (this.state.ongoing === false) {
@@ -87,15 +85,13 @@
            y: yCor,
            vx: 0,
            vy: 4,
-           radius: 10,
-           color: color,
            keyBind: keyBind,
            draw: function() {
-             ctx.beginPath();
-             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-             ctx.closePath();
-             ctx.fillStyle = this.color;
-             ctx.fill();
+             var img = new Image();
+             img.src = 'assets/dots/shiny.png';
+             var heightContext = 1 + Math.floor(context.state.gifFrame / 75);
+             var widthContext = context.state.gifFrame % 75;
+             ctx.drawImage(img, (img.width / 75) * widthContext, (heightContext - 1) * img.height / 2, img.width / 75, (img.height / 2), this.x, this.y, 50, 50);
            }
          };
          return ball;
@@ -104,6 +100,7 @@
        var makeRow = function(hexCode) {
          var rowArr = [0, 0, 0, 0, ];
          var corArr = ['a', 's', 'd', 'f'];
+         
          for (let i = 0; i < 4; i++) {
            if (patterns[hexCode][i] === 1) {
              rowArr[i] = {
@@ -126,10 +123,9 @@
              });
            },
          };
-         var color = '#' + Math.random().toString(16).substr(-6);
          for (let i = 0; i < rowArr.length; i ++) {
            if (rowArr[i].position === 1) {
-             row.balls.push(makeBall(i * 100 + 50, 100, color, rowArr[i].keyCode));
+             row.balls.push(makeBall(i * 100 + 20, 100, null, rowArr[i].keyCode));
            }
          }
          return row;
@@ -232,21 +228,33 @@
            ctx.fillRect(10, 60, context.state.health * 4, 25);
 
 // Hit the dots
+           var img = new Image();
+
            if (context.state.hit === true) {
              if (counter === 5) {
                context.setState({hit: false});
                counter = 0;
              } else {
-               ctx.fillStyle = 'blue';
-               ctx.fillRect(0, 575, 400, 10);
+               
+              //  img.src = 'assets/dots/crosshairHit.png';
+              //  var frame = (context.state.gifFrame % 30) + 1;
+              // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 20, 552, 50, 50);
+              // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 120, 552, 50, 50);
+              // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 220, 552, 50, 50);
+              // //  ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 320, 552, 50, 50);
                counter++;
-               ctx.fillStyle = 'white';
              }
 
            } else {
-             ctx.fillStyle = 'white';
-             ctx.fillRect(0, 572.5, 400, 10);
            }
+           img.src = 'assets/dots/crosshair.png';
+           var frame = (context.state.gifFrame % 29);
+           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 20, 552, 50, 50);
+           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 120, 552, 50, 50);
+           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 220, 552, 50, 50);
+           ctx.drawImage(img, (img.width / 30) * frame, 0, img.width / 30, img.height, 320, 552, 50, 50);
+            //  ctx.fillStyle = 'white';
+            //  ctx.fillRect(0, 572.5, 400, 10);
 
 // EXCLAMATIONS!
            if (context.state.exclamation !== null) {
@@ -298,13 +306,14 @@
            });
            allRows.checkDelete();
            allRows.flashDots();
+           
 
+           
          } else {
 
            console.log('hi');
-           console.log('----> current user',context.props.currentUser);
-
-           context.props.saveGame(context.props.currentUser.id, context.state);
+           console.log('----> current user', context.props.currentUser);
+           saveGame(context.props.currentUser.id, context.state);
 
            ctx.clearRect(-50, -50, 1500, 1500);
            ctx.fillStyle = 'black';
@@ -320,6 +329,12 @@
        }
        audio.play();
        var drawLoop = setInterval(()=> {
+         //console.log(context.state.gifFrame);
+         if (context.state.gifFrame < 150) {
+           context.setState({gifFrame: this.state.gifFrame + 1});
+         } else {
+           context.setState({gifFrame: 1});
+         }
         //  draw();
         //  if (context.state.health <= 0) {
         //    audio.pause();
@@ -388,7 +403,7 @@
            return (ball.keyBind);
          });
          output = [output.join('')];
-         output.push(Math.abs(575 - allRows.rows[0].balls[0].y));
+         output.push(Math.abs(550 - allRows.rows[0].balls[0].y));
          return output;
        };
 
@@ -419,7 +434,6 @@
              }
            }
          };
-
          function listenToA() {
            keyboardJS.bind('a', function(e) {
              validMove('a');
@@ -503,10 +517,6 @@
    trackEnd() {
      console.log('The song has ended');
      this.setState({end: true});
-   }
-
-   playMusic() {
-     var sound = new Audio();
    }
 
    render() {
