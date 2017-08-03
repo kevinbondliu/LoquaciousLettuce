@@ -145,6 +145,7 @@ class MusicSettings extends React.Component {
                 <h3>Play!</h3>
               </div></Link>
             }
+            
             {
               this.props.game.players === 2 &&
               <Link to='/multiPlayer'><div className="levelChoiceBtn" onClick={()=> { youtubeBind(); changeView('players'); } }>
