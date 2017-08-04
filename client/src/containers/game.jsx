@@ -36,7 +36,7 @@
      this.increaseScore = this.increaseScore.bind(this);
      this.increaseAttempt = this.increaseAttempt.bind(this);
      this.decreaseAttempt = this.decreaseAttempt.bind(this);
-
+     this.setGame = this.setGame.bind(this);
    }
 
    componentDidMount() {
@@ -59,9 +59,7 @@
      this.setState({attemptPresses: this.state.attemptPresses - 1});
    }
 
-
-   startSong() {
-     this.setState({game: true});
+   setGame() {
      var audio = ReactDOM.findDOMNode(this.refs.audio);
      if (this.state.game === true) {
        if (this.state.ongoing === false) {
@@ -69,6 +67,14 @@
          this.setState({ongoing: true});
        }
      }
+   }
+
+   startSong() {
+     this.setState({
+       game: true
+     },
+     this.setGame
+     );
    }
 
    updateCanvas() {
@@ -533,6 +539,15 @@
      } else {
        var songBlob = `assets/music/${this.state.song}`;
      }
+
+     var start = function() {
+       console.log('click');
+       startSong();
+       if (!!window.background) {
+         window.background.pause();
+       }
+     };
+
      return (
       <div className="singlePlayerGame">
         <div className= 'text-center transition-item game singlePlayerGame'>
@@ -548,7 +563,9 @@
                 />
                 {
                   this.state.ongoing === false &&
-                  <Button className="btn btn-primary btn-sx" onClick={function() { startSong(); if (!!window.background ) { window.background.pause(); } } }> Start Song </Button>
+                  <div className="startChoiceBtn" onClick={start}>
+                   <h3>Start Song</h3>
+                  </div>
                 }
                 {
                   this.state.end === true &&

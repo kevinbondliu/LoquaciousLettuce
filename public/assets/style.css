@@ -237,6 +237,25 @@ body {
   cursor: url('pics/cursorPink.png'), auto !important;
 }
 
+.startChoiceBtn {
+  background-color: black;
+  border-style: double;
+  border-color: white;
+  border-width: 5px;
+  border-radius: 10px;
+  height: 100px;
+  width: 300px;
+  margin: auto;
+  cursor: url('pics/cursorPink.png'), auto !important;
+  -moz-box-shadow: 0px 0 10px #fff;
+  -webkit-box-shadow: 0 0 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+}
+
+.startChoiceBtn:hover {
+  background-color: lightblue;
+}
+
 .entryContainer {
   border-style: double;
   border-color: black;
@@ -305,6 +324,7 @@ body {
   vertical-align: top;
 
 }
+
 #test {
   margin-top: 5px;
 }
