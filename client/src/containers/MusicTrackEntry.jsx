@@ -39,18 +39,22 @@ class MusicTrackListEntry extends React.Component {
 
   render() {
     return (
-      <div>
-        <Panel header={this.props.track.name} onClick = {this.addSong.bind(this)}>
-          <div className='col-sm-3' >
-            <img className="media-object" src={this.props.track.album.images[0].url} style={{height: 100, width: 170}} />
-          </div>
-          <div className='col-sm-6'>
-            {this.props.track.artists[0].name}
-          </div>
-          <div className='col-sm-3'>
-            <h1>{this.props.BPM}</h1>
-          </div>
-        </Panel>
+
+      <div className='entryContainer' onClick = {this.addSong.bind(this)}>
+        <div className='libTitleBar'>
+          <h2>{this.props.track.name}</h2>
+        </div>
+        <div className='imageContainer'>
+          <img className="media-object" src={this.props.track.album.images[0].url} />
+        </div>
+        <div className='artistsContainer'>
+          <br/><br/>
+          <h4>{this.props.track.artists[0].name}</h4>
+        </div>
+        <div className='bpmContainer'>
+          <br/><br/>
+          <h4>{this.props.BPM}</h4>
+        </div>
       </div>
     );
   }

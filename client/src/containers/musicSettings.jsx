@@ -131,7 +131,30 @@ class MusicSettings extends React.Component {
               {this.state.key === 1 ? 
                 <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
               :
-                <MusicTrackList view = {this.state.key} className = 'container'></MusicTrackList>
+                <div>
+                  <div className = 'spotifySearch'>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                      <div className="search-container">
+                        <div className='searchSpot'>
+                          <div className = "spotifySearchTitle">
+                            <h4>Search Song:</h4>
+                          </div>
+                          <input className='inputQuery' type="text" placeholder={'Song Name'} ref={(input) => this.input = input} />
+                          <input className='searchQuery' type="submit" value="Search!"/>
+                        </div>
+                        <div className='searchYoutube'>
+                          <div className='dlLinkContainer'>
+                            <h4>DL Link</h4>
+                          </div>
+                          <div className='iframeContainer'>
+                            <iframe id ='test' style={{width: 150, height: 50, border: 0, overflow: 'hidden', color: 'lightblue'}} scrolling="no" src={this.props.youtube.youtubeLink}/>    
+                          </div>
+                        </div>
+                      </div>
+                    </form>   
+                  </div> 
+                  <MusicTrackList view = {this.state.key} className = 'container'></MusicTrackList>
+                </div>
               }
             </div>
           </div>
