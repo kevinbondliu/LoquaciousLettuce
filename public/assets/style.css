@@ -151,6 +151,7 @@ body {
 }
 
 #highScore {
+  font-family: Iceland;
   font-size: 50px;
   color: white;
   text-align: center;
@@ -179,7 +180,7 @@ body {
   font-size: 40px;
   font-weight: 900;
   float: left;
-  margin-left: 70px;
+  margin-left: 60px;
 }
 
 .scoreIndexContainer {
@@ -213,6 +214,7 @@ body {
 }
 
 #scoresList {
+  font-family: Iceland;
   background-color: lightgrey;
   height: 70px;
   width: 100px;
@@ -239,7 +241,9 @@ body {
   background-color: lightblue;
 }
 
+
 #score {
+  font-family: Iceland;
   text-align: right;
   margin-right: 25px;
   font-size: 25px;
@@ -474,7 +478,7 @@ body {
   text-align: center;
   width: 200px;
   height: 50px;
-  padding-top: 3px;  
+  padding-top: 3px;
 }
 
 .spotifySearchTitle {
@@ -722,9 +726,14 @@ body {
   height: 160px;
 }
 
+#lvls {
+/*  font-weight: 700;*/
+}
+
 #scr {
-  margin-top: 20px;
   height: 160px;
+/*  font-weight: 800;
+  font-size: 20px;*/
 }
 
 
