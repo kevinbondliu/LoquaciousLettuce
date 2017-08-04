@@ -61,7 +61,9 @@ router.route('/profile')
         rankNum = Math.floor(rank/diffs.length);
         var rank;
 
-        if (rankNum === 1) {
+        if (!rankNum) {
+          rank = 'None';
+        } else if (rankNum === 1) {
           rank = 'Super Beginner';
         } else if (rankNum === 2) {
           rank = 'Beginner';
