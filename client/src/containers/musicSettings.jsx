@@ -10,10 +10,7 @@ import MusicTrackList from './MusicTrackList.jsx';
 import MusicTrackListLib from './MusicTrackListLib.jsx';
 import {getTracks, getYoutube} from '../actions/index';
 import PageTransition from 'react-router-page-transition';
-//const config = require('config')['youtube'];
-//console.log('THIS IS THE CONFIG FILE', config);
-import youtube from '../../../config/production.json';
-
+import youtube from '../../../config/development.json';
 
 class MusicSettings extends React.Component {
   constructor(props) {
