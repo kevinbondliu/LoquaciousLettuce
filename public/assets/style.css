@@ -14,7 +14,7 @@
 #profile-pic:hover + #imageMssg {
     visibility: visible;
     text-align: center;
-}​
+}
 
 
 h1 {
@@ -72,20 +72,6 @@ body {
   box-sizing: border-box;
 }
 
-/*input#file {
-  display: inline-block;
-  width: 100%;
-  padding: 120px 0 0 0;
-  height: 100px;
-  overflow: hidden;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background: url('http://archisnapper.com/cloud.png') center center no-repeat #e4e4e4;
-  border-radius: 20px;
-  background-size: 150px 100px;
-}*/
-
 .settingInputTextContainer {
   height: 100px;
   width: 450px;
@@ -93,11 +79,6 @@ body {
   padding-top: 15px;
   padding-left: 5px;
 }
-
-/*#music{
-  height: 50px;
-  width: 100px;
-}*/
 
 .logo{
   margin: auto !important;
@@ -166,7 +147,27 @@ body {
 }
 
 #modals {
-/*  opacity: .8;*/
+  font-family: Iceland;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.modal-header, .modal-body {
+  background-color: #1a1a1a;
+}
+
+#modalTitle {
+  color: blue;
+  font-size: 40px;
+  text-align: center;
+}
+
+#modalTitleUserName {
+  color: white;
+  font-size: 40px;
+  font-weight: 900;
+  float: left;
+  margin-left: 70px;
 }
 
 #scoresList {
@@ -400,7 +401,6 @@ body {
   box-shadow: 0px 0px 50px #fff;
 }
 
-
 .musicSearchBarContainer {
   height: 100px;
   width: 900px;
@@ -595,7 +595,7 @@ body {
 }
 
 .modal-body {
-  height: 200px;
+  height: 210px;
   overflow-y: auto;
   background-color: lightgrey;
 }
@@ -605,11 +605,11 @@ body {
 }
 
 #lvl {
-  padding-top: 25px;
   height: 160px;
 }
 
 #scr {
+  margin-top: 20px;
   height: 160px;
 }
 
@@ -765,7 +765,6 @@ body {
   width: 1000px;
   height: 625px;
 }
-
 
 /*           Jey's Styling            */
 
