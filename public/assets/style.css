@@ -349,7 +349,7 @@ body {
 
 .scoreDisplayContainer {
   height: 70px;
-  width: 300px;
+  width: 410px;
   display: inline-block;
   vertical-align: top;
   margin-top: 10px;
@@ -357,7 +357,7 @@ body {
 
 .scoreScoreContainer {
   height: 70px;
-  width: 410px;
+  width: 300px;
   display: inline-block;
   vertical-align: top;
   margin-top: 5px;
