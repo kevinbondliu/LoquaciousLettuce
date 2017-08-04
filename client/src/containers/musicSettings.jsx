@@ -202,32 +202,3 @@ var matchDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
-        // <iframe id ='test'style={{width: 230, height: 60, border: 0, overflow: 'hidden'}} scrolling="no" src={this.props.youtube.youtubeLink}/>
-        //                         Select Your Music<br></br>
-        // <div id="content">
-        //   <input type="file" id="music" accept="audio/*" />
-        // </div>
-        // <div className="col-sm-12 musicButton" style={{ background: 'white', height: 550}}>
-        //   <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="controlled-tab-example" className = 'musicButton'>
-        //     <Tab eventKey={1} title="Library" className= 'musicButton' >
-        //       <MusicTrackListLib view = {this.state.key} className = 'container'></MusicTrackListLib>
-        //     </Tab>
-        //     <Tab eventKey={2} title="Find Track" className= 'musicButton'>
-        //       <Navbar>
-        //         <Navbar.Collapse>
-        //           <span>
-        //           <form onSubmit={this.handleSubmit.bind(this)}>
-        //             <div className="search-container">
-        //               Song Name:
-        //               <input type="text" placeholder={'Song Name'} ref={(input) => this.input = input} />
-        //               <input type="submit" value="Search!"/>
-        //             </div>
-        //           </form>            
-        //           </span>
-        //         </Navbar.Collapse>
-        //       </Navbar>
-        //       <MusicTrackList view = {this.state.key} className = 'container'></MusicTrackList>
-        //     </Tab>
-        //   </Tabs>
-        // </div>
-   
