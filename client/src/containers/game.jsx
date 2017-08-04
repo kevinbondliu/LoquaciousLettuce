@@ -569,7 +569,9 @@
                 }
                 {
                   this.state.end === true &&
-                  <Link to='/score'><Button className="btn btn-primary btn-sx" >High Scores</Button></Link>
+                  <Link to='/score'><Button className="startChoiceBtn" >
+                    <h3>Start Song</h3>
+                  </Button></Link>
                 }
         </div>
       </div>
