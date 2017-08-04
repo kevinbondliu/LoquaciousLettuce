@@ -260,6 +260,7 @@ body {
   font-weight: 900;
   float: left;
   margin-left: 60px;
+
 }
 
 .scoreIndexContainer {
@@ -300,6 +301,7 @@ body {
   display: inline-block;
   vertical-align: top;
 }
+
 
 .items {
   -moz-box-shadow: 0px 0 10px #fff;
@@ -400,7 +402,7 @@ body {
   -moz-box-shadow: 0px 0 10px #fff;
   -webkit-box-shadow: 0 0 10px #fff;
   box-shadow: 0px 0px 10px #fff;
-} 
+}
 
 .endChoiceBtn:hover {
   background-color: lightblue;
@@ -643,6 +645,7 @@ body {
   /*margin-left: px;*/
   cursor: url('pics/cursorPink.png'), auto !important;
   float: right; 
+
   background-color: black;
   width: 450px;
   height: 100px;
@@ -813,13 +816,14 @@ body {
 }
 
 #profileStats {
+  font-family: Iceland;
   height: 412px;
 }
 
 .levels {
   /*background-color: lightgrey;*/
   border-radius: 4px;
-  height: 40px;
+  height: 60px;
   margin-top: 5px;
   padding-top: 10px;
   padding-left: 15px;
@@ -830,10 +834,12 @@ body {
 }
 
 #profileLevelScores {
+  font-size: 20px;
   text-align: left;
 }
 
 #profileTopScores {
+  font-size: 30px;
   text-align: right;
 }
 
@@ -932,25 +938,29 @@ body {
 }
 
 #profTopScore {
-  margin-left: 570px;
+  font-size: 30px;
+  margin-left: 480px;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 #profLevelScore {
+  font-size: 30px;
   font-weight: 800;
   text-transform: uppercase;
 }
 
 #profileRank {
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: 900;
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 5px;
 }
 
 #profileRankMarkers {
-  font-size: 20px;
+  font-weight: 900;
+  font-size: 30px;
   color: blue;
 }
 
