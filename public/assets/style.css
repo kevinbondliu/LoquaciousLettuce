@@ -641,11 +641,8 @@ body {
 }
 
 .searchTab {
-  /*margin-right: 10px;*/
-  /*margin-left: px;*/
   cursor: url('pics/cursorPink.png'), auto !important;
-  float: right; 
-
+  float: right;
   background-color: black;
   width: 450px;
   height: 100px;
