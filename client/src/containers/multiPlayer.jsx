@@ -183,7 +183,6 @@ class Multiplayer extends React.Component {
 
       var allRowsP1 = {
         rows: [],
-
         flashDots: function() {
           if (this.rows[0]) {
             if (this.rows[0].balls) {
