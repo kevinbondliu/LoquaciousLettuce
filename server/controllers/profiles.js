@@ -13,7 +13,6 @@ module.exports.getAll = (req, res) => {
     });
 };
 
-
 // WHY IS THIS COMMENTED OUT? BECAUSE REDIS IS HANDLING IT?
 
 // module.exports.create = (req, res) => {
@@ -48,6 +47,25 @@ module.exports.getOne = (req, res) => {
 };
 
 
+module.exports.getOneByDisplay = (req, res) => {
+  console.log('parrrr', req.params);
+  res.send('hihi');
+  // models.Profile.where({ display: req.params.display }).fetch()
+  //   .then(profile => {
+  //     if (!profile) {
+  //       throw profile;
+  //     }
+  //     res.status(200).send(profile);
+  //   })
+  //   .error(err => {
+  //     res.status(500).send(err);
+  //   })
+  //   .catch(() => {
+  //     res.sendStatus(404);
+  //   });
+};
+
+
 module.exports.update = (req, res) => {
   models.Profile.where({ id: req.params.id }).fetch()
     .then(profile => {
@@ -66,6 +84,7 @@ module.exports.update = (req, res) => {
       res.sendStatus(404);
     });
 };
+
 
 module.exports.getProfilesByList2 = (req, res) => {
 //  knex.raw('SELECT profiles.* FROM (SELECT ? AS user UNION ALL SELECT ? UNION ALL SELECT ? UNION ALL SELECT ? UNION ALL SELECT ? UNION ALL SELECT ? UNION ALL SELECT ? UNION ALL SELECT ? UNION ALL SELECT ? UNION ALL SELECT ?) list LEFT JOIN profiles ON list.user = profiles.id;', [7,3,1,3,5,2,5,2,8,8])
@@ -117,6 +136,7 @@ module.exports.getProfilesByList = (req, res) => {
 ////////////////  TEST FUNCTION FOR DB QUERIES  ////////////////////
 ////////////////////////////////////////////////////////////////////
 
+
 module.exports.testAll = (req, res) => {
   models.Profile.fetchAll()
     .then(profiles => {
@@ -127,3 +147,6 @@ module.exports.testAll = (req, res) => {
       res.status(503).send(err);
     });
 };
+
+
+

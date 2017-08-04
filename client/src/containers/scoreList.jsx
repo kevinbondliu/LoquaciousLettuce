@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactStars from 'react-stars';
 import $ from 'jquery';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -9,14 +10,11 @@ import {Button, Modal} from 'react-bootstrap';
 import {getTopGames} from '../actions/index';
 
 class ScoreList extends React.Component {
-
-
-  componentWillMount () {
-    console.log('top games on mount', this.props.topTen);
-    //query for the top 10
-    this.props.getTopGames(this.props.game);
-  }
-
+  // componentWillMount () {
+  //   console.log('top games on mount', this.props.topTen);
+  //   //query for the top 10
+  //   this.props.getTopGames(this.props.game);
+  // }
   createScoreListEntries() {
     console.log('top games --->', this.props.topTen);
     var topTen = this.props.topTen;
@@ -47,35 +45,37 @@ class ScoreList extends React.Component {
   }
 
   render () {
-    // var selectUser = this.props.selectUser.bind(this);
-    // var showModal = this.props.showModal.bind(this);
-    // var closeModal = this.props.closeModal.bind(this);
-
+    // console.log('stars', this.props.showScoreModal.stats.games[0].numGamesDifficulty);
+    // console.log('scores', this.props.showScoreModal.stats.games[0].topScoreDifficulty);
+    //{this.props.showScoreModal.stats.games[0].numGamesDifficulty[1]}
     return (
       <div>
         <ol>
           <div>
-            <Modal id="modals" show={this.props.showScoreModal.visibility} onHide={ () => this.props.closeModal({visibility: false, user: {username:'julia'}}) }>
+            <Modal id="modals" show={this.props.showScoreModal.visibility} onHide={ () => this.props.closeModal({visibility: false, user: {display:'julia'}, stats: {games: []}}) }>
               <Modal.Header closeButton>
-                <Modal.Title> {this.props.showScoreModal.user.display} RANKING: ROCKSTAR </Modal.Title>
+                <Modal.Title id="modalTitle"> <span id="modalTitleUserName">{this.props.showScoreModal.user.display} </span>RANK: ROCKSTAR </Modal.Title>
               </Modal.Header>
               <Modal.Body >
                 <div id="modPic" className="col-sm-4"><img src={this.props.showScoreModal.user.imageurl} height="160" width="160"/></div>
                 <div id="lvl" className="col-sm-6">
                   <div> STATS </div>
-                  Super Beginner: <br></br>
-                  Beginner: <br></br>
-                  Intermediate: <br></br>
-                  Advanced: <br></br>
-                  Rockstar: <br></br>
+                  Super Beginner: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[1]} <br></br>
+                  Beginner: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[2]}<br></br>
+                  Intermediate: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[3]}<br></br>
+                  Advanced: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[4]}<br></br>
+                  Rockstar: {this.props.showScoreModal.stats.games[0].numGamesDifficulty[5]}<br></br>
                 </div>
 
-                <div id="scr" className="col-sm-2"> highscores: {this.props.showScoreModal.score}</div>
+                <span id="scr" className="col-sm-2"> highscores: <br></br>
+                  {this.props.showScoreModal.stats.games[0].topScoreDifficulty[1]} <br></br>
+                  {this.props.showScoreModal.stats.games[0].topScoreDifficulty[2]} <br></br>
+                  {this.props.showScoreModal.stats.games[0].topScoreDifficulty[3]} <br></br>
+                  {this.props.showScoreModal.stats.games[0].topScoreDifficulty[4]} <br></br>
+                  {this.props.showScoreModal.stats.games[0].topScoreDifficulty[5]} <br></br>
+                </span>
 
               </Modal.Body>
-              <Modal.Footer>
-               footer
-              </Modal.Footer>
             </Modal>
           </div>
             {this.createScoreListEntries()}
