@@ -570,7 +570,7 @@
                 {
                   this.state.end === true &&
                   <Link to='/score'><Button className="startChoiceBtn" >
-                    <h3>Start Song</h3>
+                    <h3>Highscore</h3>
                   </Button></Link>
                 }
         </div>
