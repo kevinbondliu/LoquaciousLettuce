@@ -3,8 +3,8 @@
     "client": "postgresql",
     "connection": {
       "database": "thesis_devel",
-      "user": "postgres",
-      "password": "password",
+      "user": "",
+      "password": "",
       "host": "localhost",
       "port": 5432,
       "charset" : "utf8",
