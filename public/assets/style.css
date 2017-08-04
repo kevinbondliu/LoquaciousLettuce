@@ -75,6 +75,7 @@ body {
 }
 
 .uploadButton {
+  cursor: url('pics/cursorPink.png'), auto !important;
   background-color: white;
   height: 90px;
   width: 400px;
@@ -376,6 +377,7 @@ body {
 }
 
 .entryContainer {
+  cursor: url('pics/cursorPink.png'), auto !important;
   border-style: double;
   border-color: black;
   border-width: 5px;
@@ -387,6 +389,11 @@ body {
   -webkit-box-shadow: 0 0 10px #fff;
   box-shadow: 0px 0px 10px #fff;
 }
+
+.entryContainer:hover > .libTitleBar {
+  background-color: lightblue;
+}
+
 
 .media-object {
   border-style: solid;
@@ -403,6 +410,7 @@ body {
   background-color: white;
   height: 40px;
 }
+
 
 .imageContainer {
   width: 250px;
@@ -526,6 +534,7 @@ body {
 
 .libraryTab {
   /*margin-left: 10px;*/
+  cursor: url('pics/cursorPink.png'), auto !important;
   background-color: black;
   border-style: double;
   border-color: white;
@@ -542,6 +551,7 @@ body {
 .searchTab {
   /*margin-right: 10px;*/
   /*margin-left: px;*/
+  cursor: url('pics/cursorPink.png'), auto !important;
   float: right; 
   background-color: black;
   border-style: double;
