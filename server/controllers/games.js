@@ -30,21 +30,20 @@ module.exports.getOne = (req, res) => {  // [ R ]
 };
 
 
-
-
 module.exports.create = (req, res) => {  // [ C ]
   models.Game.forge({
     profile_id: req.body.profileId,
     song_id: 1,
     score: req.body.score,
-    difficulty: req.body.difficulty,
-
+    difficulty: req.body.difficulty
   })
     .save()
     .then(result => {
-      res.send(201, result);
+      console.log('Success');
+      res.status(200).send(result);
     })
     .catch(err => {
+      console.log('This guy right here');
       res.status(500).send(err);
     });
 };
@@ -136,7 +135,7 @@ module.exports.getAllForUser = (req, res) => {  // [ R ]
 module.exports.getPlayerStats = (req, res) => {
   // QUERY DB TO GET THE PROFILE ID FROM THE PROFILE EMAIL
   let profile_id = 0;
-  
+
   models.Profile.where({ email: req.params.email})
   .fetch()
   .then(profile => {
@@ -149,8 +148,15 @@ module.exports.getPlayerStats = (req, res) => {
       withRelated: ['profiles', 'songs'],
     })
     // CHAIN-INVOKE A SEPARATE PACKAGING FUNCTION WHICH:
-    .then(games => { 
+    .then(games => {
       var stats = {
+        averageScoreDifficulty: {
+          1: 0,
+          2: 0,
+          3: 0,
+          4: 0,
+          5: 0,
+        },
         topScoreDifficulty: {
           1: 0,
           2: 0,
@@ -158,7 +164,13 @@ module.exports.getPlayerStats = (req, res) => {
           4: 0,
           5: 0,
         },
-
+        totalScoreDifficulty: {
+          1: 0,
+          2: 0,
+          3: 0,
+          4: 0,
+          5: 0,
+        },
         numGamesDifficulty: {
           1: 0,
           2: 0,
@@ -166,13 +178,14 @@ module.exports.getPlayerStats = (req, res) => {
           4: 0,
           5: 0,
         },
-
         averageScore: 0,
-
+        averageDifficulty: 3.00,
+        playerRanking: 'BASS KITTEN',
       };
     // CALCULATES:
       let len = games.models.length;
       let totalScores = 0;
+      let totalDifficulties = 0;
 
       for (let i = 0; i < len; i++) {
       // NUMBER OF GAMES PER DIFF
@@ -182,15 +195,38 @@ module.exports.getPlayerStats = (req, res) => {
         if (stats.topScoreDifficulty[dLevel] < games.models[i].attributes.score) {
           stats.topScoreDifficulty[dLevel] = games.models[i].attributes.score;
         }
-      // KEEP TRACK OF TOTAL TO DERIVE AVERAGE LATER
+      // TOTAL SCORE PER DIFF
+        stats.totalScoreDifficulty[dLevel] += games.models[i].attributes.score;
+
+      // KEEP TRACK OF TOTALS TO DERIVE AVERAGE LATER
         totalScores += games.models[i].attributes.score;
+        totalDifficulties += games.models[i].attributes.difficulty;
       }
       // AVERAGE SCORE OF ALL GAMES
       stats.averageScore = (totalScores / len).toFixed(2);
 
+      // AVERAGE DIFFICULTY OF ALL GAMES
+      stats.averageDifficulty = (totalDifficulties / len).toFixed(2);
+
+      // AVERAGE SCORE PER DIFF
+      for(level in stats.averageScoreDifficulty) {
+        stats.averageScoreDifficulty[level] = (stats.totalScoreDifficulty[level] / stats.numGamesDifficulty[level]).toFixed(2);
+      }
+
+      // DERIVES PLAYER "RANKING"
+      // Divide absolute scale into five ranges corresponding to the 5 difflevels (NOTE: This is merely an arbitrary mapping)
+      let rawRanking = stats.averageScore * stats.averageDifficulty;
+
+           if (rawRanking >=     0 && rawRanking <  4499) { stats.playerRanking = 'Super Beginner'; }
+      else if (rawRanking >=  4500 && rawRanking <  7499) { stats.playerRanking = 'Beginner'; }
+      else if (rawRanking >=  7500 && rawRanking < 10499) { stats.playerRanking = 'Intermediate'; }
+      else if (rawRanking >= 10500 && rawRanking < 13499) { stats.playerRanking = 'Advanced'; }
+      else if (rawRanking >= 13500                      ) { stats.playerRanking = 'Rock Star!'; };
+
       // ADDS THESE NEW PROPERTIES TO THE RESPONSE OBJECT
       games.unshift(stats);
 
+      // THEN 'RETURNS' GAMES FORWARD INTO THE PROMISE CHAIN
       return games; // THIS IS REQUIRED BECAUSE THIS .then IS *NESTED*
     })
     .then(games => {
@@ -211,7 +247,7 @@ module.exports.getPlayerStats = (req, res) => {
 
 module.exports.getTopTenScoresForSongAtDifficulty = (req, res) => {
   console.log('REQ.BODY = ', req.body);
-  models.Game.where({ song_id: req.body.song_id, difficulty: req.body.difficulty })
+  models.Game.where({ song_id: req.body.songId, difficulty: req.body.difficulty })
   .orderBy('-score')
   .fetchAll({
     withRelated: ['profiles', 'songs'],
@@ -245,7 +281,7 @@ module.exports.getAllSongsForUser = (req, res) => {
 */
 module.exports.getAllGamesForSongAtDifficulty = (req, res) => {
   console.log('REQ.BODY = ', req.body);
-  models.Game.where({ song_id: req.body.song_id, difficulty: req.body.difficulty }).fetchAll()
+  models.Game.where({ song_id: req.body.songId, difficulty: req.body.difficulty }).fetchAll()
   .then(games => {
     if (!games) {
       throw games;

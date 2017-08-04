@@ -52,16 +52,36 @@ export const changeView = (view) => {
 };
 
 
-export const showModal = (obj) => {
+export const showModal = (obj) => (dispatch, getState) => {
   console.log("OPENED ---obj", obj);
-  return {
-    type: 'SHOW_MODAL',
-    payload: obj
-  };
+
+  axios.get('/api/profiles/' + obj.user.id)
+  .then( (result) => {
+    return axios.get('api/games/getPlayerStats/' + result.data.email)
+  })
+  .then( (result) => {
+    // console.log('stats--', result.data);
+    // console.log('stars', result.data.games[0].numGamesDifficulty);
+    // console.log('scores', result.data.games[0].topScoreDifficulty);
+
+    var modalStats = obj;
+    modalStats['stats'] = result.data;
+    return dispatch( {
+      type: 'SHOW_MODAL',
+      payload: modalStats
+    } )
+  })
+  .catch( (error) => {
+    console.error(error);
+  })
 };
 
+
 export const closeModal = (obj) => {
-  console.log("CLOSED --");
+  console.log("CLOSED -->>>>>>>>>>>", obj);
+  // query again can i do by name or id
+  obj['stats'] = { games: [{
+    averageScore: 1, numGamesDifficulty: {}, topScoreDifficulty: {} }, {}] };
   return {
     type: 'CLOSE_MODAL',
     payload: obj
@@ -158,6 +178,7 @@ export const changeBlob = (blob) => {
 
 //--------------------------------GAME--------------------------------//
 
+
 export const changeDifficulty = (difficulty) => {
   console.log('difficulty', difficulty);
   return {
@@ -200,6 +221,7 @@ export const selectMode = (playerMode) => {
 
 //--------------------------------SCORELIST--------------------------------//
 
+
 export const saveGame = (profileId, game) => (dispatch, getState) => {
   console.log('in the saveGame function');
   var level = 0;
@@ -214,29 +236,30 @@ export const saveGame = (profileId, game) => (dispatch, getState) => {
   } else if (game.difficulty === 'rockstar') {
     level = 5;
   }
-      axios.post('/api/games', {profileId: profileId, song: game.song, score: game.score, difficulty: level})
-      .then( (result) => {
-        //console.log('result for save game', result.data);
-        return axios.post('/api/games/getTopTenScoresForSongAtDifficulty', {songId: result.data.song_id, difficulty: result.data.difficulty})
-      })
-      .then( (result) => {
-        //console.log('data back------>', result.data);
-        return dispatch(changeTopTen(result.data));
-      })
-      .catch( (error) => {
-        console.error('failed to save game and grab top scores');
-      })
 
-}
+  console.log('game when end---', game);
+  var score = game.scoreP1 || game.score;
+  console.log('GAME SET', profileId, game.song, score, level);
 
-//--------------------------------SCORELIST--------------------------------//
+  axios.post('/api/games', {profileId: profileId, song: game.song, score: score, difficulty: level})
+  .then( (result) => {
+    console.log('ughnksdhjfnksd', result.data);
+    return axios.post('/api/games/getTopTenScoresForSongAtDifficulty', {songId: result.data.song_id, difficulty: result.data.difficulty})
+  })
+  .then( (result) => {
+    return dispatch(changeTopTen(result.data));
+  })
+  .catch( (error) => {
+    console.error('failed to save game and grab top scores');
+  });
+};
 
 export const changeTopTen = (games) => {
   return {
     type: 'UPDATE_TOP_TEN',
     payload: games
-  }
-}
+  };
+};
 
 export const getTopGames = (game) => (dispatch,getState) => {
   console.log('in the getTopGames function!!!!! julia');
@@ -252,22 +275,16 @@ export const getTopGames = (game) => (dispatch,getState) => {
   } else if (game.difficulty === 'rockstar') {
     level = 5;
   }
-
   axios.post(`/api/songs/nameUrl`, {url: game.song})
   .then( (result) => {
-    // console.log('result------>here', result.data);
     return axios.post('/api/games/getTopTenScoresForSongAtDifficulty', {songId: result.data.id, difficulty: level})
   })
   .then( (result) => {
-    // console.log('should be top scores for mount------->', result.data);
     return dispatch(changeTopTen(result.data));
   })
-
   .catch( (error) => {
     console.error('failed to get top scores');
   })
-
-
 }
 
 

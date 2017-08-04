@@ -12,7 +12,6 @@ import {getTracks, getYoutube} from '../actions/index';
 import PageTransition from 'react-router-page-transition';
 import youtube from '../../../config/development.json';
 
-
 class MusicSettings extends React.Component {
   constructor(props) {
     super(props);
@@ -202,3 +201,4 @@ var matchDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, matchDispatchToProps)(MusicSettings);
+
