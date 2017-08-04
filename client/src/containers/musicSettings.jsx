@@ -68,7 +68,6 @@ class MusicSettings extends React.Component {
     };
     this.props.getYoutube(youtubeOptions);
     this.props.getTracks(FETCH_URL, myOptions);
-    // this.props.getYoutube
   }
 
 
