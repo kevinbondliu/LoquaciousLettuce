@@ -171,7 +171,7 @@ class MusicSettings extends React.Component {
           <div className = 'musicPlay'>
             {
               this.props.game.players === 1 &&
-              <Link to='/game'><div className="levelChoiceBtn" onClick = {()=> { youtubeBind(); changeView('players');  } }>
+              <Link to='/game' style={{textDecoration: 'none'}}><div className="levelChoiceBtn" onClick = {()=> { youtubeBind(); changeView('players');  } }>
                 <h3>Play!</h3>
               </div></Link>
             }
