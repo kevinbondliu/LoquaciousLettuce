@@ -21,7 +21,7 @@ class ScoreList extends React.Component {
     console.log('top games --->', this.props.topTen);
     var topTen = this.props.topTen;
     if (topTen.length >= 10) {
-      topTen = topTen.slice(0,10);
+      topTen = topTen.slice(0, 10);
     }
     return topTen.map((game, index) => {
       var user = game.profiles;
