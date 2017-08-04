@@ -756,6 +756,7 @@ class Multiplayer extends React.Component {
     };
     return (
       <div className= 'multiplayer text-center'>
+        <img src="assets/pics/logoTest.png" height = "200" width="1100" className ='logo'></img>
         <div>
           <canvas ref="canvas" id='canvas' width={1000} height={625}/>
         </div>
