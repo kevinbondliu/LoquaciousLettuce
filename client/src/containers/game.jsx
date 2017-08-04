@@ -37,6 +37,7 @@
      this.increaseAttempt = this.increaseAttempt.bind(this);
      this.decreaseAttempt = this.decreaseAttempt.bind(this);
      this.setGame = this.setGame.bind(this);
+     this.startGlow = this.startGlow.bind(this);
    }
 
    componentDidMount() {
@@ -59,11 +60,17 @@
      this.setState({attemptPresses: this.state.attemptPresses - 1});
    }
 
+   startGlow() {
+     var state = document.getElementById('canvas');
+     state.className = 'canvasBorderStart';
+   }
+
    setGame() {
      var audio = ReactDOM.findDOMNode(this.refs.audio);
      if (this.state.game === true) {
        if (this.state.ongoing === false) {
          this.updateCanvas();
+         this.startGlow();
          this.setState({ongoing: true});
        }
      }
@@ -199,7 +206,7 @@
          if (context.state.end === false) {
            ctx.clearRect(0, 0, canvas.width, canvas.height);
            ctx.fillStyle = 'black';
-           ctx.fillRect(5, 5, 400, 600);
+           ctx.fillRect(5, 5, 400, 625);
 // BACKGROUND FOR AUDIO ANALYTICS
            var barWidth = (400 / bufferLength);
            var barHeight;
@@ -329,7 +336,7 @@
 
            ctx.clearRect(-50, -50, 1500, 1500);
            ctx.fillStyle = 'black';
-           ctx.fillRect(5, 5, 400, 600);
+           ctx.fillRect(5, 5, 400, 625);
            ctx.fillStyle = 'white';
            ctx.fillText(' FINAL SCORE: ' + context.state.score, 20, 50);
            ctx.font = '20px Iceland';
@@ -552,7 +559,7 @@
       <div className="singlePlayerGame">
         <div className= 'text-center transition-item game singlePlayerGame'>
           <div className="singlePlayerGame">
-            <canvas ref="canvas" width={400} height={625}/>
+            <canvas className ='canvasBorder' id = 'canvas' ref="canvas" width={400} height={625}/>
           </div>
                 <ReactAudioPlayer
                   src={`${songBlob}`}
