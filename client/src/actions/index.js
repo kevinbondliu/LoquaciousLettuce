@@ -78,7 +78,10 @@ export const showModal = (obj) => (dispatch, getState) => {
 
 
 export const closeModal = (obj) => {
-  console.log("CLOSED --");
+  console.log("CLOSED -->>>>>>>>>>>", obj);
+  // query again can i do by name or id
+  obj['stats'] = { games: [{
+    averageScore: 1, numGamesDifficulty: {}, topScoreDifficulty: {} }, {}] };
   return {
     type: 'CLOSE_MODAL',
     payload: obj
@@ -233,6 +236,7 @@ export const saveGame = (profileId, game) => (dispatch, getState) => {
   } else if (game.difficulty === 'rockstar') {
     level = 5;
   }
+
   console.log('game when end---', game);
   var score = game.scoreP1 || game.score;
   console.log('GAME SET', profileId, game.song, score, level);
