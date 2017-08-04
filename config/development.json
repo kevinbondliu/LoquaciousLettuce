@@ -3,8 +3,18 @@
     "client": "postgresql",
     "connection": {
       "database": "thesis_devel",
+<<<<<<< HEAD
       "user": "",
       "password": "",
+=======
+<<<<<<< HEAD
+      "user": " ",
+      "password": " ",
+=======
+      "user": "postgres",
+      "password": "password",
+>>>>>>> changed login Signup as well as hovers
+>>>>>>> changed login Signup as well as hovers
       "host": "localhost",
       "port": 5432,
       "charset" : "utf8",
