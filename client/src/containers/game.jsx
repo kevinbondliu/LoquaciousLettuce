@@ -557,6 +557,8 @@
 
      return (
       <div className="singlePlayerGame">
+        <img src="assets/pics/logoTest.png" height = "200" width="1100" className ='logo'></img>
+
         <div className= 'text-center transition-item game singlePlayerGame'>
           <div className="singlePlayerGame">
             <canvas className ='canvasBorder' id = 'canvas' ref="canvas" width={400} height={625}/>

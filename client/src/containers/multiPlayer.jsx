@@ -396,10 +396,6 @@ class Multiplayer extends React.Component {
 
 
 
-
-
-
-
   /*                Player 1 Hit condition            */
   //         if (context.state.hitP1 === true) {
   //           if (counterP1 === 5) {
