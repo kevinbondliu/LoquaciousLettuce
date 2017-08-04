@@ -46,5 +46,8 @@
   },
   "redis": {
     "REDIS_URL" : "redis://h:p0742d847e9e1034e012ee151e9859cd31afdc76dee688f50f6bd4938099580f6@ec2-52-3-6-123.compute-1.amazonaws.com:22389"
+  },
+  "youtubeKey": {
+    "key": "AIzaSyC5yIOrzHz53f1ByTgYzP2Yn586TDDb-1Y"
   }
 }
